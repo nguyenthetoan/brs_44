@@ -1,0 +1,17 @@
+<% provide :title, t("home") %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="jumbotron">
+        <div class="welcome">
+          <h6><%= t"app_name" %></h6>
+          <div>
+            <%= link_to t("app_desc"), root_path, class: "app-desc" %>
+              <br/>
+              <a class="semi-transparent-button signup" href="#">
+                <%= t "signup" %>
+              </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
