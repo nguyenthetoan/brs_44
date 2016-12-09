@@ -21,4 +21,10 @@
 
 en:
   hello: "Hello world"
+  home: "Home"
   app_name: "BRS_44"
+  app_desc: "Framgia Booking Review System"
+  signup: "Sign Up"
+  books: "Books"
+  contact: "Contact"
+
