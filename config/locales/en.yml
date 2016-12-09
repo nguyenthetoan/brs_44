@@ -31,3 +31,13 @@ en:
   users:
     new:
       confirm_pw: "Confrim Your Password"
+  sessions:
+    new:
+      new_user: "New user?"
+      login: "Login"
+    create:
+      invalid_login: "Login failed, please check your email/password ."
+      done_login: "Welcome back!"
+  layouts:
+    header:
+      login: "Login"
