@@ -2,8 +2,8 @@ $(document).on('turbolinks:load', function() {
 
   $('ul.nav > li > a').each(function() {
     $title = $(document).find("title").text().split(' ')[0].toLowerCase();
-    if ($(this).text().toLowerCase() == $title) {
-      $(this).closest('li').addClass('active').fadeIn();
+    if ($(this).text().split(' ')[0].toLowerCase() == $title) {
+      $(this).closest('li').addClass('active');
     }
   });
 

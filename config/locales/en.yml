@@ -27,4 +27,7 @@ en:
   signup: "Sign Up"
   books: "Books"
   contact: "Contact"
-
+  done_sign_up: "You have successful created your account!"
+  users:
+    new:
+      confirm_pw: "Confrim Your Password"
