@@ -1,0 +1,28 @@
+<% provide :title, t("cate_list") %>
+<div class="row">
+  <div class="center-block">
+    <div class="col-md-6">
+      <h1><%= t "new_cate" %></h1>
+      <%= render "cate_form" %>
+    </div>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-12">
+  <h1><%= t "cate_list" %></h1>
+      <table id="categories" class="table table-bordered">
+        <thead>
+          <tr>
+            <th><%= t "name" %></th>
+            <th><%= t "created_at" %></th>
+            <th><%= t "books_in_cate" %></th>
+            <th><%= t "action" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @categories %>
+        </tbody>
+      </table>
+  </div>
+</div>
