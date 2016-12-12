@@ -1,0 +1,34 @@
+<% provide :title, t("books") %>
+<div class="row">
+  <div class="col-md-12">
+  <h1><%= t "books" %></h1>
+      <table id="books" class="table table-bordered">
+        <thead>
+          <tr>
+            <th><%= t "title" %></th>
+            <th><%= t "author" %></th>
+            <th><%= t "pages" %></th>
+            <th><%= t "publish_date" %></th>
+            <th><%= t "category" %></th>
+            <th><%= t "action" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @books %>
+        </tbody>
+      </table>
+  </div>
+</div>
+<br>
+<a id="btn-new-book" class="btn btn-success"><%= t "new_book" %></a>
+<div id="modal-new-book" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2><%= t "create_new_book" %></h2>
+    </div>
+    <div class="modal-body">
+      <%= render "book_form" %>
+    </div>
+  </div>
+</div>
