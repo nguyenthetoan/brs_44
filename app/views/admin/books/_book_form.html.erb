@@ -1,0 +1,20 @@
+<%= form_for @book, url: admin_books_path, remote: true do |f| %>
+  <%= render "shared/error_message", object: f.object %>
+  <%= f.label :title %>
+  <%= f.text_field :title, class: "form-control" %>
+
+  <%= f.label :publish_date %>
+  <%= f.text_field :publish_date, class: "form-control" %>
+
+  <%= f.label :author %>
+  <%= f.text_field :author, class: "form-control" %>
+
+  <%= f.label :pages %>
+  <%= f.text_field :pages, class: "form-control" %>
+
+  <%= f.label :category_id %>
+  <%= select_tag :category_id,
+  	options_for_select(@categories.collect{|c| [c.name, c.id]}),
+  	class: "form-control" %>
+  <%= f.submit t("create"), class: "btn btn-primary" %>
+<% end %>

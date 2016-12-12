@@ -49,4 +49,24 @@ $(document).on('turbolinks:load', function() {
     active3 = !active3;
     active4 = !active4;
   });
+
+  $modal = $('#modal-new-book');
+
+  $btn = $('#btn-new-book');
+
+  $span = $('.close');
+
+  $btn.click(function() {
+    $modal.css('display', 'block')
+  })
+
+  $span.click(function() {
+    $modal.fadeOut();
+  })
+
+  $('body').click(function(event) {
+    if (event.target.id == $modal.attr('id')) {
+      $modal.fadeOut();
+    }
+  })
 });
