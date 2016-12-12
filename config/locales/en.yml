@@ -28,6 +28,16 @@ en:
   books: "Books"
   contact: "Contact"
   done_sign_up: "You have successful created your account!"
+  create: "Create"
+  cate_list: "Categories"
+  created_at: "Created At"
+  id: "ID"
+  books_in_cate: "Books"
+  name: "Name"
+  action: "Action"
+  new_cate: "New Category"
+  confirm_delete: "Are you sure you want to delete?"
+  delete: "Delete"
   users:
     new:
       confirm_pw: "Confrim Your Password"
