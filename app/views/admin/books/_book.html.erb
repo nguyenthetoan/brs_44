@@ -5,7 +5,12 @@
   <td><%= book.publish_date %></td>
   <td><%= book.category.name %></td>
   <td>
-    <%= link_to t("delete"), admin_book_path(book), method: :delete,
-      remote: true, data: {confirm: t("confirm_delete")} %>
+    <%= link_to admin_book_path(book), class: "btn-edit-book" do %>
+      <i class="fa fa-pencil-square-o"></i>
+    <% end %>
+    |
+    <%= link_to admin_book_path(book), class: "btn-delete" do %>
+      <i class="fa fa-times"></i>
+    <% end %>
   </td>
- </tr>
+</tr>

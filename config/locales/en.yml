@@ -38,6 +38,8 @@ en:
   new_cate: "New Category"
   confirm_delete: "Are you sure you want to delete?"
   delete: "Delete"
+  update: "Update"
+  edit_book: "Edit Book"
   users:
     new:
       confirm_pw: "Confrim Your Password"
