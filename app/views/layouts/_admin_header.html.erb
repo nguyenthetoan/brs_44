@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="nav-center">
+    <nav class="navbar navbar-default top-nav">
+      <div class="row">
+        <ul class="nav navbar-nav">
+          <li>
+            <%= link_to t("home"), root_path %>
+          </li>
+          <li>
+            <%= link_to t("books"), admin_books_path %>
+          </li>
+          <li>
+            <%= link_to t("categories"), admin_categories_path %>
+          </li>
+
+          <li>
+            <%= link_to current_user.name, user_path(current_user) %>
+          </li>
+          <li>
+            <%= link_to t(".logout"), logout_path, method: :delete %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <hr class="style-two" />
+</div>
