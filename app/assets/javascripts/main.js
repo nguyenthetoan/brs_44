@@ -147,4 +147,41 @@ $(document).on('turbolinks:load', function() {
     }
     return false;
   })
+
+  $('body').on('click', '.btn-fav', function(e) {
+    e.preventDefault();
+    $btn = $(this)
+    $url = $(this).attr('href')
+    $book_id = $url.split('=')[1]
+    $del_url = 'favorites/' + $book_id
+    $.ajax({
+      dataType: 'html',
+      url: $url,
+      method: 'post',
+      success: function() {
+        $btn.removeClass('btn-fav fa-heart-o').addClass('btn-unfav fa-heart')
+        $btn.attr('href', $del_url)
+      }
+    })
+    return false;
+  });
+
+  $('body').on('click', '.btn-unfav', function(e) {
+    e.preventDefault();
+    $btn = $(this)
+    $url = $(this).attr('href')
+    $book_id = $url.slice(-1)
+    $add_url = 'favorites?id=' + $book_id
+    $.ajax({
+      dataType: 'html',
+      url: $url,
+      method: 'delete',
+      success: function() {
+        $btn.removeClass('btn-unfav fa-heart').addClass('btn-fav fa-heart-o')
+        $btn.attr('href', $add_url)
+      }
+    })
+    return false;
+  });
+
 })

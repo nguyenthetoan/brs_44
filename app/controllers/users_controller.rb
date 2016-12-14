@@ -19,6 +19,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by id: params[:id]
     @user ? @user : render_404
+    @favorites = @user.favorites
+  end
+
+  def favorites
+
   end
 
   private
