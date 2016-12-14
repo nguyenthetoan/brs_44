@@ -1,0 +1,24 @@
+<% provide :title, @user.name %>
+<div class="container">
+  <div class="row">
+    <h1 class="text-center"><%= @user.name %></h1>
+  </div>
+  <div class="row user-info">
+    <div class="col-md-3">
+      <%= image_tag "default-avatar.png", class: "user-avatar" %>
+    </div>
+    <div class="col-md-9">
+      <%= link_to @user.name, user_path(@user) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="user-activ">
+      <div class="col-md-9">
+        <h2><%= t "recent_activity" %></h2>
+      </div>
+      <div class="col-md-3">
+        <h2><%= t "books_i_love" %></h2>
+      </div>
+    </div>
+  </div>
+</div>

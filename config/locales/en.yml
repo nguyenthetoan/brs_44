@@ -40,6 +40,10 @@ en:
   delete: "Delete"
   update: "Update"
   edit_book: "Edit Book"
+  of_profile: "'s profile"
+  profile: "profile"
+  recent_activity: "Recent Activity"
+  books_i_love: "Books I Love"
   users:
     new:
       confirm_pw: "Confrim Your Password"

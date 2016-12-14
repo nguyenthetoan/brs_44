@@ -16,6 +16,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = User.find_by id: params[:id]
+    @user ? @user : render_404
+  end
+
   private
   def user_params
     params.require(:user).permit :name, :email, :password, :password_confirmation
