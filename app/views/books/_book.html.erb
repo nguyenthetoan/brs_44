@@ -1,0 +1,7 @@
+<li class="book-item" id="<%= book.id %>">
+  <%= image_tag "default-cover.gif", class: "book-cover" %>
+  <hr>
+  <div class="book-title">
+    <p class="book-name"><%= link_to book.title, book_path(book) %></p>
+  </div>
+</li>

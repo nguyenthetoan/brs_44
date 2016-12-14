@@ -14,4 +14,5 @@ Rails.application.routes.draw do
     resources :categories
     get "", to: "dashboard#home", as: "/"
   end
+  resources :books, only: [:index, :show]
 end
