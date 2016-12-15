@@ -8,7 +8,7 @@ class User < ApplicationRecord
     foreign_key: :followed_id, dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-  has_many :bookmarks, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_many :requests, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -26,5 +26,19 @@ class User < ApplicationRecord
 
   def is_user? current_user
     self == current_user
+  end
+
+  def add_favorite book
+    favorites.create book_id: book.id
+  end
+
+  def remove_favorite book
+    if favorited? book
+      favorites.find_by(book_id: book.id).destroy
+    end
+  end
+
+  def favorited? book
+    favorites.find_by(book_id: book.id).present?
   end
 end

@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root "static_pages#home"
   get "contact", to: "static_pages#contact"
   resources :users do
-    resources :books, except: [:create, :destroy]
+    member do
+      get :favorites
+    end
   end
   get "signup" => "users#new"
   post "signup" => "users#create"
@@ -14,5 +16,6 @@ Rails.application.routes.draw do
     resources :categories
     get "", to: "dashboard#home", as: "/"
   end
-  resources :books, only: [:index, :show]
+  resources :books
+  resources :favorites, only: [:create, :destroy]
 end

@@ -4,4 +4,7 @@ class BooksController<ApplicationController
     @books = Book.paginate page: params[:page]
   end
 
+  def show
+  end
+
 end

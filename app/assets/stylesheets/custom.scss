@@ -14,6 +14,7 @@ $textCol: #39575A;
   box-sizing: border-box;
 }
 
+
 /* Book */
 
 .book-list {
@@ -26,9 +27,16 @@ $textCol: #39575A;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 220px;
   text-align: center;
+  .fa {
+    font-size: 24px;
+    color: red;
+    text-decoration: none;
+  }
 }
 
+
 /* User Profile */
+
 .user-info {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 5px;
@@ -42,13 +50,16 @@ $textCol: #39575A;
   }
 }
 
+
 /* Typo */
+
 h1 {
   text-align: center;
   text-transform: uppercase;
   font-size: 30px;
   font-weight: bold;
 }
+
 
 /* The Modal */
 
