@@ -1,0 +1,15 @@
+<%= form_for @request, url: admin_request_path do |f| %>
+  <%= render "shared/error_message", object: f.object %>
+  <%= f.label :title %>
+  <%= f.text_field :title, readonly: true, class: "form-control" %>
+
+  <%= f.label :content %>
+  <%= f.text_area :content, readonly: true, class: "form-control" %>
+
+  <%= f.label :status do %>
+      <%= t "accept" %> <%= f.radio_button :status, :accepted, class: "inline" %>
+      <%= t "deny" %> <%= f.radio_button :status, :denied, class: "inline" %>
+  <% end %>
+
+  <%= f.submit t("update"), class: "btn btn-warning" %>
+<% end %>

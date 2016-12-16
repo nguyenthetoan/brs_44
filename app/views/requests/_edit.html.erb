@@ -16,10 +16,6 @@
       <%= t "send_later" %>
     </span>
     <%= f.radio_button :status, :pending, class: "inline" %>
-    <span>
-      <%= t "cancel_request" %>
-    </span>
-    <%= f.radio_button :status, :cancel, class: "inline" %>
   <% end %>
 
   <%= f.submit t("update"), class: "btn btn-warning" %>

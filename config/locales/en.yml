@@ -53,6 +53,7 @@ en:
   ago: "ago"
   add_fav_book: "Add to your favorite book"
   remove_fav_book: "Remove your favorite book"
+  requests: "Requests"
   users:
     new:
       confirm_pw: "Confrim Your Password"

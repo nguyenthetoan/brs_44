@@ -12,7 +12,14 @@
           <li>
             <%= link_to t("categories"), admin_categories_path %>
           </li>
-
+          <li>
+            <%= link_to admin_requests_path do %>
+              <%= t "requests" %>
+              <span class="badge">
+                <%= Request.sent.count %>
+              </span>
+            <% end %>
+          </li>
           <li>
             <%= link_to current_user.name, user_path(current_user) %>
           </li>
