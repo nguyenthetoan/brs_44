@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :books
     resources :categories
+    resources :requests, only: [:index, :update, :show]
     get "", to: "dashboard#home", as: "/"
   end
   resources :books

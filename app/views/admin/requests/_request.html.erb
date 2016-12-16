@@ -1,0 +1,30 @@
+<% if request.sent? %>
+  <tr class="active" id="<%= dom_id(request) %>">
+    <td><%= request.user.name %></td>
+    <td><%= request.title %></td>
+    <td><%= request.content %></td>
+    <td><%= request.created_at %></td>
+    <td><%= request.status %></td>
+    <td>
+      <%= link_to admin_request_path(request), class: "btn-admin-request" do %>
+        <i class="fa fa-pencil-square-o"></i>
+      <% end %>
+    </td>
+  </tr>
+<% elsif request.accepted? %>
+  <tr class="success" id="<%= dom_id(request) %>">
+    <td><%= request.user.name %></td>
+    <td><%= request.title %></td>
+    <td><%= request.content %></td>
+    <td><%= request.updated_at %></td>
+    <td><%= request.status %></td>
+  </tr>
+<% else %>
+  <tr class="danger" id="<%= dom_id(request) %>">
+    <td><%= request.user.name %></td>
+    <td><%= request.title %></td>
+    <td><%= request.content %></td>
+    <td><%= request.updated_at %></td>
+    <td><%= request.status %></td>
+  </tr>
+<% end %>
