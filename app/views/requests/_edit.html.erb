@@ -1,0 +1,26 @@
+<%= form_for @request, url: request_path do |f| %>
+  <%= render "shared/error_message", object: f.object %>
+  <%= f.label :title %>
+  <%= f.text_field :title, class: "form-control" %>
+
+  <%= f.label :content %>
+  <%= f.text_area :content, class: "form-control" %>
+
+  <%= f.label :status do %>
+    <span>
+      <%= t "send_immediately" %>
+    </span>
+    <%= f.radio_button :status, :sent, class: "inline" %>
+
+    <span>
+      <%= t "send_later" %>
+    </span>
+    <%= f.radio_button :status, :pending, class: "inline" %>
+    <span>
+      <%= t "cancel_request" %>
+    </span>
+    <%= f.radio_button :status, :cancel, class: "inline" %>
+  <% end %>
+
+  <%= f.submit t("update"), class: "btn btn-warning" %>
+<% end %>

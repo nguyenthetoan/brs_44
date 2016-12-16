@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   end
   resources :books
   resources :favorites, only: [:create, :destroy]
+  resources :requests
 end

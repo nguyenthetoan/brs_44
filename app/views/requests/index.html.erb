@@ -1,0 +1,47 @@
+<% provide :title, t("my_request") %>
+<div class="container">
+  <h1><%= t "my_request" %></h1>
+  <div class="row">
+    <div class="col-md-12">
+      <table id="books" class="table table-bordered">
+        <thead>
+          <tr>
+            <th><%= t "title" %></th>
+            <th><%= t "content" %></th>
+            <th><%= t "created_at" %></th>
+            <th><%= t "status" %></th>
+            <th><%= t "action" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @requests %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <br>
+  <a id="btn-new-request" class="btn btn-primary">
+    <i class="fa fa-plus-square" aria-hidden="true"></i>
+    <%= t "new_request" %>
+  </a>
+  <div id="modal-new-request" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2><%= t "create_new_request" %></h2>
+      </div>
+      <div class="modal-body">
+
+      </div>
+    </div>
+  </div>
+  <div id="modal-edit-request" class="modal modal-edit-request">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2><%= t "edit_request" %></h2>
+      </div>
+      <div class="edit-modal-body"></div>
+    </div>
+  </div>
+</div>

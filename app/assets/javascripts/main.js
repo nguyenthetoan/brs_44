@@ -53,12 +53,16 @@ $(document).on('turbolinks:load', function() {
   $('.close').click(function() {
     $('#modal-new-book').fadeOut();
     $('#modal-edit-book').fadeOut();
+    $('#modal-new-request').fadeOut();
+    $('#modal-edit-request').fadeOut();
   })
 
   $('body').click(function(event) {
     if (event.target.id == $('#modal-new-book').attr('id')) {
       $('#modal-new-book').fadeOut();
       $('#modal-edit-book').fadeOut();
+      $('#modal-new-request').fadeOut();
+      $('#modal-edit-request').fadeOut();
     }
   })
 
@@ -130,7 +134,7 @@ $(document).on('turbolinks:load', function() {
 
   $('body').on('click', '.btn-delete', function(e) {
     e.preventDefault();
-    if (confirm("Are you sure?")) {
+    if (confirm(I18n.t("confirm_delete"))) {
       $book_id = $(this).attr('href').split('/')[3]
       $tr_id = '#book_' + $book_id
       console.log($tr_id)
@@ -183,5 +187,90 @@ $(document).on('turbolinks:load', function() {
     })
     return false;
   });
+
+  $('#btn-new-request').click(function(e) {
+    e.preventDefault()
+    $('#modal-new-request').css('display', 'block')
+    $.ajax({
+      dataType: "html",
+      url: "requests/new",
+      method: "get",
+      success: function(data) {
+        $('.modal-body').html(data)
+      }
+    });
+    return false
+  })
+
+  $('body').on('click', '#new_request', function() {
+    $form = $(this);
+    $form.submit(function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      $.ajax({
+        url: $form.attr('action'),
+        method: $form.attr('method'),
+        dataType: "html",
+        data: $form.serialize(),
+        success: function(data) {
+          $('#modal-new-request').fadeOut();
+          $('tbody').prepend(data).hide().fadeIn(1000)
+        }
+      })
+    })
+  });
+
+  $('body').on('click', '.btn-edit-request', function(e) {
+    e.preventDefault();
+    $('#modal-edit-request').css('display', 'block')
+    $url = $(this).attr('href')
+    console.log($url)
+    $.ajax({
+      dataType: "html",
+      url: $url,
+      method: $(this).attr('method'),
+      success: function(data) {
+        $('.edit-modal-body').html(data)
+      }
+    });
+    return false
+  })
+
+$('body').on('click', '.edit_request', function() {
+    $form = $(this);
+    $form.submit(function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      $.ajax({
+        url: $form.attr('action'),
+        method: $form.attr('method'),
+        dataType: "html",
+        data: $form.serialize(),
+        success: function(data) {
+          $('#modal-edit-request').fadeOut();
+          $('tbody').html(data).hide().fadeIn(1000)
+        }
+      })
+    })
+  });
+
+  $('body').on('click', '.btn-delete-request', function(e) {
+    e.preventDefault();
+    if (confirm(I18n.t("confirm_delete"))) {
+      $req_id = $(this).attr('href').split('/')[2]
+      $tr_id = '#request_' + $req_id
+      $.ajax({
+        dataType: "html",
+        url: $(this).attr('href'),
+        method: "DELETE",
+        success: function() {
+          $($tr_id).fadeOut();
+        }
+      })
+    } else {
+
+    }
+    return false;
+  })
 
 })

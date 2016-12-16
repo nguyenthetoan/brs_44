@@ -66,6 +66,8 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
+    i18n-js (3.0.0.rc15)
+      i18n (~> 0.6, >= 0.6.6)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -172,6 +174,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   font-awesome-rails
+  i18n-js (>= 3.0.0.rc11)
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
