@@ -1,0 +1,14 @@
+<% @favorites.each do |favorite| %>
+  <li class="fav-item" id="<%= favorite.book.id %>">
+    <p class="timestamp">
+      <%= t "added" %> <%= time_ago_in_words favorite.created_at %> <%= t "ago" %>
+    </p>
+    <%= image_tag "default-cover.gif", class: "book-cover" %>
+    <hr>
+    <div class="fav-title">
+      <p class="book-name">
+        <%= link_to favorite.book.title, book_path(favorite.book), class: "highlight" %>
+      </p>
+    </div>
+  </li>
+<% end %>

@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function() {
 
   $('ul.nav > li > a').each(function() {
-    $title = $(document).find("title").text().split(' ')[0].toLowerCase();
+    $title = $(document).find('title').text().split(' ')[0].toLowerCase();
     if ($(this).text().split(' ')[0].toLowerCase() == $title) {
       $(this).closest('li').addClass('active');
     }
@@ -70,9 +70,9 @@ $(document).on('turbolinks:load', function() {
     e.preventDefault()
     $('#modal-new-book').css('display', 'block')
     $.ajax({
-      dataType: "html",
-      url: "books/new",
-      method: "get",
+      dataType: 'html',
+      url: 'books/new',
+      method: 'get',
       success: function(data) {
         $('.modal-body').html(data)
       }
@@ -88,7 +88,7 @@ $(document).on('turbolinks:load', function() {
       $.ajax({
         url: $form.attr('action'),
         method: $form.attr('method'),
-        dataType: "html",
+        dataType: 'html',
         data: $form.serialize(),
         success: function(data) {
           $('#modal-new-book').fadeOut();
@@ -106,7 +106,7 @@ $(document).on('turbolinks:load', function() {
       $.ajax({
         url: $form.attr('action'),
         method: $form.attr('method'),
-        dataType: "html",
+        dataType: 'html',
         data: $form.serialize(),
         success: function(data) {
           $('#modal-edit-book').fadeOut();
@@ -122,7 +122,7 @@ $(document).on('turbolinks:load', function() {
     $url = $(this).attr('href')
     console.log($url)
     $.ajax({
-      dataType: "html",
+      dataType: 'html',
       url: $url,
       method: $(this).attr('method'),
       success: function(data) {
@@ -134,14 +134,14 @@ $(document).on('turbolinks:load', function() {
 
   $('body').on('click', '.btn-delete', function(e) {
     e.preventDefault();
-    if (confirm(I18n.t("confirm_delete"))) {
+    if (confirm(I18n.t('confirm_delete'))) {
       $book_id = $(this).attr('href').split('/')[3]
       $tr_id = '#book_' + $book_id
       console.log($tr_id)
       $.ajax({
-        dataType: "html",
+        dataType: 'html',
         url: $(this).attr('href'),
-        method: "DELETE",
+        method: 'DELETE',
         success: function() {
           $($tr_id).fadeOut();
         }
@@ -157,14 +157,17 @@ $(document).on('turbolinks:load', function() {
     $btn = $(this)
     $url = $(this).attr('href')
     $book_id = $url.split('=')[1]
-    $del_url = 'favorites/' + $book_id
+    $del_url = '/favorites/' + $book_id
+    $fav_count = parseInt($('.favorited-count').text())
     $.ajax({
       dataType: 'html',
       url: $url,
       method: 'post',
       success: function() {
         $btn.removeClass('btn-fav fa-heart-o').addClass('btn-unfav fa-heart')
+        $btn.html(I18n.t('remove_fav_book'))
         $btn.attr('href', $del_url)
+        $('.favorited-count').html($fav_count + 1)
       }
     })
     return false;
@@ -175,7 +178,8 @@ $(document).on('turbolinks:load', function() {
     $btn = $(this)
     $url = $(this).attr('href')
     $book_id = $url.slice(-1)
-    $add_url = 'favorites?id=' + $book_id
+    $add_url = '/favorites?id=' + $book_id
+    $fav_count = parseInt($('.favorited-count').text())
     $.ajax({
       dataType: 'html',
       url: $url,
@@ -183,6 +187,8 @@ $(document).on('turbolinks:load', function() {
       success: function() {
         $btn.removeClass('btn-unfav fa-heart').addClass('btn-fav fa-heart-o')
         $btn.attr('href', $add_url)
+        $btn.html(I18n.t('add_fav_book'))
+        $('.favorited-count').html($fav_count - 1)
       }
     })
     return false;
@@ -192,9 +198,9 @@ $(document).on('turbolinks:load', function() {
     e.preventDefault()
     $('#modal-new-request').css('display', 'block')
     $.ajax({
-      dataType: "html",
-      url: "requests/new",
-      method: "get",
+      dataType: 'html',
+      url: 'requests/new',
+      method: 'get',
       success: function(data) {
         $('.modal-body').html(data)
       }
@@ -210,7 +216,7 @@ $(document).on('turbolinks:load', function() {
       $.ajax({
         url: $form.attr('action'),
         method: $form.attr('method'),
-        dataType: "html",
+        dataType: 'html',
         data: $form.serialize(),
         success: function(data) {
           $('#modal-new-request').fadeOut();
@@ -226,7 +232,7 @@ $(document).on('turbolinks:load', function() {
     $url = $(this).attr('href')
     console.log($url)
     $.ajax({
-      dataType: "html",
+      dataType: 'html',
       url: $url,
       method: $(this).attr('method'),
       success: function(data) {
@@ -244,7 +250,7 @@ $('body').on('click', '.edit_request', function() {
       $.ajax({
         url: $form.attr('action'),
         method: $form.attr('method'),
-        dataType: "html",
+        dataType: 'html',
         data: $form.serialize(),
         success: function(data) {
           $('#modal-edit-request').fadeOut();
@@ -256,13 +262,13 @@ $('body').on('click', '.edit_request', function() {
 
   $('body').on('click', '.btn-delete-request', function(e) {
     e.preventDefault();
-    if (confirm(I18n.t("confirm_delete"))) {
+    if (confirm(I18n.t('confirm_delete'))) {
       $req_id = $(this).attr('href').split('/')[2]
       $tr_id = '#request_' + $req_id
       $.ajax({
-        dataType: "html",
+        dataType: 'html',
         url: $(this).attr('href'),
-        method: "DELETE",
+        method: 'DELETE',
         success: function() {
           $($tr_id).fadeOut();
         }

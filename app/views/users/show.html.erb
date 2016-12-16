@@ -17,7 +17,13 @@
         <h2><%= t "recent_activity" %></h2>
       </div>
       <div class="col-md-3">
-        <h2><%= t "books_i_love" %></h2>
+        <span class="favorited-books"><%= t "favorited_books" %></span>
+        <span class="book-count">  <%= @user.favorites.count %></span>
+        <div class="fav-box">
+          <ul class="fav-list">
+            <%= render "favorite", collection: @favorites %>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
