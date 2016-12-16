@@ -14,6 +14,17 @@ $textCol: #39575A;
   box-sizing: border-box;
 }
 
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+  width: auto;
+  margin-left: 0;
+}
+
 
 /* Book */
 

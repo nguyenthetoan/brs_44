@@ -44,6 +44,10 @@ en:
   profile: "profile"
   recent_activity: "Recent Activity"
   books_i_love: "Books I Love"
+  new_request: "New Request"
+  my_request: "My Request"
+  send: "Send"
+  send_immediately: "Send immediately?"
   users:
     new:
       confirm_pw: "Confrim Your Password"

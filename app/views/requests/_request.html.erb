@@ -1,0 +1,15 @@
+<tr id="<%= dom_id(request) %>">
+  <td><%= request.title %></td>
+  <td><%= request.content %></td>
+  <td><%= request.created_at %></td>
+  <td><%= request.status %></td>
+  <td>
+    <%= link_to request_path(request), class: "btn-edit-request" do %>
+      <i class="fa fa-pencil-square-o"></i>
+    <% end %>
+    |
+    <%= link_to request_path(request), class: "btn-delete-request" do %>
+      <i class="fa fa-times"></i>
+    <% end %>
+  </td>
+</tr>
