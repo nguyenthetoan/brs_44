@@ -1,0 +1,54 @@
+<%= provide :title, @book.title %>
+<div class="container">
+  <div class="row">
+    <h1><%= @book.title %></h1>
+    <p class="text-right">
+      <%= t "by" %>: <span class="pub-date"><%= @book.author %></span>
+    </p>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <%= image_tag "default-cover.gif", class: "book-cover" %>
+    </div>
+    <div class="col-md-8">
+      <p>
+        <%= @book.description.blank? ? t("no_description") : @book.description %>
+      </p>
+    </div>
+  </div>
+  <div class="content-break"></div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="bars">
+        <ul class="navbar details">
+          <li>
+            <%= link_to @book.category.name, category_path(@book.category) %>
+          </li>
+          <li>
+            <%= @book.pages %> <%= t "pages" %>
+          </li>
+          <li>
+            <i class="fa fa-heart" aria-hidden="true"></i>
+            <span class="favorited-count"><%= @book.favorited_by.count %></span>
+          </li>
+          <li>
+            <%= t "published" %>: <%= @book.publish_date %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <% if current_user.favorited? @book %>
+        <%= link_to t("remove_fav_book"),
+          {controller: "favorites", action: "destroy", id: @book.id},
+          method: :delete, class: "fa fa-heart btn-unfav btn btn-danger" %>
+      <% else %>
+        <%= link_to t("add_fav_book"),
+          {controller: "favorites", action: "create", id: @book.id},
+          method: :post, class: "fa fa-heart-o btn-fav btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+</div>

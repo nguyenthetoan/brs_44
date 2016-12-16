@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, except: [:new, :create]
+  before_action :logged_in_user, except: [:new, :create, :show]
   before_action :correct_user, only: [:edit, :update]
+
   def new
     @user = User.new
   end
@@ -18,8 +19,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by id: params[:id]
+    @favorites = @user.favorites.latest
     @user ? @user : render_404
-    @favorites = @user.favorites
   end
 
   def favorites

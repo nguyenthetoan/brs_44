@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   resources :books
   resources :favorites, only: [:create, :destroy]
   resources :requests
+  resources :categories, only: [:show]
 end

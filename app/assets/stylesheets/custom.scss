@@ -25,6 +25,75 @@ $textCol: #39575A;
   margin-left: 0;
 }
 
+.bars {
+  .navbar {
+    list-style: none;
+    padding: 0px;
+  }
+  i {
+    color: red;
+  }
+  ul > li {
+    float: left;
+    padding: 1px 10px;
+    border-right: 1px solid #505050;
+    height: 22px;
+    display: inline-block;
+  }
+  ul > li:last-child {
+    border-right: none;
+  }
+}
+
+.content-break {
+  position: relative;
+  height: 10px;
+  margin: 0 -10px 16px -10px;
+  background-color: darkSlateGray;
+}
+
+.pub-date {
+  font-style: bold;
+  color: #1F3A93;
+}
+
+.highlight {
+  background-image: linear-gradient(-100deg, rgba(255, 255, 255, 0), yellow 95%, rgba(255, 255, 255, 0));
+}
+
+.timestamp {
+  font-size: 12px;
+  font-style: italic;
+  float: right;
+}
+
+
+/* Fav Books */
+
+.fav-list {
+  list-style: none;
+  .fav-item {
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 5px 0px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 5px 0px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 5px 0px;
+  }
+  .favorited-books {
+    font-size: 19px;
+    font-weight: bold;
+  }
+  .book-count {
+    font-size: 33px;
+  }
+  .fav-box {
+    height: 600px;
+    overflow-y: scroll;
+    padding: 5px;
+  }
+}
+
 
 /* Book */
 
