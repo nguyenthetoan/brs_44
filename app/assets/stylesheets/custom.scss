@@ -3,15 +3,129 @@
 @import "font-awesome";
 @import "normalize-rails";
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400&subset=vietnamese');
-$bgDefault: #ffffff;
+$bgDefault: rgb(237,232,201);
 $bgHighlight: #ffffff;
 $colDefault: #2f4f4f;
 $colHighlight: #2f4f4f;
 $textCol: #39575A;
+$starrrColor: #FFD119 !default;
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+.heart {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: url(heart.png) no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+  animation: fave-heart 1s steps(28);
+}
+.heart:hover {
+  background-position: -2800px 0;
+  transition: background 1s steps(28);
+}
+@keyframes fave-heart {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -2800px 0;
+  }
+}
+
+
+.avg-head {
+  font-size: 22px;
+}
+
+.avg-rating {
+  font-size: 30px;
+  color: $textCol;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.review-list {
+  list-style: none;
+}
+
+.totop {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  padding: 7px 14px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 24px;
+  background-color: darkSlateGray;
+}
+
+.totop a {
+  display: none;
+  color: white;
+}
+
+.review-item {
+  display: none;
+  padding: 10px;
+  border-width: 0 1px 1px 0;
+  border-style: solid;
+  border-color: #fff;
+  box-shadow: 0 1px 1px #ccc;
+  margin-bottom: 5px;
+  background-color: #f1f1f1;
+}
+
+#loadMore {
+  text-decoration: none;
+  margin: 0 auto;
+  display: table;
+  padding: 10px;
+  text-align: center;
+  background-color: #33739E;
+  color: #fff;
+  border-width: 0 1px 1px 0;
+  border-style: solid;
+  border-color: #fff;
+  box-shadow: 0 1px 1px #ccc;
+  transition: all 600ms ease-in-out;
+  -webkit-transition: all 600ms ease-in-out;
+  -moz-transition: all 600ms ease-in-out;
+  -o-transition: all 600ms ease-in-out;
+}
+
+#loadMore:hover {
+  background-color: #fff;
+  color: #33739E;
+}
+
+.no-rating {
+  font-size: 14px;
+}
+
+h4 .rate-count {
+  font-size: 36px;
+}
+
+.starrr {
+  display: inline-block;
+  a {
+    font-size: 20px;
+    padding: 0 1px;
+    cursor: pointer;
+    color: $starrrColor;
+    text-decoration: none;
+  }
+}
+
+.rate-count i {
+  color: $starrrColor;
 }
 
 .checkbox {
@@ -238,7 +352,6 @@ textarea,
 select,
 .uneditable-input {
   border: 1px solid #bbb;
-  width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
 }
@@ -340,7 +453,7 @@ input {
   .navbar-default .navbar-nav > .active > a,
   .navbar-default .navbar-nav > .active > a:hover,
   .navbar-default .navbar-nav > .active > a:focus {
-    background-color: #fff;
+    background-color: $bgDefault;
     color: darkSlateGray;
     font-size: 26px;
     font-weight: bold;
@@ -366,7 +479,7 @@ input {
     -ms-transform: rotate(4deg) scale(1) skew(1deg) translate(10px);
   }
   .navbar-default .navbar-nav li a:hover {
-    background-color: #fff;
+    background-color: $bgDefault;
     color: darkSlateGray;
     font-size: 26px;
     font-weight: bold;
@@ -475,6 +588,7 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
   background-image: url('bg.png');
+  background-color: $bgDefault;
 }
 
 

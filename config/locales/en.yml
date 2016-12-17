@@ -54,6 +54,10 @@ en:
   add_fav_book: "Add to your favorite book"
   remove_fav_book: "Remove your favorite book"
   requests: "Requests"
+  avg_rating: "AVERAGE RATING"
+  users_review: "Users Review"
+  load_more: "Load More"
+  write_review: "Leave a review"
   users:
     new:
       confirm_pw: "Confrim Your Password"

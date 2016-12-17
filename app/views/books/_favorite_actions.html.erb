@@ -1,11 +1,11 @@
 <% unless current_user.nil? %>
-  <p class="favorite-actions">
+  <div>
     <% if current_user.favorited? book %>
       <%= link_to "", {controller: "favorites", action: "destroy", id: book.id},
-        method: :delete, class: "fa fa-heart btn-unfav" %>
+        method: :delete, class: "heart btn-unfav" %>
     <% else %>
       <%= link_to "", {controller: "favorites", action: "create", id: book.id},
-        method: :post, class: "fa fa-heart-o btn-fav" %>
+        method: :post, class: "heart btn-fav" %>
     <% end %>
-  </p>
+  </div>
 <% end %>

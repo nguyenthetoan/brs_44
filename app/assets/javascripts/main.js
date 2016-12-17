@@ -78,8 +78,8 @@ $(document).on('turbolinks:load', function() {
       url: $url,
       method: 'post',
       success: function() {
-        $btn.removeClass('btn-fav fa-heart-o').addClass('btn-unfav fa-heart')
-        $btn.html(I18n.t('remove_fav_book'))
+        $btn.removeClass('btn-fav').addClass('btn-unfav')
+        $btn.css('background-position', '-2800px 0')
         $btn.attr('href', $del_url)
         $('.favorited-count').html($fav_count + 1)
       }
@@ -99,14 +99,16 @@ $(document).on('turbolinks:load', function() {
       url: $url,
       method: 'delete',
       success: function() {
-        $btn.removeClass('btn-unfav fa-heart').addClass('btn-fav fa-heart-o')
+        $btn.removeClass('btn-unfav').addClass('btn-fav')
+        $btn.css('background-position', '0, 0');
         $btn.attr('href', $add_url)
-        $btn.html(I18n.t('add_fav_book'))
         $('.favorited-count').html($fav_count - 1)
       }
     })
     return false;
   });
+
+  $('.heart[data-method="delete"]').css('background-position', '-2800px, 0');
 
   $('#btn-new-request').click(function(e) {
     e.preventDefault()
@@ -156,7 +158,7 @@ $(document).on('turbolinks:load', function() {
     return false
   })
 
-$('body').on('click', '.edit_request', function() {
+  $('body').on('click', '.edit_request', function() {
     $form = $(this);
     $form.submit(function(e) {
       e.preventDefault();
@@ -193,4 +195,58 @@ $('body').on('click', '.edit_request', function() {
     return false;
   })
 
+  $fill_star = $('input[name="review[rate]"]');
+
+  $('.starrr').starrr();
+
+  function rate() {
+    $fill_star.hide();
+    $('#stars').on('starrr:change', function(e, value) {
+      e.preventDefault();
+      $fill_star.val(value);
+    });
+  }
+
+  rate();
+
+
+  $(function() {
+    $('.review-item').slice(0, 4).show();
+    $('#loadMore').on('click', function(e) {
+      e.preventDefault();
+      $('.review-item:hidden').slice(0, 4).slideDown();
+      if ($('.review-item:hidden').length == 0) {
+        $('#loadMore').fadeOut('slow');
+      }
+      $('html,body').animate({
+        scrollTop: $(this).offset().top
+      }, 1500);
+    });
+  });
+
+  $('a[href="#top"]').click(function() {
+    $('body,html').animate({
+      scrollTop: 0
+    }, 600);
+    return false;
+  });
+
+  $(window).scroll(function() {
+    if ($(this).scrollTop() > 50) {
+      $('.totop').fadeIn();
+      $('.totop a').fadeIn();
+    } else {
+      $('.totop').fadeOut();
+      $('.totop a').fadeOut();
+    }
+  });
+
+  function isEmpty(el) {
+    return !$.trim(el.html())
+  }
+
+  if (isEmpty($('.no-rating'))) {
+    $('.no-rating').hide();
+  }
+  $('[data-toggle="tooltip"]').tooltip();
 })
