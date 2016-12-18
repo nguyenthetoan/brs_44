@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   resources :favorites, only: [:create, :destroy]
   resources :requests
   resources :categories, only: [:show]
+  resources :reviews, except: [:index]
 end

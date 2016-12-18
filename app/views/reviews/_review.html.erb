@@ -1,0 +1,17 @@
+<li class="review-item" id="<%= dom_id(review) %>">
+  <div class="review-details">
+    <% if review.user == current_user %>
+      <%= link_to review_path(review), method: :delete,
+        data: {confirm: t("confirm_delete")} do %>
+        <span class="pull-right">&times;</span>
+      <% end %>
+    <% end %>
+    <span class="rate-count">
+      <% review.rate.times do %>
+        <i class="fa fa-star" aria-hidden="true"></i>
+      <% end %>
+    </span>
+    <p><%= link_to review.user.name, user_path(review.user) %>: </p>
+    <p><%= review.content %></s>
+  </div>
+</li>

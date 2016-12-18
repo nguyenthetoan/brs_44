@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <h1><%= @book.title %></h1>
-    <p class="text-right">
+    <p>
       <%= t "by" %>: <span class="pub-date"><%= @book.author %></span>
     </p>
   </div>
@@ -40,15 +40,40 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <% if current_user.favorited? @book %>
-        <%= link_to t("remove_fav_book"),
-          {controller: "favorites", action: "destroy", id: @book.id},
-          method: :delete, class: "fa fa-heart btn-unfav btn btn-danger" %>
-      <% else %>
-        <%= link_to t("add_fav_book"),
-          {controller: "favorites", action: "create", id: @book.id},
-          method: :post, class: "fa fa-heart-o btn-fav btn btn-danger" %>
-      <% end %>
+      <%= render "favorite_actions", book: @book %>
+    </div>
+    <div class="col-md-6">
+      <span class="avg-head"><%= t "avg_rating" %>: </span>
+      <a class="avg-rating" data-toggle="tooltip"
+        title="<%= pluralize(@book.reviews.count, "review") %>" >
+        <span class="rate-count">
+          <span class="label label-default no-rating">
+            <%= t("no_rating") if @book.avg_rating == 0 %>
+          </span>
+          <% @book.avg_rating.times do %>
+            <i class="fa fa-star" aria-hidden="true"></i>
+          <% end %>
+        </span>
+      </a>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12">
+      <%= render "reviews/review_form" unless current_user.nil?  %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-11">
+      <div class="reviews">
+        <h3><%= t "users_review" %></h3>
+        <ul class="review-list">
+          <%= render @reviews %>
+        </ul>
+        <a href="#" id="loadMore"><%= t "load_more" %></a>
+      </div>
+    </div>
+  </div>
+  <p class="totop">
+    <a href="#top"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
+  </p>
 </div>
