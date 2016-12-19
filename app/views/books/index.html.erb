@@ -1,6 +1,20 @@
 <% provide :title, t("books") %>
-<h1><%= t "books" %></h1>
+<h1 class="filter-name"><%= t "books" %></h1>
 <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="subsubsub">
+        <span><%= t "sort_by" %></span>
+        <br>
+        <%= form_tag books_path, method: :get, class: "form-inline" do %>
+          <%= select_tag :filter,
+            options_for_select(Settings.filters.map{|key, val| [val, key]},
+            selected: params[:filter]), class: "form-control filter-sel" %>
+          <%= submit_tag t("filter"), class: "btn btn-default" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-12">
       <div class="center-block">

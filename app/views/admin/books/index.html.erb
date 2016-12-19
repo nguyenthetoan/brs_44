@@ -2,21 +2,42 @@
 <div class="row">
   <div class="col-md-12">
   <h1><%= t "books" %></h1>
-      <table id="books" class="table table-bordered">
-        <thead>
-          <tr>
-            <th><%= t "title" %></th>
-            <th><%= t "author" %></th>
-            <th><%= t "pages" %></th>
-            <th><%= t "publish_date" %></th>
-            <th><%= t "category" %></th>
-            <th><%= t "action" %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= render @books %>
-        </tbody>
-      </table>
+  <div id="custom-search-input">
+    <div class="col-md-12">
+      <span><%= t "search_title_author" %></span>
+      <%= form_tag admin_books_path, method: :get, class: "form-inline" do%>
+        <%= search_field_tag "search", nil, class: "form-control",
+          placeholder: t("search") %>
+        <%= submit_tag t("search"), class: "btn btn-info", name: nil %>
+      <% end %>
+    </div>
+  </div>
+  <div class="subsubsub">
+    <span><%= t "sort_by" %></span>
+      <%= form_tag admin_books_path, method: :get, class: "form-inline" do %>
+        <%= select_tag :filter,
+          options_for_select(Settings.filters.map{|key, val| [val, key]},
+          selected: params[:filter]), class: "form-control filter-sel" %>
+        <%= submit_tag t("filter"), class: "btn btn-default" %>
+      <% end %>
+    </div>
+    <%= will_paginate %>
+    <table id="books" class="table table-bordered">
+      <thead>
+        <tr>
+          <th><%= t "title" %></th>
+          <th><%= t "author" %></th>
+          <th><%= t "pages" %></th>
+          <th><%= t "publish_date" %></th>
+          <th><%= t "category" %></th>
+          <th><%= t "action" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @books %>
+      </tbody>
+    </table>
+    <%= will_paginate %>
   </div>
 </div>
 <br>

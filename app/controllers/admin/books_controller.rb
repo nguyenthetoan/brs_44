@@ -1,11 +1,18 @@
 class Admin::BooksController < ApplicationController
   layout "admin"
+
+  include BooksHelper
+
   before_action :logged_in_user, :admin_user
   before_action :load_book, only: [:update, :destroy, :show]
   before_action :load_categories, except: [:index]
 
   def index
-    @books = Book.all
+    if params[:filter]
+      @books = filter_by params[:filter]
+    else params[:search]
+      @books = search_by params[:search]
+    end
   end
 
   def new
