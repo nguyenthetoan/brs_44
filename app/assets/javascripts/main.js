@@ -249,4 +249,64 @@ $(document).on('turbolinks:load', function() {
     $('.no-rating').hide();
   }
   $('[data-toggle="tooltip"]').tooltip();
+
+  $(".btn-pref .btn").click(function() {
+    $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
+    $(this).removeClass("btn-default").addClass("btn-primary");
+  });
+
+  $('body').on('click', '#new_relationship', function(e) {
+    $form = $(this);
+    $url = window.location.href;
+    $follower_count = parseInt($('.follower-count').text())
+    $form.submit(function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      $.ajax({
+        url: $form.attr('action'),
+        method: $form.attr('method'),
+        dataType: 'html',
+        data: $form.serialize(),
+        success: function(data) {
+          $('#follow_form').html(data)
+          $.ajax({
+            url: $url + '/followers',
+            method: 'get',
+            success: function(d) {
+              $('.follist').hide().fadeIn(1000).html(d)
+              $('.follower-count').html($follower_count + 1)
+            }
+          })
+        }
+      })
+    })
+  });
+
+  $('body').on('click', '.edit_relationship', function() {
+    $form = $(this);
+    $url = window.location.href;
+    $follower_count = parseInt($('.follower-count').text())
+    $form.submit(function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      $.ajax({
+        url: $form.attr('action'),
+        method: $form.attr('method'),
+        dataType: 'html',
+        data: $form.serialize(),
+        success: function(data) {
+          $('#follow_form').html(data)
+          $('.follower-count').html($follower_count - 1)
+          $.ajax({
+            url: $url + '/followers',
+            method: 'get',
+            success: function() {
+              $('.fol-item').first().fadeOut();
+            }
+          })
+        }
+      })
+    })
+  });
+
 })
