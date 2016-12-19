@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
   def destroy
     unless @review.nil?
       @review.destroy
-      redirect_to :back
+      redirect_back(fallback_location: :back)
     end
   end
 
@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
     @book = Book.find_by id: params[:book_id]
     unless @review.nil?
       @review.update_attributes review_params
-      redirect_to :back
+      redirect_back(fallback_location: :back)
     end
   end
 

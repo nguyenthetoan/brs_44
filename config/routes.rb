@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   resources :categories, only: [:show]
   resources :reviews, except: [:index]
   resources :relationships, only: [:create, :destroy]
+  resources :comments, except: :index
 end

@@ -21,5 +21,21 @@
     </span>
     <p><%= link_to review.user.name, user_path(review.user) %>: </p>
     <p><%= review.content %></s>
+    <p class="review-date">
+      <%= review.created_at.strftime('%a, %d %b %Y %H:%M:%S') %>
+    </p>
+    <div class="reply-box">
+      <ul class="comment-list">
+        <% unless review.comments.nil? %>
+          <%= render review.comments.latest %>
+        <% end %>
+      </ul>
+      <div class="reply">
+        <%= link_to t("reply"), new_comment_path, class: "btn-new-comment" %>
+        <div class="comment-box">
+
+        </div>
+      </div>
+    </div>
   </div>
 </li>

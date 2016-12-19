@@ -15,6 +15,25 @@ $starrrColor: #FFD119 !default;
   box-sizing: border-box;
 }
 
+.comment-list {
+  list-style: none;
+  .comment-item {
+    margin-top: 15px;
+  }
+}
+
+
+.comment-time {
+  font-size: 10px;
+  text-decoration: underline;
+  margin-left: 38px;
+}
+
+.review-date {
+  font-size: 12px;
+  font-weight: 300;
+  text-decoration: underline;
+}
 
 /* USER PROFILE PAGE */
 

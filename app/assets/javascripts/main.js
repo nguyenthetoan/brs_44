@@ -348,4 +348,62 @@ $(document).on('turbolinks:load', function() {
     })
   });
 
+  $('body').on('click', '.btn-new-comment', function(e) {
+    e.preventDefault();
+    $btn = $(this)
+    $url = $(this).attr('href')
+    $review_id = $(this).closest('li').attr('id').split('_')[1]
+    $.ajax({
+      url: $url,
+      method: 'get',
+      dataType: 'html',
+      data: {
+        review_id: $review_id
+      },
+      success: function(data) {
+        $box = $btn.siblings('.comment-box')
+        $box.html(data)
+        $box.children().find('input[name="comment[review_id]"]').val($review_id);
+      }
+    })
+    return false;
+  })
+
+  $('body').on('click', '#new_comment', function() {
+    $form = $(this);
+    $form.submit(function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      $.ajax({
+        url: $form.attr('action'),
+        method: $form.attr('method'),
+        dataType: 'html',
+        data: $form.serialize(),
+        success: function(data) {
+          $form.closest('li').find('ul').prepend(data).hide().fadeIn(1000)
+          $form[0].reset();
+        }
+      })
+    })
+  });
+
+  $('body').on('click', '.btn-delete-comment', function(e) {
+    e.preventDefault();
+    if (confirm(I18n.t('confirm_delete'))) {
+      $cmt_id = $(this).attr('href').split('/')[2]
+      $li_id = '#comment_' + $cmt_id
+      $.ajax({
+        dataType: 'html',
+        url: $(this).attr('href'),
+        method: 'DELETE',
+        success: function() {
+          $($li_id).fadeOut();
+        }
+      })
+    } else {
+
+    }
+    return false;
+  })
+
 })

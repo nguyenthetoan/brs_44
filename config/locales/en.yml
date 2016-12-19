@@ -64,6 +64,9 @@ en:
   follow: "Follow"
   unfollow: "Unfollow"
   book: "Book"
+  reply: "Reply"
+  submit: "Submit"
+  search: "Search"
   users:
     new:
       confirm_pw: "Confrim Your Password"
