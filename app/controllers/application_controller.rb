@@ -22,4 +22,9 @@ class ApplicationController < ActionController::Base
     @user = User.find_by id: params[:id]
     @user ? @user : render_404
   end
+
+  def load_book
+    @book = Book.find_by id: params[:id]
+    @book ? @book : render_404
+  end
 end

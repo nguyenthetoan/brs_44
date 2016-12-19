@@ -44,6 +44,14 @@
             </li>
           <% end %>
         </ul>
+        <div class="search">
+          <%= form_tag(books_path, method: "get",
+            class: "navbar-form navbar-right") do%>
+            <%= search_field_tag "search", nil, class: "form-control",
+              placeholder: t("search") %>
+            <%= submit_tag t("submit"), class: "btn btn-default", name: nil %>
+          <% end %>
+        </div>
       </div>
     </nav>
   </div>

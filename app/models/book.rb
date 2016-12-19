@@ -1,5 +1,8 @@
 class Book < ApplicationRecord
 
+  scope :search, -> (condition) {where("author LIKE :search OR title LIKE :search",
+    search: "%#{condition}%")}
+
   belongs_to :category
   has_many :favorites, dependent: :destroy
   has_many :favorited_by, through: :favorites, source: :user

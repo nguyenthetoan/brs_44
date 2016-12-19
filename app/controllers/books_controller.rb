@@ -1,11 +1,14 @@
 class BooksController<ApplicationController
+  before_action :load_book, only: :show
 
   def index
-    @books = Book.paginate page: params[:page]
+    params[:search] ||= ""
+    @books = Book.search(params[:search])
+      .select("id, title, author, publish_date, description")
+      .paginate page: params[:page]
   end
 
   def show
-    @book = Book.find_by id: params[:id]
     @review = Review.new
     @reviews = @book.reviews.latest
   end
