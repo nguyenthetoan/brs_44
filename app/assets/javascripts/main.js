@@ -55,6 +55,7 @@ $(document).on('turbolinks:load', function() {
     $('#modal-edit-book').fadeOut();
     $('#modal-new-request').fadeOut();
     $('#modal-edit-request').fadeOut();
+    $('#modal-edit-review').fadeOut();
   })
 
   $('body').click(function(event) {
@@ -63,6 +64,7 @@ $(document).on('turbolinks:load', function() {
       $('#modal-edit-book').fadeOut();
       $('#modal-new-request').fadeOut();
       $('#modal-edit-request').fadeOut();
+      $('#modal-edit-review').fadeOut();
     }
   })
 
@@ -306,6 +308,43 @@ $(document).on('turbolinks:load', function() {
           })
         }
       })
+    })
+  });
+
+  $('body').on('click', '.btn-edit-review', function(e) {
+    e.preventDefault();
+    $('#modal-edit-review').css('display', 'block')
+    $url = $(this).attr('href')
+    $review_id = $url.split('/')[2]
+    $book_id = window.location.href.split('/')[4]
+    $.ajax({
+      dataType: 'html',
+      url: $url,
+      method: 'get',
+      data: {
+        book_id: $book_id,
+        review_id: $review_id
+      },
+      success: function(data) {
+        $('.edit-modal-body').html(data);
+        $('input[name="review[rate]"]').hide();
+        $('.edit-starrr').starrr({
+          rating: $('.edit-star').val(),
+          change: function(e, value) {
+            e.preventDefault();
+            $('.edit-star').val(value)
+          }
+        })
+      }
+    });
+    return false
+  })
+
+  $('body').on('click', '.edit_view', function() {
+    $form = $(this);
+    $form.submit(function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
     })
   });
 

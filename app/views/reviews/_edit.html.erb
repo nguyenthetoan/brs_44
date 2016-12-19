@@ -1,0 +1,13 @@
+<%= form_for review do |f| %>
+  <%= render "shared/error_message", object: f.object %>
+  <div><%= hidden_field_tag :book, book %></div>
+  <div class="rate-star">
+    <div id="stars" class="edit-starrr starrr"></div>
+    <%= f.text_field :rate, class: "form-control edit-star" %>
+  </div>
+
+  <%= f.label :content %>
+  <%= f.text_area :content, class: "form-control" %>
+
+  <%= f.submit t("send"), class: "btn btn-primary" %>
+<% end %>
