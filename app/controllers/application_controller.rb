@@ -17,4 +17,9 @@ class ApplicationController < ActionController::Base
   def admin_user
     redirect_to root_url unless current_user.admin?
   end
+
+  def load_user
+    @user = User.find_by id: params[:id]
+    @user ? @user : render_404
+  end
 end

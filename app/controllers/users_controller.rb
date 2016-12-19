@@ -19,8 +19,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by id: params[:id]
-    @favorites = @user.favorites.latest
     @user ? @user : render_404
+    @favorites = @user.favorites.latest
+    @followers = @user.followers.paginate page: params[:page]
+    @followings = @user.following.paginate page: params[:page]
   end
 
   def favorites

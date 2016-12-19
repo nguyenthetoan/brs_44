@@ -1,0 +1,7 @@
+<% @followers.each do |follower| %>
+  <li class="fol-item" id="<%= follower.id %>">
+    <%= image_tag "default-avatar.png", class: "folavatar" %>
+    <span class="card-title"><%= link_to follower.name, user_path(follower) %></span>
+  </li>
+  <hr>
+<% end %>

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :favorites
+      resources :followers, only: :index
+      resources :followings, only: :index
     end
   end
   get "signup" => "users#new"
@@ -22,4 +24,5 @@ Rails.application.routes.draw do
   resources :requests
   resources :categories, only: [:show]
   resources :reviews, except: [:index]
+  resources :relationships, only: [:create, :destroy]
 end

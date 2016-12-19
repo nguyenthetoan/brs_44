@@ -58,6 +58,12 @@ en:
   users_review: "Users Review"
   load_more: "Load More"
   write_review: "Leave a review"
+  activities: "Activities"
+  following: "Following"
+  follower: "Follower"
+  follow: "Follow"
+  unfollow: "Unfollow"
+  book: "Book"
   users:
     new:
       confirm_pw: "Confrim Your Password"
