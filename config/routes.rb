@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get :favorites
       resources :followers, only: :index
       resources :followings, only: :index
+      resources :activities, only: :index
     end
   end
   get "signup" => "users#new"

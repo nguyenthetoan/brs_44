@@ -7,6 +7,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.build review_params
     @review.book = @book
     if @review.save
+      current_user.activities.create(activatable: @review.book, action_type: :add_review)
       redirect_to book_path(@book)
     end
   end
@@ -14,6 +15,7 @@ class ReviewsController < ApplicationController
   def destroy
     unless @review.nil?
       @review.destroy
+      current_user.activities.create(activatable: @review.book, action_type: :delete_review)
       redirect_back(fallback_location: :back)
     end
   end

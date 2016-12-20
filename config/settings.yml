@@ -1,3 +1,6 @@
 filters:
   most_rate: "Most Rate"
   most_favorites: "Most Favorites"
+activities:
+  max_retrived_feed: 5
+

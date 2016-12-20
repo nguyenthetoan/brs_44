@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :requests, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :activities, as: :activatable, dependent: :destroy
+  has_many :activities, dependent: :destroy
   has_many :likes, as: :likable, dependent: :destroy
 
   before_save {self.email = email.downcase}

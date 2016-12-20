@@ -7,3 +7,11 @@
 #   Character.create(name: "Luke", movie: movies.first)
 User.create!(name: "Invoker", email: "invoker@domain.com", password: "123456",
   password_confirmation: "123456", admin: true)
+User.create!(name: "Mirana", email: "mirana@domain.com", password: "123456",
+  password_confirmation: "123456", admin: false)
+User.create!(name: "Rubitch", email: "rubitch@domain.com", password: "123456",
+  password_confirmation: "123456", admin: false)
+User.create!(name: "Crystal Maiden", email: "cm@domain.com", password: "123456",
+  password_confirmation: "123456", admin: false)
+User.create!(name: "Timberthaw", email: "timber@domain.com", password: "123456",
+  password_confirmation: "123456", admin: false)

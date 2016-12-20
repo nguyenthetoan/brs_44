@@ -70,6 +70,14 @@ en:
   most_favorites: "Most Favorites"
   most_rate: "Most Rate"
   filter: "Filter"
+  unfollowed: "unfollowed"
+  start_follow: "starts following"
+  add_book: "loves a new book named "
+  delete_book: "changed their mind at the book "
+  add_review: "leaves a review at "
+  delete_review: "removed their review at "
+  comment_review: "commented"
+  on_review: "on a review"
   users:
     new:
       confirm_pw: "Confrim Your Password"

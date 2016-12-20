@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161215164348) do
+ActiveRecord::Schema.define(version: 20161220085241) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "activatable_type"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20161215164348) do
     t.integer  "user_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.integer  "action_type"
     t.index ["activatable_type", "activatable_id"], name: "index_activities_on_activatable_type_and_activatable_id", using: :btree
     t.index ["user_id"], name: "index_activities_on_user_id", using: :btree
   end
@@ -100,9 +101,9 @@ ActiveRecord::Schema.define(version: 20161215164348) do
     t.string   "title"
     t.text     "content",    limit: 65535
     t.integer  "user_id"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.integer  "status",                   default: 0, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "status"
     t.index ["user_id", "created_at"], name: "index_requests_on_user_id_and_created_at", using: :btree
     t.index ["user_id"], name: "index_requests_on_user_id", using: :btree
   end

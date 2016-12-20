@@ -406,4 +406,17 @@ $(document).on('turbolinks:load', function() {
     return false;
   })
 
+  $('body').on('click', '.btn-load-more', function(e) {
+    e.preventDefault();
+    $btn = $(this)
+    $.ajax({
+      url: $btn.attr('href'),
+      method: 'get',
+      success: function(data) {
+        $('.activity-feed').html(data)
+        $btn.hide()
+      }
+    })
+    return false;
+  })
 })
