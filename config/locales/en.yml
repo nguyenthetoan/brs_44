@@ -67,6 +67,9 @@ en:
   reply: "Reply"
   submit: "Submit"
   search: "Search"
+  most_favorites: "Most Favorites"
+  most_rate: "Most Rate"
+  filter: "Filter"
   users:
     new:
       confirm_pw: "Confrim Your Password"

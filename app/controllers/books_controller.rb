@@ -1,11 +1,14 @@
 class BooksController<ApplicationController
+  include BooksHelper
+
   before_action :load_book, only: :show
 
   def index
-    params[:search] ||= ""
-    @books = Book.search(params[:search])
-      .select("id, title, author, publish_date, description")
-      .paginate page: params[:page]
+    if params[:filter]
+      @books = filter_by params[:filter]
+    else params[:search]
+      @books = search_by params[:search]
+    end
   end
 
   def show
