@@ -23,6 +23,7 @@ class UsersController < ApplicationController
     @favorites = @user.favorites.latest
     @followers = @user.followers.paginate page: params[:page]
     @followings = @user.following.paginate page: params[:page]
+    @activities = @user.activities.latest.limit(Settings.activities.max_retrived_feed)
   end
 
   def favorites

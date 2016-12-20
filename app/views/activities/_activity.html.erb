@@ -1,0 +1,12 @@
+<div class="feed-item" id="<%= dom_id(activity) %>">
+  <div class="date"><%= activity.created_at %></div>
+  <div class="text">
+    <span class="actor">
+      <%= link_to activity.user.name, user_path(activity.user) %>
+    </span>
+    <%= I18n.t(activity.action_type) %>
+    <span class="activatable">
+      <%= raw generate_activity activity.activatable %>
+    </span>
+  </div>
+</div>
