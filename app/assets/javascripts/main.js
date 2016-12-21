@@ -1,11 +1,6 @@
 $(document).on('turbolinks:load', function() {
 
-  $('ul.nav > li > a').each(function() {
-    $title = $(document).find('title').text().split(' ')[0].toLowerCase();
-    if ($(this).text().split(' ')[0].toLowerCase() == $title) {
-      $(this).closest('li').addClass('active');
-    }
-  });
+  $('.welcome-msg').fadeIn(4000);
 
   var active1 = false;
   var active2 = false;
@@ -201,16 +196,11 @@ $(document).on('turbolinks:load', function() {
 
   $('.starrr').starrr();
 
-  function rate() {
-    $fill_star.hide();
-    $('#stars').on('starrr:change', function(e, value) {
-      e.preventDefault();
-      $fill_star.val(value);
-    });
-  }
-
-  rate();
-
+  $fill_star.hide();
+  $('#stars').on('starrr:change', function(e, value) {
+    e.preventDefault();
+    $fill_star.val(value);
+  });
 
   $(function() {
     $('.review-item').slice(0, 4).show();
@@ -419,4 +409,67 @@ $(document).on('turbolinks:load', function() {
     })
     return false;
   })
+
+  $return_like_id = 0;
+  $like_form = ""
+  $('body').on('click', '#new_like', function() {
+    $form = $(this);
+    $like_form = $form
+    $form.submit(function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      $.ajax({
+        url: $form.attr('action'),
+        method: $form.attr('method'),
+        dataType: 'json',
+        data: $form.serialize(),
+        success: function(data) {
+          console.log(data.id)
+          $return_like_id = data.id
+          html = '<a class="btn btn-default" id="btn-unlike" href="/likes/' + $return_like_id + '"' + '>unlike</a>'
+          $like_form.hide()
+          $like_form.closest('.like').prepend(html)
+        }
+      })
+    })
+  });
+
+  $edit_form = ""
+  $('body').on('click', '.edit_like', function() {
+    $form = $(this);
+    $edit_form = $form
+    $form.submit(function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      $.ajax({
+        url: $form.attr('action'),
+        method: $form.attr('method'),
+        dataType: 'html',
+        data: $form.serialize(),
+        success: function() {
+          html = '<a class="btn btn-default" id="btn-unlike" href="/likes/' + $return_like_id + '"' + '>unlike</a>'
+          $edit_form.hide()
+          $edit_form.closest('.like').prepend(html)
+
+        }
+      })
+    })
+  });
+
+  $('body').on('click', '#btn-unlike', function(e) {
+    $btn = $(this)
+    e.preventDefault()
+    $.ajax({
+      url: $btn.attr('href'),
+      method: 'delete',
+      success: function() {
+        $btn.hide()
+        $like_form.fadeIn(1000)
+      }
+    })
+    return false;
+  })
+
+  $('.jcarousel').jcarousel();
+
 })

@@ -12,6 +12,8 @@ module ApplicationHelper
       "<a href='/books/#{object.id}'>#{object.title}</a>"
     when "Comment"
       "<a href='/books/#{object.review.book.id}##{dom_id(object.review)}'>#{I18n.t('on_review')}</a>"
+    when "Bookmark"
+      "<a href='/books/#{object.book.id}'>#{object.book.title} #{I18n.t('as')} <strong>#{object.read}</strong></a>"
     end
   end
 

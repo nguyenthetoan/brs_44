@@ -17,12 +17,13 @@
       <%= form_tag admin_books_path, method: :get, class: "form-inline" do %>
         <%= select_tag :filter,
           options_for_select(Settings.filters.map{|key, val| [val, key]},
-          selected: params[:filter]), class: "form-control filter-sel" %>
+          selected: params[:filter]), class: "form-control filter-sel",
+          include_blank: true %>
         <%= submit_tag t("filter"), class: "btn btn-default" %>
       <% end %>
     </div>
     <%= will_paginate %>
-    <table id="books" class="table table-bordered">
+    <table id="books" class="table table-bordered table-hover">
       <thead>
         <tr>
           <th><%= t "title" %></th>
