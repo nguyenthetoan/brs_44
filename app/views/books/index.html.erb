@@ -3,26 +3,43 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
+      <% if params[:search] %>
+        <h4><%= t "result" %>: <%= params[:search] %></h4>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <span><%= t "books_by_cate" %></span>
+      <%= form_tag books_path, method: :get do %>
+        <%= select_tag :cate,
+          options_for_select(@categories.map{|c| [c.name, c.id]},
+          selected: params[:cate]), class: "form-control",
+          include_blank: true %>
+        <%= submit_tag t("choose"), class: "btn btn-default" %>
+      <% end %>
+    </div>
+    <div class="col-md-6">
       <div class="subsubsub">
         <span><%= t "sort_by" %></span>
         <br>
         <%= form_tag books_path, method: :get, class: "form-inline" do %>
           <%= select_tag :filter,
             options_for_select(Settings.filters.map{|key, val| [val, key]},
-            selected: params[:filter]), class: "form-control filter-sel" %>
+            selected: params[:filter]), class: "form-control filter-sel",
+            include_blank: true %>
           <%= submit_tag t("filter"), class: "btn btn-default" %>
         <% end %>
       </div>
     </div>
   </div>
+  <hr>
   <div class="row">
     <div class="col-md-12">
       <div class="center-block">
-        <%= will_paginate %>
         <ul class="book-list">
           <%= render @books %>
         </ul>
-        <%= will_paginate %>
       </div>
     </div>
   </div>

@@ -78,6 +78,39 @@ en:
   delete_review: "removed their review at "
   comment_review: "commented"
   on_review: "on a review"
+  like: "Like"
+  unlike: "Unlike"
+  save: "Save"
+  fav_book: "Favorite Status"
+  user_marked: "You marked this book as "
+  at: "at"
+  as: "as "
+  new_bookmark: "bookmarked "
+  update_bookmark: "updated their bookmark on "
+  user_read: "You have read "
+  user_reading: "You are reading "
+  warning_delete_cate: "Please delete all books in the category first."
+  search_title_author: "Search by book title or author: "
+  empty_cate_name: "Category name cant be blank."
+  new_book: "New Book"
+  result: "Showing result for "
+  sort_by: "Filter by "
+  books_by_cate: "Browse By Category"
+  choose: "Choose"
+  search_by: "Search by author or title..."
+  our_story: "Our Story"
+  paragraph_story:
+    `
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+    when an unknown printer took a galley of type and scrambled it to make a type
+    specimen book.
+    It has survived not only five centuries, but also the leap into electronic typesetting,
+    remaining essentially unchanged. It was popularised in the 1960s with the
+    release of Letraset sheets containing Lorem Ipsum passages, and more recently
+    with desktop publishing software like Aldus PageMaker including versions of
+    Lorem Ipsum.
+    `
   users:
     new:
       confirm_pw: "Confrim Your Password"

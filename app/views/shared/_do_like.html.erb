@@ -1,0 +1,6 @@
+<%= form_for current_user.likes.build do |f| %>
+  <%= f.hidden_field :likable_type, value: likable.class.name %>
+  <%= f.hidden_field :likable_id, value: likable.id %>
+  <%= f.check_box :like, checked: true, style: "visibility: hidden" %>
+  <%= f.submit t("like"), class: "btn btn-primary" %>
+<% end %>
