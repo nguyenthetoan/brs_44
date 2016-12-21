@@ -2,7 +2,7 @@ $(document).on('turbolinks:load', function() {
 
   $req_id = '';
 
-  $('body').on('click', '.modal-admin-request .edit_request', function() {
+  $(document).on('click', '.modal-admin-request .edit_request', function() {
     $form = $(this);
     $form.submit(function(e) {
       e.preventDefault();
@@ -22,7 +22,7 @@ $(document).on('turbolinks:load', function() {
     })
   });
 
-  $('body').on('click', '.btn-admin-request', function(e) {
+  $(document).on('click', '.btn-admin-request', function(e) {
     e.preventDefault();
     $('#modal-edit-request').css('display', 'block')
     $url = $(this).attr('href')
@@ -52,7 +52,7 @@ $(document).on('turbolinks:load', function() {
     return false
   })
 
-  $('body').on('click', '#new_book', function() {
+  $(document).on('click', '#new_book', function() {
     $form = $(this);
     $form.submit(function(e) {
       e.preventDefault();
@@ -70,7 +70,7 @@ $(document).on('turbolinks:load', function() {
     })
   });
 
-  $('body').on('click', '.edit_book', function() {
+  $(document).on('click', '.edit_book', function() {
     $form = $(this);
     $form.submit(function(e) {
       e.preventDefault();
@@ -88,7 +88,7 @@ $(document).on('turbolinks:load', function() {
     })
   });
 
-  $('body').on('click', '.btn-edit-book', function(e) {
+  $(document).on('click', '.btn-edit-book', function(e) {
     e.preventDefault();
     $('#modal-edit-book').css('display', 'block')
     $url = $(this).attr('href')
@@ -104,7 +104,7 @@ $(document).on('turbolinks:load', function() {
     return false
   })
 
-  $('body').on('click', '.btn-delete', function(e) {
+  $(document).on('click', '.btn-delete', function(e) {
     e.preventDefault();
     if (confirm(I18n.t('confirm_delete'))) {
       $book_id = $(this).attr('href').split('/')[3]

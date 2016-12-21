@@ -1,5 +1,5 @@
 <tr id="<%= dom_id(book) %>">
-  <td><%= book.title %></td>
+  <td><%= link_to book.title, book %></td>
   <td><%= book.author %></td>
   <td><%= book.pages %></td>
   <td><%= book.publish_date %></td>

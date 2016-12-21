@@ -18,4 +18,10 @@ module BooksHelper
     val ||= ""
     @books = Book.search(val).paginate page: params[:page]
   end
+
+  def filter_cate id
+    id ||= ""
+    @cate = Category.find_by id: id
+    @books = @cate.books.paginate page: params[:page]
+  end
 end
