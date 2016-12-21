@@ -1,0 +1,15 @@
+<% @user_bookmarks.each do |bookmark| %>
+  <% if bookmark.read? %>
+    <li class="read">
+      <span>
+        <%= t "user_read" %> <%= link_to bookmark.book.title, bookmark.book %>
+      </span>
+    </li>
+  <% else %>
+    <li class="reading">
+      <span>
+        <%= t "user_reading" %> <%= link_to bookmark.book.title, bookmark.book %>
+      </span>
+    </li>
+  <% end %>
+<% end %>
