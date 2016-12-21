@@ -26,7 +26,7 @@
               <%= t "user_marked" %>: <strong><%= @user_bookmark.read %></strong>
               <%= t "at" %>
               <strong>
-                <%= @user_bookmark.updated_at.strftime('%a, %d %b %Y %H:%M:%S') %>
+                <%= @user_bookmark.updated_at.strftime(Setting.time_format.format) %>
               </strong>
             </p>
             <%= render "bookmarks/edit", user_bookmark: @user_bookmark %>

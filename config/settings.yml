@@ -3,4 +3,5 @@ filters:
   most_favorites: "Most Favorites"
 activities:
   max_retrived_feed: 5
-
+time_format:
+  format: "%a, %d %b %Y %H:%M:%S"
