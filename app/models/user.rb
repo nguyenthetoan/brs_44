@@ -13,7 +13,8 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :activities, dependent: :destroy
-  has_many :likes, as: :likable, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   before_save {self.email = email.downcase}
   validates :name, presence: true, length: {maximum: 50}
@@ -52,6 +53,14 @@ class User < ApplicationRecord
 
   def following? other_user
     following.include? other_user
+  end
+
+  def get_bookmark book
+    bookmark = Bookmark.find_by user_id: self.id, book_id: book.id
+  end
+
+  def bookmarkeds
+    bookmarks = Bookmark.where user_id: self.id
   end
 
 end
