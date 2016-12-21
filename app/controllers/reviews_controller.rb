@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
     @review.book = @book
     if @review.save
       current_user.activities.create(activatable: @review.book, action_type: :add_review)
-      redirect_to book_path(@book)
+      redirect_back(fallback_location: :back)
     end
   end
 

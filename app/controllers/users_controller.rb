@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, except: [:new, :create, :show]
   before_action :correct_user, only: [:edit, :update]
+  before_action :load_user, only: :show
 
   def new
     @user = User.new
@@ -18,16 +19,11 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by id: params[:id]
-    @user ? @user : render_404
     @favorites = @user.favorites.latest
     @followers = @user.followers.paginate page: params[:page]
     @followings = @user.following.paginate page: params[:page]
     @activities = @user.activities.latest.limit(Settings.activities.max_retrived_feed)
-  end
-
-  def favorites
-
+    @user_bookmarks = current_user.bookmarks
   end
 
   private

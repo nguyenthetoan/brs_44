@@ -15,18 +15,21 @@ class Admin::CategoriesController<ApplicationController
     @category = Category.create cate_params
     respond_to do |format|
       if @category.save
-        format.js {flash[:success] = t "cate_created"}
-      else
-        render :new
+        format.js
       end
     end
   end
 
   def destroy
     @category = Category.find_by id: params[:id]
-    @category.destroy
-    respond_to do |format|
-      format.js
+    if @category.books.empty?
+      @category.destroy
+      respond_to do |format|
+        format.js
+      end
+    else
+      flash[:danger] = t "warning_delete_cate"
+      redirect_to admin_categories_path
     end
   end
 
