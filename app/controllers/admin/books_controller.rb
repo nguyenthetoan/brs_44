@@ -27,8 +27,6 @@ class Admin::BooksController < ApplicationController
     respond_to do |format|
       if @book.save
         format.html {render @book}
-      else
-        render :new
       end
     end
   end
@@ -57,7 +55,7 @@ class Admin::BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit :title, :publish_date, :author, :pages, :category_id
+    params.require(:book).permit :title, :publish_date, :author, :pages, :category_id, :description
   end
 
   def load_categories
