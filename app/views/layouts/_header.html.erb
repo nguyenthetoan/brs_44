@@ -1,4 +1,4 @@
-<% unless !logged_in? %>
+<% if logged_in? %>
   <div class="mini-navbar">
     <div class="usercp">
       <%= link_to user_path current_user do %>
@@ -11,7 +11,9 @@
       <% end %>
     </div>
     <div class="test3">
-      <a href="/books?utf8=✓&filter=most_favorites&commit=Filter"><i class="fa fa-heartbeat fa-2x"></i></a>
+      <%= link_to books_path(filter: "most_favorites") do  %>
+        <i class="fa fa-heartbeat fa-2x"></i>
+      <% end %>
     </div>
     <div class="test4">
       <%= link_to requests_path do %>
