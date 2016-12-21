@@ -1,0 +1,7 @@
+<% unless likable.nil? %>
+  <% if likable.liked? current_user %>
+    <%= render "shared/unlike", likable: likable %>
+  <% else %>
+    <%= render "shared/do_like", likable: likable %>
+  <% end %>
+<% end %>

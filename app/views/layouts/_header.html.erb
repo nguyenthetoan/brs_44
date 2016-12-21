@@ -1,10 +1,26 @@
-<div class="mini-navbar">
-  <div class="usercp"><a href="#"><i class="fa fa-user fa-2x"></i></a></div>
-  <div class="test2"><a href="#"><i class="fa fa-graduation-cap fa-2x"></i></a></div>
-  <div class="test3"><a href="#"><i class="fa fa-code fa-2x"></i></a></div>
-  <div class="test4"><a href="#"><i class="fa fa-envelope-o fa-2x"></i></a></div>
-  <div class="mask2"><i class="fa fa-home fa-3x"></i></div>
-</div>
+<% unless !logged_in? %>
+  <div class="mini-navbar">
+    <div class="usercp">
+      <%= link_to user_path current_user do %>
+        <i class="fa fa-user fa-2x"></i>
+      <% end %>
+    </div>
+    <div class="test2">
+      <%= link_to books_path do %>
+        <i class="fa fa-book fa-2x"></i>
+      <% end %>
+    </div>
+    <div class="test3">
+      <a href="/books?utf8=✓&filter=most_favorites&commit=Filter"><i class="fa fa-heartbeat fa-2x"></i></a>
+    </div>
+    <div class="test4">
+      <%= link_to requests_path do %>
+        <i class="fa fa-envelope-o fa-2x"></i>
+      <% end %>
+    </div>
+    <div class="mask2"><i class="fa fa-home fa-3x"></i></div>
+  </div>
+<% end %>
 <div class="container">
   <div class="nav-center">
     <nav class="navbar navbar-default top-nav">
@@ -17,17 +33,7 @@
             <%= link_to t("books"), books_path %>
           </li>
           <% if logged_in? %>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <%= t "request" %> <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to t("my_request"), requests_path %></li>
-                <li class="divider"></li>
-                <li>
-                  <%= link_to t("new_request"), new_request_path %>
-                </li>
-              </ul>
+            <li><%= link_to t("my_request"), requests_path %></li>
             </li>
             <li>
               <%= link_to current_user.name ,user_path(current_user) %>
@@ -44,16 +50,15 @@
             </li>
           <% end %>
         </ul>
-        <div class="search">
-          <%= form_tag(books_path, method: "get",
-            class: "navbar-form navbar-right") do%>
-            <%= search_field_tag "search", nil, class: "form-control",
-              placeholder: t("search") %>
-            <%= submit_tag t("search"), class: "btn btn-default", name: nil %>
-          <% end %>
-        </div>
       </div>
     </nav>
+  </div>
+  <div class="search">
+    <%= form_tag(books_path, method: "get", class: "navbar-form navbar-right") do%>
+      <%= search_field_tag "search", nil, class: "form-control",
+        placeholder: t("search_by") %>
+      <%= submit_tag t("search"), class: "btn btn-primary", name: nil %>
+    <% end %>
   </div>
   <hr class="style-two" />
 </div>

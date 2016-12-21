@@ -3,13 +3,32 @@
     <div class="col-md-12">
       <div class="jumbotron">
         <div class="welcome">
-          <h6><%= t"app_name" %></h6>
           <div>
-            <%= link_to t("app_desc"), root_path, class: "app-desc" %>
+            <% if logged_in? %>
+              <div class="row">
+                <h2 class="welcome-msg"><%= t "app_desc" %></h2>
+                <br>
+                <br>
+                <br>
+                <div class="col-md-6">
+                  <%= image_tag "side-1.jpg", size: 500 %>
+                </div>
+                <div class="col-md-6">
+                  <div class="story">
+                    <h4><%= t "our_story" %></h4>
+                    <p>
+                      <%= t "paragraph_story" %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            <% else %>
+              <h6><%= t"app_name" %></h6>
+              <%= link_to t("app_desc"), root_path, class: "app-desc" %>
               <br/>
-              <a class="semi-transparent-button signup" href="#">
-                <%= t "signup" %>
-              </a>
+              <%= link_to t("signup"), signup_path,
+                class: "semi-transparent-button signup" %>
+            <% end %>
           </div>
         </div>
       </div>

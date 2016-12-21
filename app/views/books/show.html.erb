@@ -16,6 +16,28 @@
       </p>
     </div>
   </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="bookmark">
+        <% unless current_user.nil? %>
+          <% if @book.bookmarked? current_user %>
+            <p>
+              <%= t "user_marked" %>: <strong><%= @user_bookmark.read %></strong>
+              <%= t "at" %>
+              <strong>
+                <%= @user_bookmark.updated_at.strftime('%a, %d %b %Y %H:%M:%S') %>
+              </strong>
+            </p>
+            <%= render "bookmarks/edit", user_bookmark: @user_bookmark %>
+          <% else %>
+            <span><%= t "mark_as" %></span>
+            <%= render "bookmarks/bookmark_form", book: @book %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <div class="content-break"></div>
   <div class="row">
     <div class="col-md-12">
@@ -40,7 +62,9 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      <%= render "favorite_actions", book: @book %>
+      <div class="fav-actions">
+        <%= render "favorite_actions", book: @book %>
+      </div>
     </div>
     <div class="col-md-6">
       <span class="avg-head"><%= t "avg_rating" %>: </span>
@@ -57,6 +81,7 @@
       </a>
     </div>
   </div>
+  <hr>
   <div class="row">
     <div class="col-md-12">
       <%= render "reviews/review_form" unless current_user.nil?  %>
