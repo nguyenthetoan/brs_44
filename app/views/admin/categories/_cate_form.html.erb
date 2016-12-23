@@ -1,6 +1,6 @@
 <%= form_for @category, url: admin_categories_path, remote: true do |f| %>
   <%= render "shared/error_message", object: f.object %>
   <%= f.label :name %>
-  <%= f.text_field :name, class: "form-control" %>
+  <%= f.text_field :name, class: "form-control", required: true %>
   <%= f.submit t("create"), class: "btn btn-primary" %>
 <% end %>

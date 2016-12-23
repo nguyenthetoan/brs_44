@@ -6,11 +6,11 @@ module BooksHelper
 
     case val
     when ""
-      @books.paginate page: params[:page]
+      @books
     when "most_rate"
-      @books = @most_rate.reverse!.paginate page: params[:page]
+      @books = @most_rate.reverse!
     when "most_favorites"
-      @books = @most_favorites.reverse!.paginate page: params[:page]
+      @books = @most_favorites.reverse!
     end
   end
 

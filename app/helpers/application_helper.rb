@@ -17,4 +17,10 @@ module ApplicationHelper
     end
   end
 
+  def beloved_book
+    @books = Book.select("id, title, author, description")
+    @beloved = @books.sort_by {|b| b.favorited_by.count}
+    @beloved.reverse![0..4].sample
+  end
+
 end

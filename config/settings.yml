@@ -3,5 +3,9 @@ filters:
   most_favorites: "Most Favorites"
 activities:
   max_retrived_feed: 5
-time_format:
-  format: "%a, %d %b %Y %H:%M:%S"
+option_time:
+  vn: "%a, %d %b %Y %H:%M:%S"
+books:
+  page: 20
+timezone:
+  vn: "Hanoi"
