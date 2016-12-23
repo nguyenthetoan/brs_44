@@ -9,11 +9,11 @@
       <%= raw generate_activity activity.activatable %>
     </span>
   </div>
-  <p>
-    <span class="activity-like"><%= activity.likes.count %></span>
-    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-  </p>
   <div class="like">
+    <p>
+    <span class="activity-like"><%= activity.likes.count %></span>
+      <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+    </p>
     <%= render "shared/like_form", likable: activity %>
   </div>
 </div>

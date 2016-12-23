@@ -44,10 +44,11 @@ en:
   profile: "profile"
   recent_activity: "Recent Activity"
   books_i_love: "Books I Love"
-  new_request: "New Request"
+  new_request: "Received Request"
   my_request: "My Request"
   send: "Send"
-  send_immediately: "Send immediately?"
+  send_immediately: "Send immediately"
+  send_later: "Send later"
   favorited_books: "Favorited Books"
   added: "added"
   ago: "ago"
@@ -99,8 +100,7 @@ en:
   choose: "Choose"
   search_by: "Search by author or title..."
   our_story: "Our Story"
-  paragraph_story:
-    `
+  paragraph_story: |
     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
     when an unknown printer took a galley of type and scrambled it to make a type
@@ -110,7 +110,38 @@ en:
     release of Letraset sheets containing Lorem Ipsum passages, and more recently
     with desktop publishing software like Aldus PageMaker including versions of
     Lorem Ipsum.
-    `
+  ipsum: |
+    Excepteur sint occaecat cupidatat non proident,
+    sunt in culpa qui officia deserunt mollit anim id est laborum.
+  ops: "Opsss..."
+  create_cate_error: |
+    "Something went wrong!
+    You might insert an existed category or its name is over 150 characters."
+  create_book_error: |
+    "Something went wrong!
+    You might insert the book title which is over 150 characters."
+  ask_sure: "Are you sure?"
+  warning_delete: "You will not be able to recover this action!"
+  done_delete: "Deleted!"
+  delete_desc: "Your data has been deleted."
+  canceled: "Canceled"
+  safe_data: "Your data is safe now :)"
+  confirm_button: "Yes, delete it!"
+  cancel_button: "No! No! No!"
+  create_comment_error: |
+    Something went wrong!
+    You might not comment anything.
+  create_request_error: |
+    Something went wrong!
+    Your title might be over 150 characters or you didn't say anything.
+  blank_input: "Please rate and write your review."
+  unique_reviewer: "You have already reviewed this book as: "
+  create_request: "Make Request"
+  signed_as: "Signed in as "
+  services_head: "what do we have"
+  categories: "Categories"
+  user_helped: "requests"
+  most_beloved_book: "most beloved book"
   users:
     new:
       confirm_pw: "Confrim Your Password"

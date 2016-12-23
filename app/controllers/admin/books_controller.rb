@@ -9,9 +9,9 @@ class Admin::BooksController < ApplicationController
 
   def index
     if params[:filter]
-      @books = filter_by params[:filter]
+      @books = filter_by(params[:filter]).latest
     else params[:search]
-      @books = search_by params[:search]
+      @books = search_by(params[:search]).latest
     end
   end
 
@@ -27,6 +27,8 @@ class Admin::BooksController < ApplicationController
     respond_to do |format|
       if @book.save
         format.html {render @book}
+      else
+        render json: {errors: @book.errors.full_messages}
       end
     end
   end
