@@ -10,5 +10,6 @@ class Review < ApplicationRecord
 
   validates :rate, numericality: {less_than_or_equal_to: 5}
   validates :content, presence: true, length: {maximum: 500}
-  validates :user_id, uniqueness: {scope: :book_id}
+  validates :user_id, uniqueness: {scope: :book_id,
+    message: I18n.t("unique_reviewer")}
 end

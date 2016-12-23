@@ -63,4 +63,8 @@ class User < ApplicationRecord
     bookmarks = Bookmark.where user_id: self.id
   end
 
+  def reviewed? book
+    book.reviewed_by.reload.include? self
+  end
+
 end
