@@ -21,7 +21,7 @@
 .byebug_history
 
 # Ignore database config
-/config/database.yml
+config/database.yml
 
 # Ignore unit test
 /test/*
