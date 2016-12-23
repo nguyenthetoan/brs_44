@@ -5,6 +5,10 @@
         <%= link_to comment_path(comment), class: "btn-delete-comment" do %>
           <i class="fa fa-times"></i>
         <% end %>
+        |
+        <%= link_to comment_path(comment), class: "btn-edit-comment" do %>
+          <i class="fa fa-pencil"></i>
+        <% end %>
       </span>
     <% end %>
     <%= link_to user_path(comment.user) do %>

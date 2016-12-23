@@ -1,0 +1,32 @@
+<% unless book.nil? %>
+  <div class="bk-book beloved bk-bookdefault">
+    <div class="bk-front">
+      <div class="bk-cover">
+        <%= link_to book_path(book) do %>
+          <%= image_tag "default-cover.gif", class: "book-cover", size: 200 %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="bk-info">
+    <a class="avg-rating" data-toggle="tooltip"
+      title="<%= pluralize(book.reviews.count, "review") %>" >
+      <span class="rate-count">
+        <% book.avg_rating.times do %>
+          <i class="fa fa-star" aria-hidden="true"></i>
+        <% end %>
+      </span>
+    </a>
+    <h4>
+      <i class="fa fa-heart" aria-hidden="true"></i>
+      <span class="favorited-count"><%= book.favorited_by.count %></span>
+    </h4>
+    <h3>
+      <span><%= book.author %></span>
+      <span><%= book.title %></span>
+      </h3>
+    <p>
+      <%= book.description %>
+    </p>
+  </div>
+<% end %>

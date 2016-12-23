@@ -1,20 +1,28 @@
 <% provide :title, t("books") %>
 <div class="row">
   <div class="col-md-12">
-  <h1><%= t "books" %></h1>
-  <div id="custom-search-input">
-    <div class="col-md-12">
-      <span><%= t "search_title_author" %></span>
-      <%= form_tag admin_books_path, method: :get, class: "form-inline" do%>
-        <%= search_field_tag "search", nil, class: "form-control",
-          placeholder: t("search") %>
-        <%= submit_tag t("search"), class: "btn btn-info", name: nil %>
-      <% end %>
+    <h1><%= t "books" %></h1>
+  </div>
+  <a id="btn-new-book" class="btn btn-success">
+    <span>
+      <i class="fa fa-plus-square" aria-hidden="true"></i>
+    </span> <%= t "new_book" %>
+  </a>
+  <div class="row">
+    <div id="custom-search-input">
+      <div class="col-md-12">
+        <span><%= t "search_title_author" %></span>
+        <%= form_tag admin_books_path, method: :get do%>
+          <%= search_field_tag "search", nil, class: "form-control",
+            placeholder: t("search") %>
+          <%= submit_tag t("search"), class: "btn btn-info", name: nil %>
+        <% end %>
+      </div>
     </div>
   </div>
-  <div class="subsubsub">
+  <div class="admin-filter">
     <span><%= t "sort_by" %></span>
-      <%= form_tag admin_books_path, method: :get, class: "form-inline" do %>
+      <%= form_tag admin_books_path, method: :get do %>
         <%= select_tag :filter,
           options_for_select(Settings.filters.map{|key, val| [val, key]},
           selected: params[:filter]), class: "form-control filter-sel",
@@ -42,7 +50,6 @@
   </div>
 </div>
 <br>
-<a id="btn-new-book" class="btn btn-success"><%= t "new_book" %></a>
 <div id="modal-new-book" class="modal">
   <div class="modal-content">
     <div class="modal-header">

@@ -8,7 +8,10 @@ class ReviewsController < ApplicationController
     @review.book = @book
     if @review.save
       current_user.activities.create(activatable: @review.book, action_type: :add_review)
-      redirect_back(fallback_location: :back)
+      redirect_back fallback_location: :back
+    else
+      flash[:danger] = t "blank_input"
+      redirect_back fallback_location: :back
     end
   end
 
@@ -16,7 +19,7 @@ class ReviewsController < ApplicationController
     unless @review.nil?
       @review.destroy
       current_user.activities.create(activatable: @review.book, action_type: :delete_review)
-      redirect_back(fallback_location: :back)
+      redirect_back fallback_location: :back
     end
   end
 
@@ -24,7 +27,7 @@ class ReviewsController < ApplicationController
     @book = Book.find_by id: params[:book_id]
     unless @review.nil?
       @review.update_attributes review_params
-      redirect_back(fallback_location: :back)
+      redirect_back fallback_location: :back
     end
   end
 

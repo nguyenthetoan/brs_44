@@ -19,19 +19,24 @@
         <i class="fa fa-star" aria-hidden="true"></i>
       <% end %>
     </span>
-    <p><%= link_to review.user.name, user_path(review.user) %>: </p>
-    <p><%= review.content %></s>
+    <p class="review-content">
+      <%= link_to review.user do %>
+        <%= image_tag "default-avatar.png", class: "img-thumbnail", size: 45 %>
+      <% end %>
+      <%= link_to review.user.name, user_path(review.user) %>:
+      <%= review.content %>
+    </p>
     <p class="review-date">
-      <%= review.created_at.strftime('%a, %d %b %Y %H:%M:%S') %>
+      <%= review.created_at.strftime(Settings.option_time.vn) %>
     </p>
     <div class="reply-box">
       <ul class="comment-list">
         <% unless review.comments.nil? %>
-          <%= render review.comments.latest %>
+          <%= render review.comments %>
         <% end %>
       </ul>
       <div class="reply">
-        <%= link_to t("reply"), new_comment_path, class: "btn-new-comment" %>
+        <%= link_to t("reply"), new_comment_path, class: "btn-new-comment" if logged_in? %>
         <div class="comment-box">
 
         </div>

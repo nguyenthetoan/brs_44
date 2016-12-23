@@ -7,15 +7,13 @@ class Admin::CategoriesController<ApplicationController
     @category = Category.new
   end
 
-  def new
-    @category = Category.new
-  end
-
   def create
     @category = Category.create cate_params
     respond_to do |format|
-      if @category.save
+      if @result = @category.save
         format.js
+      else
+        format.js {render status: "500"}
       end
     end
   end

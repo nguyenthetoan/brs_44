@@ -24,17 +24,14 @@ ActiveRecord::Schema.define(version: 20161220085241) do
   end
 
   create_table "bookmarks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "read"
-    t.boolean  "favorite"
+    t.integer  "read"
+    t.integer  "user_id"
+    t.integer  "book_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "bookmarks_books", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "book_id"
-    t.integer "bookmark_id"
-    t.index ["book_id"], name: "index_bookmarks_books_on_book_id", using: :btree
-    t.index ["bookmark_id"], name: "index_bookmarks_books_on_bookmark_id", using: :btree
+    t.index ["book_id"], name: "index_bookmarks_on_book_id", using: :btree
+    t.index ["user_id", "book_id"], name: "index_bookmarks_on_user_id_and_book_id", using: :btree
+    t.index ["user_id"], name: "index_bookmarks_on_user_id", using: :btree
   end
 
   create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

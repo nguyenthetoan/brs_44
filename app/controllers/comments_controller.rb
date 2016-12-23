@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   before_action :logged_in_user
-
   def new
     @comment = Comment.new
     respond_to do |format|
@@ -19,6 +18,16 @@ class CommentsController < ApplicationController
   end
 
   def show
+    @comment = Comment.find_by id: params[:id]
+    respond_to do |format|
+      format.html {render partial: "edit", locals: {comment: @comment}}
+    end
+  end
+
+  def update
+    @comment = Comment.find_by id: params[:id]
+    @comment.update_attributes comment_params
+    redirect_back fallback_location: :back
   end
 
   def destroy

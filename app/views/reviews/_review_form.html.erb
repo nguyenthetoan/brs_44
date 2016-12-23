@@ -1,14 +1,24 @@
-<h3><%= t "write_review" %></h3>
-<%= form_for current_user.reviews.build do |f| %>
-  <%= render "shared/error_message", object: f.object %>
-  <div><%= hidden_field_tag :book_id, @book.id %></div>
-  <div class="rate-star">
-    <div id="stars" class="starrr"></div>
-    <%= f.text_field :rate, class: "form-control" %>
-  </div>
+<% if current_user.reviewed? @book %>
+  <h3><%= t "unique_reviewer" %>
+  <span class="rate-count">
+    <% current_user.reviews.find_by(book_id: @book.id).rate.times do %>
+      <i class="fa fa-star" aria-hidden="true"></i>
+    <% end %>
+  </span>
+  </h3>
+<% else %>
+  <h3><%= t "write_review" %></h3>
+  <%= form_for current_user.reviews.build do |f| %>
+    <%= render "shared/error_message", object: f.object %>
+    <div><%= hidden_field_tag :book_id, @book.id %></div>
+    <div class="rate-star">
+      <div id="stars" class="starrr"></div>
+      <%= f.text_field :rate, class: "form-control" %>
+    </div>
 
-  <%= f.label :content %>
-  <%= f.text_area :content, class: "form-control" %>
+    <%= f.label :content %>
+    <%= f.text_area :content, class: "form-control", required: true %>
 
-  <%= f.submit t("send"), class: "btn btn-primary" %>
+    <%= f.submit t("send"), class: "btn btn-primary" %>
+  <% end %>
 <% end %>
