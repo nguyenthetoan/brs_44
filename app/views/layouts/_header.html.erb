@@ -1,66 +1,75 @@
-<% if logged_in? %>
-  <div class="mini-navbar">
-    <div class="usercp">
-      <%= link_to user_path current_user do %>
-        <i class="fa fa-user fa-2x"></i>
-      <% end %>
-    </div>
-    <div class="test2">
-      <%= link_to books_path do %>
-        <i class="fa fa-book fa-2x"></i>
-      <% end %>
-    </div>
-    <div class="test3">
-      <%= link_to books_path(filter: "most_favorites") do  %>
-        <i class="fa fa-heartbeat fa-2x"></i>
-      <% end %>
-    </div>
-    <div class="test4">
-      <%= link_to requests_path do %>
-        <i class="fa fa-envelope-o fa-2x"></i>
-      <% end %>
-    </div>
-    <div class="mask2"><i class="fa fa-home fa-3x"></i></div>
-  </div>
-<% end %>
-<div class="container">
-  <div class="nav-center">
-    <nav class="navbar navbar-default top-nav">
-      <div class="row">
-        <ul class="nav navbar-nav">
-          <li>
-            <%= link_to t("home"), root_path %>
-          </li>
-          <li>
-            <%= link_to t("books"), books_path %>
-          </li>
+<div class="navbar-wrapper">
+  <div class="container-fluid">
+    <nav class="navbar navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to t("app_name"), root_path, class: "navbar-brand" %>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="<%= "active" if params[:controller] == "static_pages" %>">
+              <%= link_to t("home"), root_path %>
+            </li>
+            <li class="<%= "active" if params[:controller] == "books" %>" >
+              <%= link_to t("books"), books_path %>
+            </li>
+            <li class="<%= "active" if params[:controller] == "requests" %>">
+              <%= link_to t("requests"), requests_path %>
+            </li>
+          </ul>
           <% if logged_in? %>
-            <li><%= link_to t("my_request"), requests_path %></li>
-            </li>
-            <li>
-              <%= link_to current_user.name ,user_path(current_user) %>
-            </li>
-            <li>
-              <%= link_to t(".logout"), logout_path, method: :delete %>
-            </li>
+            <ul class="nav navbar-nav pull-right">
+              <li class=" dropdown">
+                <a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                  <%= t "signed_as" %> <%= current_user.name %>
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <%= link_to t("my_profile"), current_user %>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <%= link_to t(".logout"), logout_path, method: :delete %>
+              </li>
+              <li>
+                <a href="#" class="show-search">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
           <% else %>
-            <li>
-              <%= link_to t("signup"), signup_path %>
-            </li>
-            <li>
-              <%= link_to t(".login"), login_path %>
-            </li>
+            <ul class="nav navbar-nav pull-right">
+              <li>
+                <%= link_to t("signup"), signup_path %>
+              </li>
+              <li>
+                <%= link_to t(".login"), login_path %>
+              </li>
+              <li>
+                <a href="#" class="show-search">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
           <% end %>
-        </ul>
+          <div class="search" id="search">
+            <%= form_tag(books_path, method: "get", class: "navbar-form navbar-right") do%>
+              <%= search_field_tag "search", nil, class: "form-control",
+                placeholder: t("search_by") %>
+              <%= submit_tag t("search"), class: "btn btn-search", name: nil %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </nav>
   </div>
-  <div class="search">
-    <%= form_tag(books_path, method: "get", class: "navbar-form navbar-right") do%>
-      <%= search_field_tag "search", nil, class: "form-control",
-        placeholder: t("search_by") %>
-      <%= submit_tag t("search"), class: "btn btn-primary", name: nil %>
-    <% end %>
-  </div>
-  <hr class="style-two" />
 </div>
+
