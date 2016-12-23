@@ -26,7 +26,7 @@
               <%= t "user_marked" %>: <strong><%= @user_bookmark.read %></strong>
               <%= t "at" %>
               <strong>
-                <%= @user_bookmark.updated_at.strftime(Setting.time_format.format) %>
+                <%= @user_bookmark.updated_at.strftime(Settings.option_time.vn) %>
               </strong>
             </p>
             <%= render "bookmarks/edit", user_bookmark: @user_bookmark %>
@@ -44,7 +44,7 @@
       <div class="bars">
         <ul class="navbar details">
           <li>
-            <%= link_to @book.category.name, category_path(@book.category) %>
+            <%= link_to @book.category.name, books_path(cate: "#{@book.category.id}") %>
           </li>
           <li>
             <%= @book.pages %> <%= t "pages" %>
@@ -84,7 +84,7 @@
   <hr>
   <div class="row">
     <div class="col-md-12">
-      <%= render "reviews/review_form" unless current_user.nil?  %>
+      <%= render "reviews/review_form" if logged_in?  %>
     </div>
   </div>
   <div class="row">
@@ -107,6 +107,17 @@
     <div class="modal-header">
       <span class="close">&times;</span>
       <h2><%= t "edit_review" %></h2>
+    </div>
+    <div class="edit-modal-body">
+
+    </div>
+  </div>
+</div>
+<div id="modal-edit-comment" class="modal modal-edit-comment">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2><%= t "edit_comment" %></h2>
     </div>
     <div class="edit-modal-body">
 
