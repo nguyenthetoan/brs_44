@@ -3,8 +3,8 @@ class Admin::BooksController < ApplicationController
 
   include BooksHelper
 
+  before_action :load_book, only: [:destroy, :update]
   before_action :logged_in_user, :admin_user
-  before_action :load_book, only: [:update, :destroy, :show]
   before_action :load_categories, except: [:index]
 
   def index
@@ -34,11 +34,9 @@ class Admin::BooksController < ApplicationController
   end
 
   def destroy
-    unless @book.nil?
-      @book.destroy
-      respond_to do |format|
-        format.html {render Book.all}
-      end
+    @book.destroy
+    respond_to do |format|
+      format.html
     end
   end
 
@@ -51,7 +49,7 @@ class Admin::BooksController < ApplicationController
   def update
     @book.update_attributes book_params
     respond_to do |format|
-      format.html {render Book.all}
+      format.html {render @book.reload}
     end
   end
 
@@ -61,6 +59,7 @@ class Admin::BooksController < ApplicationController
   end
 
   def load_categories
-    @categories = Category.all
+    @categories = Category.select("id, name, created_at")
   end
+
 end

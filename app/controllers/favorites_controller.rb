@@ -1,7 +1,6 @@
 class FavoritesController<ApplicationController
   before_action :logged_in_user, only: [:update, :destroy]
   before_action :load_book
-
   def create
     current_user.add_favorite @book
     current_user.activities.create(activatable: @book, action_type: :add_book)
@@ -18,8 +17,4 @@ class FavoritesController<ApplicationController
     end
   end
 
-  private
-  def load_book
-    @book = Book.find_by id: params[:id]
-  end
 end

@@ -25,7 +25,7 @@
         <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab">
           <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
           <div class="hidden-xs">
-          	<%= pluralize(@user.favorites.count, t("book")) %>
+          	<%= pluralize(@user.favorites.size, t("book")) %>
           </div>
         </button>
       </div>
@@ -33,7 +33,7 @@
         <button type="button" id="follower" class="btn btn-default" href="#tab3" data-toggle="tab">
           <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
           <div class="hidden-xs">
-          	<span class="follower-count"><%= @user.followers.count %> </span>
+          	<span class="follower-count"><%= @user.followers.size %> </span>
           	<span><%= t "followers" %></span>
           </div>
         </button>
@@ -43,7 +43,7 @@
           <button type="button" id="following" class="btn btn-default" href="#tab4" data-toggle="tab">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
             <div class="hidden-xs">
-              <%= pluralize(@user.following.count, t("following")) %>
+              <%= pluralize(@user.following.size, t("following")) %>
             </div>
           </button>
         </div>
@@ -52,7 +52,7 @@
         <button type="button" id="bookmark" class="btn btn-default" href="#tab5" data-toggle="tab">
           <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
           <div class="hidden-xs">
-            <span><%= @user.bookmarks.count %> </span>
+            <span><%= @user.bookmarks.size %> </span>
             <span><%= t "bookmark" %></span>
           </div>
         </button>
@@ -64,7 +64,7 @@
           <h3><%= t "activities" %></h3>
           <div class="activity-feed">
             <%= render @activities %>
-            <% unless @user.activities.count < 5 %>
+            <% unless @user.activities.size < Settings.limit_activity %>
               <%= link_to activities_path, class: "btn-load-more" do %>
                 <span><%= t "load_all" %></span>
               <% end %>

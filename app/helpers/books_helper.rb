@@ -1,16 +1,19 @@
 module BooksHelper
-  def filter_by val
-    @books = Book.all
-    @most_rate = @books.sort_by {|b| b.avg_rating}
-    @most_favorites = @books.sort_by {|b| b.favorited_by.count}
 
+  def load_books
+    @books = Book.select("id, title")
+  end
+
+  def filter_by val
     case val
     when ""
-      @books
+      load_books
     when "most_rate"
+      @most_rate = load_books.sort_by {|b| b.avg_rating}
       @books = @most_rate.reverse!
     when "most_favorites"
-      @books = @most_favorites.reverse!
+      @most_favorites = load_books.sort_by {|b| b.favorited_by.size}
+      @books = @most_favorites
     end
   end
 
