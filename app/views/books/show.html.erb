@@ -51,7 +51,7 @@
           </li>
           <li>
             <i class="fa fa-heart" aria-hidden="true"></i>
-            <span class="favorited-count"><%= @book.favorited_by.count %></span>
+            <span class="favorited-count"><%= @book.favorited_by.size %></span>
           </li>
           <li>
             <%= t "published" %>: <%= @book.publish_date %>
@@ -69,7 +69,7 @@
     <div class="col-md-6">
       <span class="avg-head"><%= t "avg_rating" %>: </span>
       <a class="avg-rating" data-toggle="tooltip"
-        title="<%= pluralize(@book.reviews.count, "review") %>" >
+        title="<%= pluralize(@book.reviews.size, "review") %>" >
         <span class="rate-count">
           <span class="label label-default no-rating">
             <%= t("no_rating") if @book.avg_rating == 0 %>

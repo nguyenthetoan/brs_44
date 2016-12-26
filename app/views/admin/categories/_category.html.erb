@@ -1,7 +1,7 @@
 <tr id="<%= dom_id(category) %>">
   <td><%= category.name %></td>
   <td><%= category.created_at %></td>
-  <td><%= category.books.count %></td>
+  <td><%= category.books.size %></td>
   <td>
     <%= link_to t("delete"), admin_category_path(category.id), method: :delete,
       remote: true, data: {confirm: t("confirm_delete")} %>

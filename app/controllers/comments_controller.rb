@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :logged_in_user
+  before_action :load_comment, only: [:show, :update, :destroy]
   def new
     @comment = Comment.new
     respond_to do |format|
@@ -18,20 +19,17 @@ class CommentsController < ApplicationController
   end
 
   def show
-    @comment = Comment.find_by id: params[:id]
     respond_to do |format|
       format.html {render partial: "edit", locals: {comment: @comment}}
     end
   end
 
   def update
-    @comment = Comment.find_by id: params[:id]
     @comment.update_attributes comment_params
     redirect_back fallback_location: :back
   end
 
   def destroy
-    @comment = Comment.find_by id: params[:id]
     unless @comment.nil?
       @comment.destroy
       respond_to do |format|
@@ -44,4 +42,9 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit :content, :review_id
   end
+
+  def load_comment
+    @comment = Comment.find_by id: params[:id]
+  end
+
 end

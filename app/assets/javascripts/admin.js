@@ -64,7 +64,8 @@ $(document).on('turbolinks:load', function() {
         data: $form.serialize(),
         success: function(data) {
           $('#modal-new-book').fadeOut();
-          $('tbody').append(data).children(':last').hide().fadeIn(1000)
+          $('tbody').prepend(data).hide().fadeIn(1000)
+          console.log(data)
         },
         error: function(jqXHR, exception) {
           sweetAlert(I18n.t('ops'),
@@ -74,6 +75,26 @@ $(document).on('turbolinks:load', function() {
       })
     })
   });
+  $edit_book_id = '';
+  $edit_tr_id = '';
+
+  $('body').on('click', '.btn-edit-book', function(e) {
+    e.preventDefault();
+    $('#modal-edit-book').css('display', 'block')
+    $url = $(this).attr('href')
+    $edit_book_id = $(this).attr('href').split('/')[3]
+    $edit_tr_id = '#book_' + $edit_book_id
+    console.log($url)
+    $.ajax({
+      dataType: 'html',
+      url: $url,
+      method: $(this).attr('method'),
+      success: function(data) {
+        $('.edit-modal-body').html(data)
+      }
+    });
+    return false
+  })
 
   $('body').on('click', '.edit_book', function() {
     $form = $(this);
@@ -87,7 +108,9 @@ $(document).on('turbolinks:load', function() {
         data: $form.serialize(),
         success: function(data) {
           $('#modal-edit-book').fadeOut();
-          $('tbody').html(data).hide().fadeIn(1000)
+          $($edit_tr_id).replaceWith(data)
+          $edit_book_id = ''
+          $edit_tr_id = ''
         },
         error: function(jqXHR, exception) {
           sweetAlert(I18n.t('ops'),
@@ -98,37 +121,21 @@ $(document).on('turbolinks:load', function() {
     })
   });
 
-  $('body').on('click', '.btn-edit-book', function(e) {
-    e.preventDefault();
-    $('#modal-edit-book').css('display', 'block')
-    $url = $(this).attr('href')
-    console.log($url)
-    $.ajax({
-      dataType: 'html',
-      url: $url,
-      method: $(this).attr('method'),
-      success: function(data) {
-        $('.edit-modal-body').html(data)
-      }
-    });
-    return false
-  })
-
   $('body').on('click', '.btn-delete', function(e) {
     e.preventDefault();
     $book_id = $(this).attr('href').split('/')[3]
     $tr_id = '#book_' + $book_id
     $url = $(this).attr('href')
     swal({
-      title: I18n.t('ask_sure'),
-      text: I18n.t('warning_delete'),
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#DD6B55',
-      confirmButtonText: I18n.t('confirm_button'),
-      cancelButtonText: I18n.t('cancel_button'),
-      closeOnConfirm: false,
-      closeOnCancel: false
+        title: I18n.t('ask_sure'),
+        text: I18n.t('warning_delete'),
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: I18n.t('confirm_button'),
+        cancelButtonText: I18n.t('cancel_button'),
+        closeOnConfirm: false,
+        closeOnCancel: false
       },
       function(isConfirm) {
         if (isConfirm) {
@@ -139,7 +146,7 @@ $(document).on('turbolinks:load', function() {
             success: function() {
               swal(I18n.t('done_delete'),
                 I18n.t('delete_desc'),
-                "success");
+                'success');
               $($tr_id).fadeOut();
             }
           })

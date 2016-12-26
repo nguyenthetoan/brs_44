@@ -9,3 +9,4 @@ books:
   page: 20
 timezone:
   vn: "Hanoi"
+limit_activity: 8

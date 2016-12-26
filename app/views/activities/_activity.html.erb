@@ -11,7 +11,7 @@
   </div>
   <div class="like">
     <p>
-    <span class="activity-like"><%= activity.likes.count %></span>
+    <span class="activity-like"><%= activity.likes.size %></span>
       <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
     </p>
     <%= render "shared/like_form", likable: activity %>
