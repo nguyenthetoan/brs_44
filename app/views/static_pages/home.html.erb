@@ -4,7 +4,7 @@
     <div class="jumbotron">
       <div class="welcome">
         <div>
-          <% if logged_in? %>
+          <% if signed_in? %>
             <div class="row">
               <h2 class="welcome-msg"><%= t "app_desc" %></h2>
               <br>
@@ -25,7 +25,7 @@
           <% else %>
             <%= link_to t("app_desc"), root_path, class: "app-desc" %>
             <br/>
-            <%= link_to t("signup"), signup_path,
+            <%= link_to t("signup"), new_user_registration_path,
               class: "semi-transparent-button signup" %>
           <% end %>
         </div>

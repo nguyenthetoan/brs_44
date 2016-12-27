@@ -19,7 +19,7 @@ class BooksController<ApplicationController
     @review = Review.new
     @reviews = @book.reviews
     @bookmark = Bookmark.new
-    @user_bookmark = current_user.get_bookmark @book if logged_in?
+    @user_bookmark = current_user.get_bookmark @book if signed_in?
   end
 
 end

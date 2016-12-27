@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy, :update]
+  before_action :authenticate_user!, only: [:create, :destroy, :update]
   before_action :load_review, only: [:destroy, :update, :show]
 
   def create

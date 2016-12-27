@@ -23,7 +23,7 @@
               <%= link_to t("requests"), requests_path %>
             </li>
           </ul>
-          <% if logged_in? %>
+          <% if signed_in? %>
             <ul class="nav navbar-nav pull-right">
               <li class=" dropdown">
                 <a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -37,7 +37,7 @@
                 </ul>
               </li>
               <li>
-                <%= link_to t(".logout"), logout_path, method: :delete %>
+                <%= link_to t(".logout"), destroy_user_session_path, method: :delete %>
               </li>
               <li>
                 <a href="#" class="show-search">
@@ -48,10 +48,10 @@
           <% else %>
             <ul class="nav navbar-nav pull-right">
               <li>
-                <%= link_to t("signup"), signup_path %>
+                <%= link_to t("signup"), new_user_registration_path %>
               </li>
               <li>
-                <%= link_to t(".login"), login_path %>
+                <%= link_to t(".login"), new_user_session_path %>
               </li>
               <li>
                 <a href="#" class="show-search">

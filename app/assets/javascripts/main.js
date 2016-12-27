@@ -1,5 +1,9 @@
 $(document).on('turbolinks:load', function() {
 
+  setTimeout(function() {
+    $('#flash').remove();
+  }, 5000);
+
   $('body').on('click', '.show-search', function(e) {
     e.preventDefault();
     $('.search').fadeIn(1000)
@@ -171,15 +175,15 @@ $(document).on('turbolinks:load', function() {
     $tr_id = '#request_' + $req_id
     $url = $(this).attr('href')
     swal({
-      title: I18n.t('ask_sure'),
-      text: I18n.t('warning_delete'),
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#DD6B55',
-      confirmButtonText: I18n.t('confirm_button'),
-      cancelButtonText: I18n.t('cancel_button'),
-      closeOnConfirm: false,
-      closeOnCancel: false
+        title: I18n.t('ask_sure'),
+        text: I18n.t('warning_delete'),
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: I18n.t('confirm_button'),
+        cancelButtonText: I18n.t('cancel_button'),
+        closeOnConfirm: false,
+        closeOnCancel: false
       },
       function(isConfirm) {
         if (isConfirm) {

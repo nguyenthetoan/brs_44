@@ -1,5 +1,5 @@
 class BookmarksController<ApplicationController
-  before_action :logged_in_user, only: [:create, :update]
+  before_action :authenticate_user!, only: [:create, :update]
   before_action :load_book, only: :update
   def create
     @bookmark = current_user.bookmarks.build bookmark_params

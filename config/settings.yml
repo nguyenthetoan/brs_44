@@ -10,3 +10,9 @@ books:
 timezone:
   vn: "Hanoi"
 limit_activity: 8
+mailing:
+  from: "thetoan95@gmail.com"
+  mail_host: "smtp.gmail.com"
+  mail_port: "465"
+  mail_domain: "gmail.com"
+  host: "localhost:3000"

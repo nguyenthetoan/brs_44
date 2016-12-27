@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    confirmations: "confirmations"
+  }
   root "static_pages#home"
   get "contact", to: "static_pages#contact"
   resources :users do
@@ -9,11 +12,6 @@ Rails.application.routes.draw do
       resources :activities, only: :index
     end
   end
-  get "signup" => "users#new"
-  post "signup" => "users#create"
-  get "login" => "sessions#new"
-  post "login" => "sessions#create"
-  delete "logout" => "sessions#destroy"
   namespace :admin do
     resources :books
     resources :categories

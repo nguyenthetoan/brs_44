@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, except: [:new, :create, :show]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :authenticate_user!, except: [:new, :create, :show]
   before_action :load_user, only: :show
 
   def new
@@ -10,8 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.create user_params
     if @user.save
-      log_in @user
-      flash[:success] = t "done_sign_up"
+      flash[:notice] = "Check your email"
       redirect_to root_path
     else
       render :new
