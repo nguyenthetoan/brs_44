@@ -23,4 +23,15 @@ module ApplicationHelper
     @beloved.reverse![0..4].sample
   end
 
+  def _resource_name
+    :user
+  end
+
+  def _resource
+    @resource ||= User.new
+  end
+
+  def _devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
 end

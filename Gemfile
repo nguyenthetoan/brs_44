@@ -18,6 +18,7 @@ gem "bootstrap-will_paginate"
 gem "i18n-js", ">= 3.0.0.rc11"
 gem "config"
 gem "goldiloader"
+gem "devise"
 group :development, :test do
   gem "byebug", platform: :mri
 end
