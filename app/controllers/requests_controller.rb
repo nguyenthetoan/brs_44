@@ -1,5 +1,5 @@
 class RequestsController<ApplicationController
-  before_action :logged_in_user
+  before_action :authenticate_user!
   before_action :load_request, only: [:update, :show, :destroy]
 
   def index

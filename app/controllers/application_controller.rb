@@ -1,12 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   require "will_paginate/array"
-
-  include SessionsHelper
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
   def logged_in_user
-    unless logged_in?
+    unless signed_in?
       flash[:danger] = t "req_login"
       redirect_to login_path
     end
@@ -28,5 +27,9 @@ class ApplicationController < ActionController::Base
   def load_book
     @book = Book.find_by id: params[:id]
     @book ? @book : render_404
+  end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit :sign_up, keys: [:name, :email, :password, :password_confirmation]
   end
 end

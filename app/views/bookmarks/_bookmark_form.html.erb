@@ -1,5 +1,4 @@
 <%= form_for @bookmark, url: bookmarks_path do |f| %>
-  <%= render "shared/error_message", object: f.object %>
   <%= f.hidden_field :book_id, value: @book.id %>
   <% Bookmark.reads.keys.each do |read_type| %>
     <%= f.radio_button :read, read_type %>
