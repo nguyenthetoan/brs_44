@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :books
     resources :categories
     resources :requests, only: [:index, :update, :show]
+    resources :authors
     get "", to: "dashboard#home", as: "/"
   end
   resources :books

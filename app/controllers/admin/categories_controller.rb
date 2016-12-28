@@ -3,7 +3,7 @@ class Admin::CategoriesController<ApplicationController
   load_and_authorize_resource except: [:create]
 
   layout "admin"
-  before_action :logged_in_user, :admin_user
+  before_action :authenticate_user!
 
   def index
     @categories = Category.all
@@ -48,12 +48,9 @@ class Admin::CategoriesController<ApplicationController
   end
 
   private
+
   def cate_params
     params.require(:category).permit :name
-  end
-
-  def load_category
-    @category = Category.find_by id: params[:id]
   end
 
 end

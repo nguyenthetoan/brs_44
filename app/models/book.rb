@@ -5,6 +5,7 @@ class Book < ApplicationRecord
   scope :latest, -> {order(created_at: :desc)}
 
   belongs_to :category
+  belongs_to :author
   has_many :favorites, dependent: :destroy
   has_many :favorited_by, through: :favorites, source: :user
   has_many :reviews, dependent: :destroy

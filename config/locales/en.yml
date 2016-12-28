@@ -147,6 +147,8 @@ en:
   categories: "Categories"
   user_helped: "requests"
   most_beloved_book: "most beloved book"
+  authors: "Authors"
+  author_list: "Author List"
   users:
     new:
       confirm_pw: "Confrim Your Password"

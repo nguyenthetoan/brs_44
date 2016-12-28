@@ -1,0 +1,10 @@
+<%= form_for @author, url: admin_author_path do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control", require: true %>
+
+  <%= f.label :bio %>
+  <%= f.text_field :bio, class: "form-control" %>
+
+  <%= f.submit t("update"), class: "btn btn-warning" %>
+<% end %>
