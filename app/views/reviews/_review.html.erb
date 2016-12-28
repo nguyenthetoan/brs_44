@@ -36,7 +36,7 @@
         <% end %>
       </ul>
       <div class="reply">
-        <%= link_to t("reply"), new_comment_path, class: "btn-new-comment" if logged_in? %>
+        <%= link_to t("reply"), new_comment_path, class: "btn-new-comment" if signed_in? %>
         <div class="comment-box">
 
         </div>

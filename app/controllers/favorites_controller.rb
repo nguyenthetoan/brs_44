@@ -1,6 +1,7 @@
 class FavoritesController<ApplicationController
-  before_action :logged_in_user, only: [:update, :destroy]
+  before_action :authenticate_user!, only: [:create, :destroy]
   before_action :load_book
+
   def create
     current_user.add_favorite @book
     current_user.activities.create(activatable: @book, action_type: :add_book)

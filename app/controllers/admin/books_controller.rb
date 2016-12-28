@@ -4,7 +4,7 @@ class Admin::BooksController < ApplicationController
   include BooksHelper
 
   before_action :load_book, only: [:destroy, :update]
-  before_action :logged_in_user, :admin_user
+  before_action :authenticate_user!, :admin_user
   before_action :load_categories, except: [:index]
 
   def index

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :logged_in_user
+  before_action :authenticate_user!
   before_action :load_comment, only: [:show, :update, :destroy]
   def new
     @comment = Comment.new

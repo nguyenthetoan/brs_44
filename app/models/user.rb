@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  devise :database_authenticatable, :registerable,
+    :trackable, :validatable, :confirmable
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -21,9 +23,8 @@ class User < ApplicationRecord
   validates :email, presence: true,
     length: {maximum: 255},
     format: {with: VALID_EMAIL_REGEX},
-    uniqueness: {case_sensitive: false}, allow_nil: true
-  validates :password, length: {minimum: 6}, allow_nil: true
-  has_secure_password
+    uniqueness: {case_sensitive: false}
+  validates :password, length: {minimum: 6}
 
   def is_user? current_user
     self == current_user
