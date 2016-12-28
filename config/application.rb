@@ -13,5 +13,6 @@ module Brs44
     # -- all .rb files in that directory are automatically loaded.
     config.time_zone = Settings.timezone.vn
     config.active_record.default_timezone = :local
+    config.autoload_paths << Rails.root.join("services")
   end
 end

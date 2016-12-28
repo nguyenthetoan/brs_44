@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   require "will_paginate/array"
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  include ApplicationHelper
+
   private
   def logged_in_user
     unless signed_in?

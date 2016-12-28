@@ -147,8 +147,10 @@ en:
   categories: "Categories"
   user_helped: "requests"
   most_beloved_book: "most beloved book"
+  upload: "Upload"
   authors: "Authors"
   author_list: "Author List"
+  unknown_file_type: "Unknow file type %{ext}"
   users:
     new:
       confirm_pw: "Confrim Your Password"

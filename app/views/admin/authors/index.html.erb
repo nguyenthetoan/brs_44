@@ -4,6 +4,25 @@
     <h1><%= t "new_author" %></h1>
     <%= render "author_form" %>
   </div>
+  <div class="col-md-4">
+    <h1><%= t "upload_author" %></h1>
+    <div class="upload">
+      <%= form_tag admin_import_index_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= hidden_field_tag :object, "author" %>
+        <%= submit_tag t("upload"), class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h1><%= t "download" %></h1>
+    <%= link_to admin_authors_path(format: "xlsx") do %>
+      <span>
+        <i class="fa fa-download" aria-hidden="true"></i>
+        <%= t "download_excel" %>
+      </span>
+    <% end %>
+  </div>
 </div>
 <hr>
 <div class="row">
