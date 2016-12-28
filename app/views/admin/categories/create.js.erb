@@ -1,8 +1,0 @@
-<% if @result %>
-  $('#categories').append('<%= j render @category %>').children(':last').hide().fadeIn(1000)
-  $('.new_category')[0].reset()
-<% else %>
-  sweetAlert(I18n.t("ops"),
-    I18n.t("create_cate_error"),
-    "error");
-<% end %>
