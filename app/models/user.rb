@@ -4,6 +4,8 @@ class User < ApplicationRecord
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
+  enum role: [:admin, :user]
+
   has_many :active_relationships,  class_name: Relationship.name,
     foreign_key: :follower_id, dependent: :destroy
   has_many :passive_relationships, class_name: Relationship.name,
@@ -19,6 +21,8 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
 
   before_save {self.email = email.downcase}
+  before_save :default_role
+
   validates :name, presence: true, length: {maximum: 50}
   validates :email, presence: true,
     length: {maximum: 255},
@@ -68,4 +72,8 @@ class User < ApplicationRecord
     book.reviewed_by.reload.include? self
   end
 
+  private
+  def default_role
+    role ||= :user
+  end
 end

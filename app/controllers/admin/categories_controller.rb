@@ -1,7 +1,9 @@
 class Admin::CategoriesController<ApplicationController
+
+  load_and_authorize_resource except: [:create]
+
   layout "admin"
   before_action :logged_in_user, :admin_user
-  before_action :load_category, only: [:update, :show, :destroy]
 
   def index
     @categories = Category.all
