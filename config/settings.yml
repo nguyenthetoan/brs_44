@@ -16,3 +16,4 @@ mailing:
   mail_port: "465"
   mail_domain: "gmail.com"
   host: "localhost:3000"
+item_per_page: 15

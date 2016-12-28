@@ -1,0 +1,46 @@
+<% provide :title, t("authors") %>
+<div class="row">
+  <div class="col-md-4">
+    <h1><%= t "new_author" %></h1>
+    <%= render "author_form" %>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <h1><%= t "author_list" %></h1>
+    <table id="authors" class="table table-bordered table-hover">
+      <colgroup>
+        <col span="1" style="width: 30%;">
+        <col span="1" style="width: 40%;">
+        <col span="1" style="width: 15%;">
+        <col span="1" style="width: 10%;">
+      </colgroup>
+      <thead>
+        <tr>
+          <th><%= t "name" %></th>
+          <th><%= t "bio" %></th>
+          <th><%= t "books" %></th>
+          <th><%= t "action" %></th>
+        </tr>
+      </thead>
+      <tbody id="author-list">
+        <%= render @authors %>
+      </tbody>
+    </table>
+    <p class="text-info">
+      <%= t "current_author" %> : <%= @authors.length %>
+    </p>
+  </div>
+</div>
+<div id="modal-edit-author" class="modal modal-edit-author">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2><%= t "edit_author" %></h2>
+    </div>
+    <div class="edit-modal-body">
+
+    </div>
+  </div>
+</div>

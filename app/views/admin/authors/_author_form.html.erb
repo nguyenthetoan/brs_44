@@ -1,0 +1,9 @@
+<%= form_for @author, url: admin_authors_path, remote: true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control", required: true %>
+
+  <%= f.label :bio %>
+  <%= f.text_field :bio, class: "form-control" %>
+
+  <%= f.submit t("create"), class: "btn btn-primary" %>
+<% end %>
