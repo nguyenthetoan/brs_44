@@ -1,0 +1,7 @@
+<%= form_for @category, url: admin_category_path do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control", require: true %>
+
+  <%= f.submit t("update"), class: "btn btn-warning" %>
+<% end %>

@@ -1,5 +1,9 @@
 $(document).on('turbolinks:load', function() {
 
+  setTimeout(function() {
+    $('#flash').fadeOut(2000);
+  }, 8000);
+
   $('body').on('click', '.show-search', function(e) {
     e.preventDefault();
     $('.search').fadeIn(1000)
@@ -33,6 +37,7 @@ $(document).on('turbolinks:load', function() {
     $('#modal-edit-request').fadeOut();
     $('#modal-edit-review').fadeOut();
     $('#modal-edit-comment').fadeOut();
+    $('#modal-edit-category').fadeOut();
   })
 
   $('body').click(function(event) {
@@ -43,8 +48,8 @@ $(document).on('turbolinks:load', function() {
       $('#modal-edit-request').fadeOut();
       $('#modal-edit-review').fadeOut();
       $('#modal-edit-comment').fadeOut();
+      $('#modal-edit-category').fadeOut();
     }
-    $('#search').fadeOut();
   })
 
   $('body').on('click', '.btn-fav', function(e) {

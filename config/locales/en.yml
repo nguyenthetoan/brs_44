@@ -115,11 +115,16 @@ en:
     sunt in culpa qui officia deserunt mollit anim id est laborum.
   ops: "Opsss..."
   create_cate_error: |
-    "Something went wrong!
-    You might insert an existed category or its name is over 150 characters."
+    Something went wrong!
+    You might insert an existed category or its name is over 150 characters.
   create_book_error: |
-    "Something went wrong!
-    You might insert the book title which is over 150 characters."
+    Something went wrong!
+    You might insert the book title which is over 150 characters.
+  delete_cate_error: |
+    Something went wrong!
+    You might delete the parent category. Please delete its child(ren) first.
+  cate_may_exist: |
+    Category name may exist.
   ask_sure: "Are you sure?"
   warning_delete: "You will not be able to recover this action!"
   done_delete: "Deleted!"

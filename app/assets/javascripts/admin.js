@@ -127,15 +127,15 @@ $(document).on('turbolinks:load', function() {
     $tr_id = '#book_' + $book_id
     $url = $(this).attr('href')
     swal({
-        title: I18n.t('ask_sure'),
-        text: I18n.t('warning_delete'),
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#DD6B55',
-        confirmButtonText: I18n.t('confirm_button'),
-        cancelButtonText: I18n.t('cancel_button'),
-        closeOnConfirm: false,
-        closeOnCancel: false
+      title: I18n.t('ask_sure'),
+      text: I18n.t('warning_delete'),
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: I18n.t('confirm_button'),
+      cancelButtonText: I18n.t('cancel_button'),
+      closeOnConfirm: false,
+      closeOnCancel: false
       },
       function(isConfirm) {
         if (isConfirm) {
@@ -157,4 +157,127 @@ $(document).on('turbolinks:load', function() {
     return false;
   })
 
+  $('body').on('click', '#new_category', function() {
+    $form = $(this)
+    $parent_id = $('#parent_category').val();
+    $parent_tr = '';
+    $form.submit(function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      $.ajax({
+        dataType: 'html',
+        method: $form.attr('method'),
+        url: $form.attr('action'),
+        data: $form.serialize(),
+        success: function(data) {
+          $new_row = $('' + data)
+          if (data == null) {
+            sweetAlert(I18n.t('ops'),
+              I18n.t("cate_may_exist"), 'error');
+          }
+          if ($parent_id.length == 0) {
+            $('#categories tr:last').after($new_row)
+          } else {
+            $parent_tr = $('#category_' + $parent_id);
+            $parent_tr.after($new_row)
+            $parent_tr = '';
+          }
+          $new_row.hide().fadeIn(3000)
+        },
+        error: function(jqXHR, exception) {
+          sweetAlert(I18n.t('ops'),
+            I18n.t("create_cate_error") + jqXHR.status, 'error');
+        }
+      })
+    })
+  })
+
+  $('body').on('click', '.btn-delete-category', function(e) {
+    e.preventDefault();
+    $cate_id = $(this).attr('href').split('/')[3]
+    $tr_id = '#category_' + $cate_id
+    $url = $(this).attr('href')
+    swal({
+      title: I18n.t('ask_sure'),
+      text: I18n.t('warning_delete'),
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: I18n.t('confirm_button'),
+      cancelButtonText: I18n.t('cancel_button'),
+      closeOnConfirm: false,
+      closeOnCancel: false
+    }, function(isConfirm) {
+        if (isConfirm) {
+          $.ajax({
+            dataType: 'html',
+            url: $url,
+            method: 'DELETE',
+            data: {
+              $cate_id
+            },
+            success: function() {
+              swal(I18n.t('done_delete'),
+                I18n.t('delete_desc'),
+                'success');
+              $($tr_id).fadeOut();
+            }, error: function(jqXHR, exception) {
+              sweetAlert(I18n.t('ops'),
+                I18n.t("delete_cate_error"), 'error');
+            }
+          })
+        } else {
+          swal(I18n.t('canceled'), I18n.t('safe_data'), "error");
+        }
+      });
+    return false;
+  })
+
+  $edit_cate_id = '';
+
+  $('body').on('click', '.btn-edit-category', function(e) {
+    e.preventDefault();
+    $('#modal-edit-category').css('display', 'block')
+    $url = $(this).attr('href')
+    $edit_cate_id = $(this).attr('href').split('/')[3]
+    $edit_tr_id = '#category_' + $edit_cate_id
+    $.ajax({
+      dataType: 'html',
+      url: $url,
+      method: $(this).attr('method'),
+      success: function(data) {
+        $('.edit-modal-body').html(data)
+      }
+    });
+    return false
+  })
+
+  $('body').on('click', '.edit_category', function() {
+    $form = $(this);
+    $form.submit(function(e) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      $.ajax({
+        url: $form.attr('action'),
+        method: $form.attr('method'),
+        dataType: 'html',
+        data: $form.serialize(),
+        success: function(data) {
+          if (data == null) {
+            sweetAlert(I18n.t('ops'),
+              I18n.t("cate_may_exist"), 'error');
+          } else {
+            $('#modal-edit-category').fadeOut();
+            $($edit_tr_id).replaceWith(data)
+            $edit_tr_id = ''
+          }
+        },
+        error: function(jqXHR, exception) {
+          sweetAlert(I18n.t('ops'),
+            I18n.t('create_cate_error'),
+            'error');
+        }
+      })
+    })
+  });
 })

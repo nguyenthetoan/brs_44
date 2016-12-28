@@ -10,9 +10,13 @@
   <body>
     <div class="container">
       <%= render "layouts/admin_header" %>
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%= message %></div>
-      <% end %>
+      <div id="flash">
+        <% if notice %>
+          <div class="alert alert-info"><%= notice %></div>
+        <% elsif alert %>
+          <div class="alert alert-warning"><%= alert %></div>
+        <% end %>
+      </div>
       <%= yield %>
       <%= render "layouts/footer" %>
     </div>
