@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :categories
     resources :requests, only: [:index, :update, :show]
     resources :authors
+    resources :import, only: :create
     get "", to: "dashboard#home", as: "/"
   end
   resources :books

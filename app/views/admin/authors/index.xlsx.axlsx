@@ -1,0 +1,8 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Authors") do |sheet|
+  sheet.add_row ["ID", Settings.excel.name, Settings.excel.bio, Settings.excel.books]
+  @authors.each do |author|
+    sheet.add_row [author.id, author.name, author.bio, author.books.size]
+  end
+  sheet.add_row [Settings.excel.total,"" ,"" , "=SUM(D2:D#{@authors.length})"]
+end

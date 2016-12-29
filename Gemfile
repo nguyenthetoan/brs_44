@@ -20,6 +20,11 @@ gem "config"
 gem "goldiloader"
 gem "devise"
 gem "cancancan"
+gem "roo"
+gem "rubyzip"
+gem "zip-zip"
+gem "axlsx", "~> 2.0"
+gem "axlsx_rails"
 group :development, :test do
   gem "byebug", platform: :mri
 end

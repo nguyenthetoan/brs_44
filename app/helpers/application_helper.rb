@@ -17,6 +17,13 @@ module ApplicationHelper
     end
   end
 
+  def load_importable object
+    case object
+    when "author"
+      return Author
+    end
+  end
+
   def beloved_book
     @books = Book.select("id, title, author, description")
     @beloved = @books.sort_by {|b| b.favorited_by.length}
@@ -38,4 +45,5 @@ module ApplicationHelper
   def index_for counter, page, per_page
     (page - 1) * per_page + counter + 1
   end
+
 end

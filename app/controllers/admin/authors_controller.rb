@@ -1,11 +1,13 @@
 class Admin::AuthorsController < ApplicationController
   load_and_authorize_resource
-
   layout "admin"
   before_action :authenticate_user!
-
   def index
     @author = Author.new
+    respond_to do |format|
+      format.html
+      format.xlsx
+    end
   end
 
   def update
