@@ -55,7 +55,9 @@ $(document).on('turbolinks:load', function() {
   $('body').on('click', '#new_category', function() {
     $form = $(this)
     $parent_id = $('#parent_category').val();
+    $selected_parent = $('#parent_category')[0].selectedIndex
     $parent_tr = '';
+    $data = ''
     $form.submit(function(e) {
       e.preventDefault();
       e.stopImmediatePropagation();
@@ -66,13 +68,21 @@ $(document).on('turbolinks:load', function() {
         data: $form.serialize(),
         success: function(data) {
           $new_row = $('' + data)
+          $new_id = $new_row.attr('id').split('_')[1]
+          $new_val = $new_row.children().first().text().trim()
           if (data == null) {
             sweetAlert(I18n.t('ops'),
               I18n.t("cate_may_exist"), 'error');
           }
           if ($parent_id.length == 0) {
             $('#categories tr:last').after($new_row)
+            $('#parent_category').append($('<option>', {
+              value: $new_id,
+              text: $new_val
+            }))
           } else {
+            $('#parent_category option').eq($selected_parent).after($('<option>',
+              {value: $new_id, text: $new_val}))
             $parent_tr = $('#category_' + $parent_id);
             $parent_tr.after($new_row)
             $parent_tr = '';

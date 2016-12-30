@@ -4,10 +4,9 @@ class Admin::CategoriesController<ApplicationController
 
   layout "admin"
   before_action :authenticate_user!
-
   def index
-    @categories = Category.all
     @category = Category.new
+    @categories = Category.order("lft")
   end
 
   def update
