@@ -15,6 +15,33 @@ $starrrColor: #FFD119 !default;
   box-sizing: border-box;
 }
 
+.fading-side-menu.affix-top {
+  opacity: 1;
+  transition: opacity 1s
+}
+
+.fading-side-menu.affix {
+  top: 11.5px;
+}
+
+.fading-side-menu.affix {
+  opacity: 0.2;
+  transition: opacity 5s
+}
+
+.fading-side-menu.affix:hover {
+  opacity: 1;
+  transition: opacity 0.3s
+}
+
+.fading-side-menu a {
+  color: rgb(102, 102, 102);
+}
+
+.fading-side-menu a .fa {
+  padding-right: 15px;
+}
+
 .table {
   font-weight: 600;
   font-size: 14px;

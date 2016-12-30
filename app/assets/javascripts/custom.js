@@ -62,6 +62,7 @@ function new_item(button, container, error_message) {
             sweetAlert(I18n.t('ops'),
               I18n.t('data_existed'), 'error');
           }
+          swal(I18n.t('good_job'), I18n.t('done_create'), "success")
           $(container + ' tr:last').after($new_row)
           $new_row.hide().fadeIn(3000)
           $form[0].reset()
@@ -81,7 +82,7 @@ $edit_tr_id = ''
 function get_edit_data(button, type) {
   $('body').on('click', button, function(e) {
     e.preventDefault();
-    $('.modal').css('display', 'block')
+    $('#modal-edit').css('display', 'block')
     $url = $(this).attr('href')
     $id = $(this).attr('href').split('/')[3]
     $edit_tr_id = '#' + type + '_' + $id
@@ -114,7 +115,8 @@ function edit_item(form, error_message ) {
             sweetAlert(I18n.t('ops'),
               I18n.t("data_existed"), 'error');
           }
-          $('.modal').fadeOut();
+          swal(I18n.t('good_job'), I18n.t('done_edit'), "success")
+          $('#modal-edit').fadeOut();
           $($edit_tr_id).replaceWith(data)
           $id = ''
           $edit_tr_id = ''

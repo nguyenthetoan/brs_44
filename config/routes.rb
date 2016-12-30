@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :requests, only: [:index, :update, :show]
     resources :authors
     resources :import, only: :create
+    resources :publishers
     get "", to: "dashboard#home", as: "/"
   end
   resources :books

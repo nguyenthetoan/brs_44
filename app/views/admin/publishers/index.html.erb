@@ -1,0 +1,73 @@
+<% provide :title, t("publishers") %>
+<div class="row">
+  <div class="col-md-12">
+    <h1><%= t "publishers" %></h1>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-6">
+      <h3><%= t "import_excel" %></h3>
+      <div class="upload">
+        <%= form_tag admin_import_index_path, multipart: true do %>
+          <%= file_field_tag :file %>
+          <%= hidden_field_tag :object, "publisher" %>
+          <%= submit_tag t("upload"), class: "btn btn-success form-inline" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h3><%= t "download_excel" %></h3>
+      <div class="import">
+        <%= link_to admin_publishers_path(format: "xlsx") do %>
+          <span>
+            <i class="fa fa-download" aria-hidden="true"></i>
+            <%= t "download_excel" %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <a id="btn-new-publisher" class="btn btn-primary">
+    <span>
+      <i class="fa fa-plus-square" aria-hidden="true"></i>
+      <%= t "new" %>
+    </span>
+  </a>
+  <table id="publishers" class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th><%= t "name" %></th>
+        <th><%= t "authors" %></th>
+        <th><%= t "books" %></th>
+        <th><%= t "categories" %></th>
+        <th><%= t "action" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @publishers %>
+    </tbody>
+  </table>
+</div>
+<div id="modal-new-publisher" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2><%= t "create_new_publisher" %></h2>
+    </div>
+    <div class="modal-body">
+
+    </div>
+  </div>
+</div>
+<div id="modal-edit" class="modal modal-edit">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2><%= t "edit_publisher" %></h2>
+    </div>
+    <div class="edit-modal-body">
+
+    </div>
+  </div>
+</div>

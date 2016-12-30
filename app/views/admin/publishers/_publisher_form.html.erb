@@ -1,0 +1,9 @@
+<%= form_for @publisher, url: admin_publishers_path, remote: true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control", required: true %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description, class: "form-control" %>
+
+  <%= f.submit t("create"), class: "btn btn-success" %>
+<% end %>
