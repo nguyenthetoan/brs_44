@@ -1,8 +1,8 @@
 <tr id="<%= dom_id(book) %>">
   <td><%= link_to book.title, book %></td>
-  <td><%= book.author %></td>
+  <td><%= book.author.name %></td>
   <td><%= book.pages %></td>
-  <td><%= book.publish_date %></td>
+  <td><%= Publisher.find_by(id: book.publisher_id).name %></td>
   <td><%= book.category.name %></td>
   <td>
     <%= link_to admin_book_path(book), class: "btn-edit-book" do %>

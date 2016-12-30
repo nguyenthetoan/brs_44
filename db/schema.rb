@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161229054855) do
+ActiveRecord::Schema.define(version: 20161230043349) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "activatable_type"
@@ -52,9 +52,11 @@ ActiveRecord::Schema.define(version: 20161229054855) do
     t.datetime "updated_at",                 null: false
     t.text     "description",  limit: 65535
     t.integer  "author_id"
+    t.integer  "publisher_id"
     t.index ["author_id"], name: "index_books_on_author_id", using: :btree
     t.index ["category_id", "created_at"], name: "index_books_on_category_id_and_created_at", using: :btree
     t.index ["category_id"], name: "index_books_on_category_id", using: :btree
+    t.index ["publisher_id"], name: "index_books_on_publisher_id", using: :btree
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -136,6 +138,13 @@ ActiveRecord::Schema.define(version: 20161229054855) do
     t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
   end
 
+  create_table "specifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string  "specification_name"
+    t.string  "specification_value"
+    t.integer "book_id"
+    t.index ["book_id"], name: "index_specifications_on_book_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",                              null: false
     t.string   "email",                default: "", null: false
@@ -160,6 +169,7 @@ ActiveRecord::Schema.define(version: 20161229054855) do
   add_foreign_key "authors", "publishers"
   add_foreign_key "books", "authors"
   add_foreign_key "books", "categories"
+  add_foreign_key "books", "publishers"
   add_foreign_key "comments", "reviews"
   add_foreign_key "comments", "users"
   add_foreign_key "favorites", "books"

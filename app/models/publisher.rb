@@ -1,6 +1,5 @@
 class Publisher < ApplicationRecord
   has_many :authors, dependent: :destroy
-
   validates :name, presence: true, length: {maximum: 200}
 
   scope :total_book, -> {joins(:authors, :books).select("authors.books.title")}

@@ -31,24 +31,14 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('.close').click(function() {
-    $('#modal-new-book').fadeOut();
-    $('#modal-edit-book').fadeOut();
-    $('#modal-new-request').fadeOut();
-    $('#modal-edit-request').fadeOut();
-    $('#modal-edit-review').fadeOut();
-    $('#modal-edit-comment').fadeOut();
-    $('#modal-edit-category').fadeOut();
+    $('#modal-new').fadeOut();
+    $('#modal-edit').fadeOut();
   })
 
   $('body').click(function(event) {
     if (event.target.id == $('#modal-new-book').attr('id')) {
-      $('#modal-new-book').fadeOut();
-      $('#modal-edit-book').fadeOut();
-      $('#modal-new-request').fadeOut();
-      $('#modal-edit-request').fadeOut();
-      $('#modal-edit-review').fadeOut();
-      $('#modal-edit-comment').fadeOut();
-      $('#modal-edit-category').fadeOut();
+      $('#modal-new').fadeOut();
+      $('#modal-edit').fadeOut();
     }
   })
 

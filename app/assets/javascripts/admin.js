@@ -40,7 +40,7 @@ $(document).on('turbolinks:load', function() {
 
   $('#btn-new-book').click(function(e) {
     e.preventDefault()
-    $('#modal-new-book').css('display', 'block')
+    $('#modal-new').css('display', 'block')
     $.ajax({
       dataType: 'html',
       url: 'books/new',
@@ -85,7 +85,6 @@ $(document).on('turbolinks:load', function() {
               {value: $new_id, text: $new_val}))
             $parent_tr = $('#category_' + $parent_id);
             $parent_tr.after($new_row)
-            $parent_tr = '';
           }
           $new_row.hide().fadeIn(3000)
         },
@@ -127,16 +126,30 @@ $(document).on('turbolinks:load', function() {
   get_edit_data('.btn-edit-publisher', 'publisher')
   edit_item('.edit_publisher', 'create_publisher_error')
 
-  if (window.location == window.parent.location) {
-    $('#fullscreen').html('<span class="fa fa-compress"></span>');
-    $('#fullscreen').attr('href', 'http://bootsnipp.com/mouse0270/snippets/rVnOR');
-    $('#fullscreen').attr('title', 'Back To Bootsnipp');
+ $count = 0;
+
+$('body').on('click', '.add_fields', function(e) {
+  e.preventDefault();
+  $spec = $(this).attr('data-fields')
+  if ($count < 4) {
+    $('#spec').append($spec)
+    $count += 1;
+  } else {
+    sweetAlert(I18n.t('ops'), I18n.t('exceed_spec'), "error");
+    return;
   }
-  $('#fullscreen').on('click', function(event) {
-    event.preventDefault();
-    window.parent.location = $('#fullscreen').attr('href');
-  });
-  $('#fullscreen').tooltip();
+    return false;
+  })
+
+  $('body').on('click', '#remove_fields', function(e) {
+    e.preventDefault();
+    $fieldset = $(this).closest('fieldset')
+    $fieldset.fadeOut(1000, function() {
+      $fieldset.remove();
+      $count -= 1;
+    })
+    return false;
+  })
 
 })
 
