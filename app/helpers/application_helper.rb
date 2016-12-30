@@ -21,6 +21,8 @@ module ApplicationHelper
     case object
     when "author"
       return Author
+    when "publisher"
+      return Publisher
     end
   end
 

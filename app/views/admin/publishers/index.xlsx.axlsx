@@ -1,0 +1,9 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Publishers") do |sheet|
+  sheet.add_row ["ID", Settings.excel.name,
+    Settings.excel.authors, Settings.excel.books]
+  @publishers.each do |publisher|
+    sheet.add_row [publisher.id, publisher.name,
+      publisher.total_categories.size, publisher.total_books.size]
+  end
+end

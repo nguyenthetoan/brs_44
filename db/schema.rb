@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161228072851) do
+ActiveRecord::Schema.define(version: 20161229054855) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "activatable_type"
@@ -25,9 +25,11 @@ ActiveRecord::Schema.define(version: 20161228072851) do
 
   create_table "authors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.text     "bio",        limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "bio",          limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "publisher_id"
+    t.index ["publisher_id"], name: "index_authors_on_publisher_id", using: :btree
   end
 
   create_table "bookmarks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -96,6 +98,11 @@ ActiveRecord::Schema.define(version: 20161228072851) do
     t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
   end
 
+  create_table "publishers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name",        null: false
+    t.string "description"
+  end
+
   create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -150,6 +157,7 @@ ActiveRecord::Schema.define(version: 20161228072851) do
   end
 
   add_foreign_key "activities", "users"
+  add_foreign_key "authors", "publishers"
   add_foreign_key "books", "authors"
   add_foreign_key "books", "categories"
   add_foreign_key "comments", "reviews"

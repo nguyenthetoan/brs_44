@@ -1,0 +1,79 @@
+<% provide :title, @publisher.name %>
+<div class="container">
+  <div class="hidden-xs col-md-3">
+    <div class="fading-side-menu" data-spy="affix" data-offset-top="350">
+      <h5><%= t "contents" %></h5>
+      <hr class="no-margin">
+      <ul class="list-unstyled">
+        <li>
+          <a href="#intro">
+            <span class="fa fa-angle-double-right text-primary"></span><%= t "intro" %>
+          </a>
+        </li>
+        <li>
+          <a href="#authors">
+            <span class="fa fa-angle-double-right text-primary"></span>
+            <%= t "authors" %>
+          </a>
+        </li>
+        <li>
+          <a href="#books">
+            <span class="fa fa-angle-double-right text-primary"></span>
+            <%= t "books" %>
+          </a>
+        </li>
+        <li>
+          <a href="#categories">
+            <span class="fa fa-angle-double-right text-primary"></span>
+            <%= t "categories" %>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <h3 id="intro"><%= @publisher.name %></h3>
+    <p><%= @publisher.description %></p>
+    <hr>
+    <h3 id="authors"><%= t "authors" %></h3>
+    <div>
+      <table id="authors" class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th><%= t "name" %></th>
+            <th><%= t "books" %></th>
+          </tr>
+        </thead>
+        <tbody id="author-list">
+          <%= render partial: "author", collection: @publisher_authors %>
+        </tbody>
+      </table>
+      <%= will_paginate @publisher_authors, per_page: Settings.item_per_page %>
+    </div>
+    <hr>
+    <h3 id="books"><%= t "books" %></h3>
+    <div>
+      <table id="authors" class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th><%= t "title" %></th>
+            <th><%= t "author" %></th>
+            <th><%= t "category" %></th>
+          </tr>
+        </thead>
+        <tbody id="book-list">
+          <%= render partial: "book", collection: @publisher_books %>
+        </tbody>
+      </table>
+      <%= will_paginate @publisher_books, per_page: Settings.item_per_page %>
+    </div>
+    <hr>
+    <h3 id="categories"><%= t "categories" %></h3>
+    <div>
+      <ol>
+        <%= render partial: "category", collection: @publisher_categories %>
+      </ol>
+      <%= will_paginate @publisher_categories, per_page: Settings.item_per_page %>
+    </div>
+  </div>
+</div>

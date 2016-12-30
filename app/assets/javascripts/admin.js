@@ -98,4 +98,35 @@ $(document).on('turbolinks:load', function() {
   edit_item('.edit_book', 'create_book_error')
   edit_item('.edit_author', 'create_author_error')
   edit_item('.edit_category', 'create_category_error')
+
+  $('#btn-new-publisher').click(function(e) {
+    e.preventDefault()
+    $('#modal-new-publisher').css('display', 'block')
+    $.ajax({
+      dataType: 'html',
+      url: 'publishers/new',
+      method: 'get',
+      success: function(data) {
+        $('.modal-body').html(data)
+      }
+    });
+    return false
+  })
+  new_item('#new_publisher', '#publishers', 'create_publisher_error')
+  delete_item('.btn-delete-publisher', 'publisher')
+  get_edit_data('.btn-edit-publisher', 'publisher')
+  edit_item('.edit_publisher', 'create_publisher_error')
+
+  if (window.location == window.parent.location) {
+    $('#fullscreen').html('<span class="fa fa-compress"></span>');
+    $('#fullscreen').attr('href', 'http://bootsnipp.com/mouse0270/snippets/rVnOR');
+    $('#fullscreen').attr('title', 'Back To Bootsnipp');
+  }
+  $('#fullscreen').on('click', function(event) {
+    event.preventDefault();
+    window.parent.location = $('#fullscreen').attr('href');
+  });
+  $('#fullscreen').tooltip();
+
 })
+

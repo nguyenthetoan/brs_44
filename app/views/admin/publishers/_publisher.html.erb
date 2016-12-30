@@ -1,0 +1,23 @@
+<tr id="<%= dom_id(publisher) %>">
+  <td><%= link_to publisher.name, admin_publisher_path(publisher) %></td>
+  <td id="publisher-author">
+    <%= publisher.authors.size %>
+  </td>
+  <td id="publisher-book">
+    <%= publisher.total_books.size %>
+  </td>
+  <td>
+    <span id="publisher-cate">
+      <%= publisher.total_categories.size %>
+    </span>
+  </td>
+  <td>
+    <%= link_to edit_admin_publisher_path(publisher), class: "btn-edit-publisher" do %>
+      <i class="fa fa-pencil-square-o"></i>
+    <% end %>
+    |
+    <%= link_to admin_publisher_path(publisher), class: "btn-delete-publisher" do %>
+      <i class="fa fa-trash" aria-hidden="true"></i>
+    <% end %>
+  </td>
+</tr>
