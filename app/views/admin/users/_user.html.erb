@@ -1,0 +1,14 @@
+<tr id="<%= dom_id(user) %>">
+  <td>
+    <%= index_for user_counter, @users.current_page, Settings.item_per_page %>
+  </td>
+  <td><%= user.name %></td>
+  <td><%= user.email %></td>
+  <td><%= user.confirmed? ? I18n.t("confirmed") : I18n.t("unconfirmed") %></td>
+  <td><%= user.role %></td>
+  <td>
+    <%= link_to admin_user_path(user), class: "btn-edit-user" do %>
+      <i class="fa fa-pencil-square-o"></i>
+    <% end %>
+  </td>
+</tr>

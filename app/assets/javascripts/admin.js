@@ -121,6 +121,7 @@ $(document).on('turbolinks:load', function() {
     });
     return false
   })
+
   new_item('#new_publisher', '#publishers', 'create_publisher_error')
   delete_item('.btn-delete-publisher', 'publisher')
   get_edit_data('.btn-edit-publisher', 'publisher')
@@ -128,16 +129,16 @@ $(document).on('turbolinks:load', function() {
 
  $count = 0;
 
-$('body').on('click', '.add_fields', function(e) {
-  e.preventDefault();
-  $spec = $(this).attr('data-fields')
-  if ($count < 4) {
-    $('#spec').append($spec)
-    $count += 1;
-  } else {
-    sweetAlert(I18n.t('ops'), I18n.t('exceed_spec'), "error");
-    return;
-  }
+  $('body').on('click', '.add_fields', function(e) {
+    e.preventDefault();
+    $spec = $(this).attr('data-fields')
+    if ($count < 4) {
+      $('#spec').append($spec)
+      $count += 1;
+    } else {
+      sweetAlert(I18n.t('ops'), I18n.t('exceed_spec'), "error");
+      return;
+    }
     return false;
   })
 
@@ -150,6 +151,21 @@ $('body').on('click', '.add_fields', function(e) {
     })
     return false;
   })
+
+  get_edit_data('.btn-edit-user', 'user')
+  $('#btn-new-user').click(function(e) {
+    e.preventDefault()
+    $('#modal-new').css('display', 'block')
+    $.ajax({
+      dataType: 'html',
+      url: 'users/new',
+      method: 'get',
+      success: function(data) {
+        $('.modal-body').html(data)
+      }
+    });
+    return false
+  });
 
 })
 

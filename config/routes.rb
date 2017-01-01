@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :authors
     resources :import, only: :create
     resources :publishers
+    resources :users
     get "", to: "dashboard#home", as: "/"
   end
   resources :books
