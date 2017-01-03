@@ -1,0 +1,34 @@
+<%= form_for @user, url: admin_users_path do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control", required: true %>
+
+  <%= f.label :email %>
+  <%= f.text_field :email, class: "form-control" %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, class: "form-control", required: true %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation, class: "form-control", required: true %>
+
+  <%= f.label :role %>
+  <br>
+  <%= f.label :role do %>
+    <%= f.radio_button :role, :user, checked: true %>
+    <span><%= t "user" %></span>
+  <% end %>
+
+  <%= f.label :role do %>
+    <%= f.radio_button :role, :admin %>
+    <span><%= t "admin" %></span>
+  <% end %>
+  <br>
+
+  <%= label_tag :skip_confirmation %>
+  <%= label_tag :skip_confirmation do %>
+    <%= check_box_tag :skip_confirmation %>
+  <% end %>
+  <br>
+  <%= f.submit t("create"), class: "btn btn-primary" %>
+<% end %>

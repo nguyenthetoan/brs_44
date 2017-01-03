@@ -21,7 +21,7 @@ function delete_item(button, type) {
           url: $url,
           method: 'DELETE',
           data: {
-            $type_id
+            id: $type_id
           },
           success: function() {
             swal(I18n.t('done_delete'),

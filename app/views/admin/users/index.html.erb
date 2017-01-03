@@ -1,0 +1,90 @@
+<% provide :title, t("user_list") %>
+<div class="container">
+  <div class="page-header">
+    <h1><%= t "users_manager" %></h1>
+  </div>
+  <p>
+    <%= t "total_user" %>: <span class="badge"><%= @users.size %></span>
+  </p>
+  <p>
+    <%= t "total_confirmed_user" %>:
+    <span class="badge"><%= User.confirmed.size %></span>
+  </p>
+  <p>
+    <%= t "total_admin" %>:
+    <span class="badge"><%= User.all_admin.size %></span>
+  </p>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="btn-toolbar">
+        <button id="btn-new-user" class="btn btn-primary">
+          <i class="fa fa-plus-square" aria-hidden="true"></i>
+          <%= t "new_user" %>
+        </button>
+        <button class="btn">
+          <%= link_to admin_users_path(format: "xlsx") do %>
+            <span>
+              <i class="fa fa-download" aria-hidden="true"></i>
+              <%= t "download_excel" %>
+            </span>
+          <% end %>
+        </button>
+        <div class="upload">
+          <%= form_tag admin_import_index_path, multipart: true,
+            class: "form-inline" do %>
+            <div class="form-group">
+              <%= file_field_tag :file %>
+            </div>
+            <%= hidden_field_tag :object, "user" %>
+            <%= submit_tag t("upload"), class: "btn btn-success" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="well">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th><%= t "name" %></th>
+              <th><%= t "email" %></th>
+              <th><%= t "status" %></th>
+              <th><%= t "role" %></th>
+              <th><%= t "action" %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render @users %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="modal-new" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2><%= t "create_new_user" %></h2>
+    </div>
+    <div class="modal-body">
+
+    </div>
+  </div>
+</div>
+<div id="modal-edit" class="modal modal-edit">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2><%= t "edit_user" %></h2>
+    </div>
+    <div class="edit-modal-body">
+
+    </div>
+  </div>
+</div>

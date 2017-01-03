@@ -23,6 +23,8 @@ module ApplicationHelper
       return Author
     when "publisher"
       return Publisher
+    when "user"
+      return User
     end
   end
 

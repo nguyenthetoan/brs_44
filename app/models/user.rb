@@ -2,6 +2,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :trackable, :validatable, :confirmable
 
+  scope :confirmed, -> {where("confirmed_at IS NOT NULL")}
+  scope :unconfirmed, -> {where("confirmed_at IS NULL")}
+  scope :all_admin, -> {where("role = 0")}
+  scope :all_user, -> {where("role = 1")}
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   enum role: [:admin, :user]
@@ -28,7 +33,7 @@ class User < ApplicationRecord
     length: {maximum: 255},
     format: {with: VALID_EMAIL_REGEX},
     uniqueness: {case_sensitive: false}
-  validates :password, length: {minimum: 6}
+  validates :password, length: {minimum: 6}, allow_nil: true
 
   def is_user? current_user
     self == current_user
@@ -74,6 +79,6 @@ class User < ApplicationRecord
 
   private
   def default_role
-    role ||= :user
+    self.role ||= :user
   end
 end

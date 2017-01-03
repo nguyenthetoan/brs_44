@@ -151,6 +151,8 @@ en:
   authors: "Authors"
   author_list: "Author List"
   unknown_file_type: "Unknow file type %{ext}"
+  confirmed: "Confirmed"
+  unconfirmed: "Not confirmed"
   users:
     new:
       confirm_pw: "Confrim Your Password"

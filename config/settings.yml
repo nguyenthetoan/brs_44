@@ -22,3 +22,6 @@ excel:
   bio: "Bio"
   books: "Books"
   total: "Total"
+  email: "Email"
+  confirmed: "Confirmed?"
+  role: "Role"
