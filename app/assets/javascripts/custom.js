@@ -54,8 +54,8 @@ function new_item(button, container, error_message) {
         url: $form.attr('action'),
         data: $form.serialize(),
         success: function(data) {
-          if ($('.modal').length > 0) {
-            $('.modal').fadeOut()
+          if ($('#modal-new').length > 0) {
+            $('#modal-new').fadeOut()
           }
           $new_row = $('' + data)
           if (data == null) {

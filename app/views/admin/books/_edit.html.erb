@@ -1,22 +1,36 @@
 <%= form_for @book, url: admin_book_path do |f| %>
-  <%= render "shared/error_message", object: f.object %>
+
   <%= f.label :title %>
-  <%= f.text_field :title, class: "form-control" %>
+  <%= f.text_field :title, class: "form-control", required: true %>
 
   <%= f.label :description %>
   <%= f.text_area :description, class: "form-control" %>
 
   <%= f.label :publish_date %>
-  <%= f.date_field :publish_date, class: "form-control" %>
-
-  <%= f.label :author %>
-  <%= f.text_field :author, class: "form-control" %>
+  <%= f.date_field :publish_date, class: "form-control", required: true %>
 
   <%= f.label :pages %>
-  <%= f.number_field :pages, class: "form-control" %>
+  <%= f.number_field :pages, class: "form-control", required: true %>
+
+  <div id="spec">
+    <%= f.fields_for :specifications do |builder| %>
+      <%= render "specification_fields", f: builder %>
+    <% end %>
+  </div>
+  <%= add_fields t("add_spec"), f, :specifications %>
+  <br>
+  <br>
+  <%= f.label :publisher_id %>
+  <%= f.select :publisher_id, @publishers.collect {|c| [c.name, c.id]}, {},
+    {required: true, autofocus: true, class: "form-control"} %>
+
+  <%= f.label :author_id %>
+  <%= f.select :author_id, @authors.collect {|c| [c.name, c.id]}, {},
+    {required: true, autofocus: true, class: "form-control"} %>
 
   <%= f.label :category_id %>
-  <%= f.select :category_id, @categories.collect {|c| [c.name, c.id]}, {},
+  <%= f.select :category_id, @categories.collect {|cate| ["#{'—' * cate.depth} #{cate.name}", cate.id]}, {},
     {required: true, autofocus: true, class: "form-control"} %>
-  <%= f.submit t("update"), class: "btn btn-warning" %>
+
+  <%= f.submit t("create"), class: "btn btn-warning" %>
 <% end %>
