@@ -83,6 +83,8 @@ GEM
     ffi (1.9.14)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
+    friendly_id (5.2.0)
+      activerecord (>= 4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     goldiloader (0.0.10)
@@ -228,6 +230,7 @@ DEPENDENCIES
   config
   devise
   font-awesome-rails
+  friendly_id
   goldiloader
   i18n-js (>= 3.0.0.rc11)
   jbuilder (~> 2.5)

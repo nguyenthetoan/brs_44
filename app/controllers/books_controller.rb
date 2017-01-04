@@ -1,13 +1,11 @@
 class BooksController<ApplicationController
-  load_and_authorize_resource
-
   include BooksHelper
 
   before_action :load_book, only: :show
 
   def index
     @categories = Category.select("id, name")
-    @books = Book.select("id, title").paginate page: params[:page], per_page: Settings.books.page
+    @books = Book.select("id, title, slug").paginate page: params[:page], per_page: Settings.books.page
     if params[:filter]
       @books = filter_by(params[:filter]).paginate page: params[:page], per_page: Settings.books.page
     elsif params[:cate]

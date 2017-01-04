@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170103020341) do
+ActiveRecord::Schema.define(version: 20170104152908) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "activatable_type"
@@ -53,10 +53,23 @@ ActiveRecord::Schema.define(version: 20170103020341) do
     t.text     "description",  limit: 65535
     t.integer  "author_id"
     t.integer  "publisher_id"
+    t.string   "slug"
     t.index ["author_id"], name: "index_books_on_author_id", using: :btree
     t.index ["category_id", "created_at"], name: "index_books_on_category_id_and_created_at", using: :btree
     t.index ["category_id"], name: "index_books_on_category_id", using: :btree
     t.index ["publisher_id"], name: "index_books_on_publisher_id", using: :btree
+    t.index ["slug"], name: "index_books_on_slug", unique: true, using: :btree
+  end
+
+  create_table "borrows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.datetime "start_date"
+    t.datetime "due_date"
+    t.integer  "status"
+    t.index ["book_id"], name: "index_borrows_on_book_id", using: :btree
+    t.index ["user_id", "book_id"], name: "index_borrows_on_user_id_and_book_id", using: :btree
+    t.index ["user_id"], name: "index_borrows_on_user_id", using: :btree
   end
 
   create_table "borrows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -98,6 +111,18 @@ ActiveRecord::Schema.define(version: 20170103020341) do
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_favorites_on_book_id", using: :btree
     t.index ["user_id"], name: "index_favorites_on_user_id", using: :btree
+  end
+
+  create_table "friendly_id_slugs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, length: { slug: 70, scope: 70 }, using: :btree
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", length: { slug: 140 }, using: :btree
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
 
   create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -172,8 +197,10 @@ ActiveRecord::Schema.define(version: 20170103020341) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "slug"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["slug"], name: "index_users_on_slug", unique: true, using: :btree
   end
 
   add_foreign_key "activities", "users"
