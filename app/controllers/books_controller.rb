@@ -1,4 +1,6 @@
 class BooksController<ApplicationController
+  load_and_authorize_resource
+
   include BooksHelper
 
   before_action :load_book, only: :show
@@ -16,10 +18,11 @@ class BooksController<ApplicationController
   end
 
   def show
-    @review = Review.new
-    @reviews = @book.reviews
-    @bookmark = Bookmark.new
-    @user_bookmark = current_user.get_bookmark @book if signed_in?
+    @supports = Supports::Book.new @book
+    if signed_in?
+      @review = Review.new
+      @bookmark = Bookmark.new
+    end
   end
 
 end

@@ -29,7 +29,11 @@ Rails.application.routes.draw do
     resources :users
     get "", to: "dashboard#home", as: "/"
   end
-  resources :books
+  resources :books do
+    member do
+      resources :borrows, only: [:new, :create]
+    end
+  end
   resources :favorites, only: [:create, :destroy]
   resources :requests
   resources :categories, only: [:show]
