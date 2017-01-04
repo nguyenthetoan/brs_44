@@ -29,7 +29,7 @@ module ApplicationHelper
   end
 
   def beloved_book
-    @books = Book.select("id, title, author, description")
+    @books = Book.all
     @beloved = @books.sort_by {|b| b.favorited_by.length}
     @beloved.reverse![0..4].sample
   end

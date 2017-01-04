@@ -24,6 +24,7 @@ class User < ApplicationRecord
   has_many :activities, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :borrows, dependent: :destroy
 
   before_save {self.email = email.downcase}
   before_save :default_role
