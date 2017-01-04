@@ -23,10 +23,11 @@
         <% unless current_user.nil? %>
           <% if @book.bookmarked? current_user %>
             <p>
-              <%= t "user_marked" %>: <strong><%= @user_bookmark.read %></strong>
+              <%= t "user_marked" %>:
+              <strong><%= @supports.user_bookmark(current_user).read %></strong>
               <%= t "at" %>
               <strong>
-                <%= @user_bookmark.updated_at.strftime(Settings.option_time.vn) %>
+                <%= @supports.user_bookmark(current_user).updated_at.strftime(Settings.option_time.vn) %>
               </strong>
             </p>
             <%= render "bookmarks/edit", user_bookmark: @user_bookmark %>
@@ -111,7 +112,7 @@
       <div class="reviews">
         <h3><%= t "users_review" %></h3>
         <ul class="review-list">
-          <%= render @reviews %>
+          <%= render @supports.reviews %>
         </ul>
         <a href="#" id="loadMore"><%= t "load_more" %></a>
       </div>

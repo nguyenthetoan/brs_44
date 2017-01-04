@@ -27,6 +27,7 @@ gem "axlsx", "~> 2.0"
 gem "axlsx_rails"
 gem "sidekiq"
 gem "whenever"
+gem "friendly_id"
 group :development, :test do
   gem "byebug", platform: :mri
 end

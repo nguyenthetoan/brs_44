@@ -1,10 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+
   rescue_from CanCan::AccessDenied do |exception|
     flash[:danger] = exception.message
     redirect_to root_url
   end
+  rescue_from ActiveRecord::RecordNotFound, with: :render_404
+
   require "will_paginate/array"
+
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   include ApplicationHelper
@@ -19,13 +23,11 @@ class ApplicationController < ActionController::Base
   end
 
   def load_user
-    @user = User.find_by id: params[:id]
-    @user ? @user : render_404
+    @user = User.friendly.find params[:id]
   end
 
   def load_book
-    @book = Book.find_by id: params[:id]
-    @book ? @book : render_404
+    @book = Book.friendly.find params[:id]
   end
 
   def configure_permitted_parameters

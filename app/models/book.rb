@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: :slugged
 
   scope :search, -> (condition) {where("title LIKE :search", search: "%#{condition}%")}
   scope :latest, -> {order(created_at: :desc)}
