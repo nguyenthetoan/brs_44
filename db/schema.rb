@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161230043349) do
+ActiveRecord::Schema.define(version: 20170103020341) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "activatable_type"
@@ -57,6 +57,17 @@ ActiveRecord::Schema.define(version: 20161230043349) do
     t.index ["category_id", "created_at"], name: "index_books_on_category_id_and_created_at", using: :btree
     t.index ["category_id"], name: "index_books_on_category_id", using: :btree
     t.index ["publisher_id"], name: "index_books_on_publisher_id", using: :btree
+  end
+
+  create_table "borrows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.datetime "start_date"
+    t.datetime "due_date"
+    t.integer  "status"
+    t.index ["book_id"], name: "index_borrows_on_book_id", using: :btree
+    t.index ["user_id", "book_id"], name: "index_borrows_on_user_id_and_book_id", using: :btree
+    t.index ["user_id"], name: "index_borrows_on_user_id", using: :btree
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -170,6 +181,8 @@ ActiveRecord::Schema.define(version: 20161230043349) do
   add_foreign_key "books", "authors"
   add_foreign_key "books", "categories"
   add_foreign_key "books", "publishers"
+  add_foreign_key "borrows", "books"
+  add_foreign_key "borrows", "users"
   add_foreign_key "comments", "reviews"
   add_foreign_key "comments", "users"
   add_foreign_key "favorites", "books"

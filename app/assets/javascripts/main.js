@@ -493,4 +493,21 @@ $(document).on('turbolinks:load', function() {
     })
     return false;
   })
+
+  $('#btn-new-borrow').click(function(e) {
+    e.preventDefault()
+    $btn = $(this)
+    $('#modal-new').css('display', 'block')
+    $.ajax({
+      dataType: 'html',
+      url: $btn.attr('href'),
+      method: 'get',
+      success: function(data) {
+        console.log(data)
+        $('.modal-body').html(data)
+      }
+    });
+    return false
+  })
+
 })

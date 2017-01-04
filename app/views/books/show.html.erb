@@ -3,7 +3,7 @@
   <div class="row">
     <h1><%= @book.title %></h1>
     <p>
-      <%= t "by" %>: <span class="pub-date"><%= @book.author %></span>
+      <%= t "by" %>: <span class="pub-date"><%= @book.author.name %></span>
     </p>
   </div>
   <div class="row">
@@ -18,7 +18,7 @@
   </div>
   <hr>
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
       <div class="bookmark">
         <% unless current_user.nil? %>
           <% if @book.bookmarked? current_user %>
@@ -34,6 +34,25 @@
             <span><%= t "mark_as" %></span>
             <%= render "bookmarks/bookmark_form", book: @book %>
           <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div id="borrow">
+        <% unless current_user.nil? %>
+          <% unless @borrowed.nil? %>
+            <h4>
+              <%= t("current_borrowed", borrower: @borrowed.user.name) %>
+              <%= t "till" %>: <%= @borrowed.due_date.strftime(Settings.option_time.vn) %>
+            </h4>
+          <% end %>
+          <p>
+            <%= link_to t("schedule_borrow"), new_borrow_path, id: "btn-new-borrow" %>
+          </p>
+          <p><%= t "borrow_queue" %></p>
+          <ul>
+            <%= render partial: "queue", collection: @queues %>
+          </ul>
         <% end %>
       </div>
     </div>
@@ -120,6 +139,17 @@
       <h2><%= t "edit_comment" %></h2>
     </div>
     <div class="edit-modal-body">
+
+    </div>
+  </div>
+</div>
+<div id="modal-new" class="modal modal-new">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2><%= t "borrow_book" %></h2>
+    </div>
+    <div class="modal-body">
 
     </div>
   </div>

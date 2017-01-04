@@ -1,0 +1,5 @@
+<h1><%= t "hi" %>, <%= @user.name %></h1>
+<p>
+  <%= t "notify_user_wanna_borrow" %> : <%= @borrow.due_date %>
+  <%= t "please_notice" %> <%= link_to @borrow.book.title, book_url(@borrow.book) %>
+</p>
