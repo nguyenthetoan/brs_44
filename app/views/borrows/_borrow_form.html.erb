@@ -1,0 +1,11 @@
+<%= form_for @borrow, url: borrows_path do |f| %>
+  <%= render "shared/error_message", object: f.object %>
+
+  <%= f.label :start_date %>
+  <%= f.datetime_select :start_date, ampm: true, minute_step: 15 %>
+  <br>
+  <%= f.label :due_date %>
+  <%= f.datetime_select :due_date, ampm: true, minute_step: 15 %>
+  <br>
+  <%= f.submit t("send"), class: "btn btn-primary" %>
+<% end %>
