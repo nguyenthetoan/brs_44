@@ -1,0 +1,3 @@
+<% @availables.each do |room| %>
+  <li><%= link_to room.title, chatroom_path(room) %></li>
+<% end %>

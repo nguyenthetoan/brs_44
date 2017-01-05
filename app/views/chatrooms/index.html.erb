@@ -1,0 +1,10 @@
+<%= provide :title, t("messenger") %>
+<h2><%= t "available_conversation" %></h2>
+<ul>
+  <%= render partial: "available", collection: @availables %>
+</ul>
+<hr>
+<h2><%= t "following_list" %></h2>
+<ul id="followings">
+  <%= render partial: "following", collection: @followings %>
+</ul>

@@ -1,0 +1,20 @@
+<%= provide :title, @chatroom.title %>
+<h1><%= @chatroom.title %></h1>
+<div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+  <div class="row">
+    <div class="col-md-12">
+      <div id="chat-box" class="chat-box">
+        <%= render @chatroom.messages %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= form_for @message, url: "#" do |f| %>
+  <div class="form-group">
+    <%= f.label :message %>
+    <%= f.text_field :body, class: "form-control" %>
+    <small class="text-muted"><%= t "min_2_characters" %></small>
+  </div>
+
+  <%= f.submit t("send"), class: "btn btn-primary btn-lg" %>
+<% end %>

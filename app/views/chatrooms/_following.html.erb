@@ -1,0 +1,13 @@
+<% @followings.each do |user| %>
+  <li id="<%= dom_id(user) %>">
+    <% if current_user.had_conversation? user %>
+      <% existed_room = Chatroom.created_room(current_user, user).first %>
+      <span><%= t("continue_chat", guest: user.name) %></span>
+      <%= t "last_message" %>
+      <%= link_to existed_room.title, chatroom_path(existed_room) %>
+      <% else %>
+        <%= link_to user.name, new_chatroom_path(guest_id: user.id),
+          class: "btn btn-primary" %>
+    <% end %>
+  </li>
+<% end %>
