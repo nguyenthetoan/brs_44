@@ -33,6 +33,7 @@ class User < ApplicationRecord
   has_many :passive_conversations, class_name: Chatroom.name,
     foreign_key: :guest_id, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_many :notifications, foreign_key: :recipient_id
 
   before_save {self.email = email.downcase}
   before_save :default_role

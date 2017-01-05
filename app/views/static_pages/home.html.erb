@@ -5,6 +5,8 @@
       <div class="welcome">
         <div>
           <% if signed_in? %>
+            <div id="notifications">
+            </div>
             <div class="row">
               <h2 class="welcome-msg"><%= t "app_desc" %></h2>
               <br>

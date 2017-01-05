@@ -4,6 +4,7 @@ class RelationshipsController < ApplicationController
   def create
     @user = User.find_by id: params[:followed_id]
     current_user.follow @user
+    Notification.create(recipient: @user, actor: current_user, action: "followed", notifiable: @user)
     current_user.activities.create(activatable: @user, action_type: :start_follow)
     respond_to do |format|
       format.html {render partial: "users/unfollow"}

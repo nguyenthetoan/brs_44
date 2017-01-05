@@ -44,5 +44,6 @@ Rails.application.routes.draw do
   resources :bookmarks, only: [:create, :update]
   resources :messages, only: [:index]
   resources :chatrooms
+  resources :notifications, only: [:index, :update]
   mount ActionCable.server => "/cable"
 end
