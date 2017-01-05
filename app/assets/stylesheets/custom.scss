@@ -2,6 +2,7 @@
 @import "bootstrap";
 @import "font-awesome";
 @import "normalize-rails";
+@import "social-share-button";
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400&subset=vietnamese');
 $bgDefault: #ffffff;
 $bgHighlight: #ffffff;
@@ -13,6 +14,25 @@ $starrrColor: #FFD119 !default;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+.chat-box {
+  margin: 0 auto;
+  font-size: 16px;
+  .username {
+    font-weight: bold;
+  }
+  .right {
+    text-align: right;
+  }
+  .left {
+    color: blue;
+  }
+  .message {
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid black;
+  }
 }
 
 .fading-side-menu.affix-top {

@@ -104,6 +104,9 @@
   <hr>
   <div class="row">
     <div class="col-md-12">
+      <div class="share">
+        <%= social_share_button_tag @book.title %>
+      </div>
       <%= render "reviews/review_form" if signed_in?  %>
     </div>
   </div>

@@ -153,6 +153,10 @@ en:
   unknown_file_type: "Unknow file type %{ext}"
   confirmed: "Confirmed"
   unconfirmed: "Not confirmed"
+  continue_chat: "continue chatting with %{guest} in "
+  messenger: "Messenger"
+  creating_conversation: "You are making a new conversation with: "
+  start_chatting: "Name your conversation!"
   users:
     new:
       confirm_pw: "Confrim Your Password"

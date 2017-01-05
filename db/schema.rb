@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170104152908) do
+ActiveRecord::Schema.define(version: 20170104203728) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "activatable_type"
@@ -72,17 +72,6 @@ ActiveRecord::Schema.define(version: 20170104152908) do
     t.index ["user_id"], name: "index_borrows_on_user_id", using: :btree
   end
 
-  create_table "borrows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
-    t.integer  "book_id"
-    t.datetime "start_date"
-    t.datetime "due_date"
-    t.integer  "status"
-    t.index ["book_id"], name: "index_borrows_on_book_id", using: :btree
-    t.index ["user_id", "book_id"], name: "index_borrows_on_user_id_and_book_id", using: :btree
-    t.index ["user_id"], name: "index_borrows_on_user_id", using: :btree
-  end
-
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at",             null: false
@@ -91,6 +80,15 @@ ActiveRecord::Schema.define(version: 20170104152908) do
     t.integer  "lft",                    null: false
     t.integer  "rgt",                    null: false
     t.index ["name"], name: "index_categories_on_name", using: :btree
+  end
+
+  create_table "chatrooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string  "title"
+    t.integer "host_id"
+    t.integer "guest_id"
+    t.index ["guest_id"], name: "index_chatrooms_on_guest_id", using: :btree
+    t.index ["host_id", "guest_id"], name: "index_chatrooms_on_host_id_and_guest_id", unique: true, using: :btree
+    t.index ["host_id"], name: "index_chatrooms_on_host_id", using: :btree
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -134,6 +132,14 @@ ActiveRecord::Schema.define(version: 20170104152908) do
     t.datetime "updated_at",   null: false
     t.index ["likable_type", "likable_id"], name: "index_likes_on_likable_type_and_likable_id", using: :btree
     t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
+  end
+
+  create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text    "body",        limit: 65535
+    t.integer "user_id"
+    t.integer "chatroom_id"
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
   create_table "publishers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -215,6 +221,8 @@ ActiveRecord::Schema.define(version: 20170104152908) do
   add_foreign_key "favorites", "books"
   add_foreign_key "favorites", "users"
   add_foreign_key "likes", "users"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "requests", "users"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"

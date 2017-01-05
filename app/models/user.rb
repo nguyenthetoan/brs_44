@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   enum role: [:admin, :user]
 
-  has_many :active_relationships,  class_name: Relationship.name,
+  has_many :active_relationships, class_name: Relationship.name,
     foreign_key: :follower_id, dependent: :destroy
   has_many :passive_relationships, class_name: Relationship.name,
     foreign_key: :followed_id, dependent: :destroy
@@ -28,6 +28,11 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :borrows, dependent: :destroy
+  has_many :active_conversations, class_name: Chatroom.name,
+    foreign_key: :host_id, dependent: :destroy
+  has_many :passive_conversations, class_name: Chatroom.name,
+    foreign_key: :guest_id, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   before_save {self.email = email.downcase}
   before_save :default_role
@@ -79,6 +84,10 @@ class User < ApplicationRecord
 
   def reviewed? book
     book.reviewed_by.reload.include? self
+  end
+
+  def had_conversation? other_user
+    self.active_conversations.collect(&:guest).flatten.uniq.include? other_user
   end
 
   private

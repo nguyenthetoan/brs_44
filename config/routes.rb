@@ -42,4 +42,7 @@ Rails.application.routes.draw do
   resources :comments, except: :index
   resources :likes, only: [:create, :destroy, :show]
   resources :bookmarks, only: [:create, :update]
+  resources :messages, only: [:index]
+  resources :chatrooms
+  mount ActionCable.server => "/cable"
 end

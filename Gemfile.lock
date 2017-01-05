@@ -175,6 +175,8 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (~> 3.2, >= 3.2.1)
+    social-share-button (0.8.8)
+      coffee-rails
     spreadsheet (1.1.4)
       ruby-ole (>= 1.0)
     spring (2.0.0)
@@ -244,6 +246,7 @@ DEPENDENCIES
   rubyzip
   sass-rails (~> 5.0)
   sidekiq
+  social-share-button
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
