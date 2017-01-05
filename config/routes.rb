@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-  devise_for :users, controllers: {confirmations: "confirmations"}
+  devise_for :users, controllers: {
+    confirmations: "confirmations",
+    omniauth_callbacks: "callbacks"
+  }
 
   as :user do
     get "/login" => "devise/sessions#new", as: :login

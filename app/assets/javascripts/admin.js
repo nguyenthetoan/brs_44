@@ -110,7 +110,7 @@ $(document).on('turbolinks:load', function() {
 
   $('#btn-new-publisher').click(function(e) {
     e.preventDefault()
-    $('#modal-new-publisher').css('display', 'block')
+    $('#modal-new').css('display', 'block')
     $.ajax({
       dataType: 'html',
       url: 'publishers/new',
