@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170104203728) do
+ActiveRecord::Schema.define(version: 20170105020948) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "activatable_type"
@@ -135,11 +135,24 @@ ActiveRecord::Schema.define(version: 20170104203728) do
   end
 
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text    "body",        limit: 65535
-    t.integer "user_id"
-    t.integer "chatroom_id"
+    t.text     "body",        limit: 65535
+    t.integer  "user_id"
+    t.integer  "chatroom_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
+  create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "recipient_id"
+    t.integer  "actor_id"
+    t.datetime "read_at"
+    t.string   "action"
+    t.integer  "notifiable_id"
+    t.string   "notifiable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "publishers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
