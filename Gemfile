@@ -29,6 +29,7 @@ gem "sidekiq"
 gem "whenever"
 gem "friendly_id"
 gem "social-share-button"
+gem "omniauth-facebook"
 group :development, :test do
   gem "byebug", platform: :mri
 end
