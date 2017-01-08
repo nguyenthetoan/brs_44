@@ -5,7 +5,7 @@ class CallbacksController < ApplicationController
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
     else
-      session["devise.facebook_date"] = request.env["omniauth.auth"]
+      session["devise.facebook_data"] = request.env["omniauth.auth"]
       redirect_to signup_path
     end
   end

@@ -3,7 +3,7 @@
 @import "font-awesome";
 @import "normalize-rails";
 @import "social-share-button";
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400&subset=vietnamese');
+@import url('https://fonts.googleapis.com/css?family=Glegoo');
 $bgDefault: #ffffff;
 $bgHighlight: #ffffff;
 $colDefault: #2f4f4f;
@@ -14,6 +14,109 @@ $starrrColor: #FFD119 !default;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+.hackbox {
+  margin-top: 20px;
+  padding: 3px;
+  border: 1px solid #EEE;
+}
+
+.mainbox {
+  border: 1px solid #EEE;
+  padding: 15px;
+}
+
+.realbox {
+  padding: 20px 40px;
+}
+
+.box-content {
+  width: 100%;
+  display: table-cell;
+  padding: 10px 0;
+  vertical-align: middle;
+  span {
+    display: block;
+    color: #777;
+    font-size: 15px;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+  strong {
+    font-size: 30px;
+    display: block;
+    font-weight: 300;
+  }
+}
+
+.explore-btn {
+  background-color: black;
+  color: white;
+  border-radius: 2px;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 6px 12px;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.explore-btn:hover {
+  color: white;
+}
+
+.box-button {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px 0;
+}
+
+.section-fav {
+  small {
+    display: block;
+    margin-top: 8px;
+    font-size: 15px;
+  }
+}
+
+.caption {
+  text-transform: none;
+  span {
+    font-size: 13px;
+    text-align: right;
+    text-transform: capitalize;
+  }
+}
+
+.item-info {
+  text-align: center;
+  h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #222;
+  }
+  .favs {
+    font-weight: 300;
+    margin-bottom: 5px;
+    margin-right: 25px;
+    margin-top: 20px;
+    i {
+      color: rgb(210, 42, 48);
+    }
+  }
+}
+
+.owl-carousel {
+  .owl-item {
+    max-height: 500px;
+    width: 100%;
+  }
+  position: relative;
+  height: 100%;
+  margin-top: -3px;
 }
 
 .chat-box {
@@ -863,87 +966,28 @@ input {
 
 /* main navbar */
 
-.navbar,
-.dropdown-menu {
-  background: rgba(0, 0, 0, 0.8);
-  border: none;
-}
-
-.nav>li>a,
-.dropdown-menu>li>a:focus,
-.dropdown-menu>li>a:hover,
-.dropdown-menu>li>a,
-.dropdown-menu>li {
-  border-bottom: 3px solid transparent;
-}
-
-.nav>li>a:focus,
-.nav>li>a:hover,
-.nav .open>a,
-.nav .open>a:focus,
-.nav .open>a:hover,
-.dropdown-menu>li>a:focus,
-.dropdown-menu>li>a:hover {
-  border-bottom: 3px solid transparent;
-  background: none;
-}
-
-.navbar a,
-.dropdown-menu>li>a,
-.dropdown-menu>li>a:focus,
-.dropdown-menu>li>a:hover,
-.navbar-toggle {
-  color: #fff;
-}
-
-.dropdown-menu {
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-.nav li:hover:nth-child(8n+1),
-.nav li.active:nth-child(8n+1) {
-  border-bottom: #C4E17F 3px solid;
-}
-
-.nav li:hover:nth-child(8n+2),
-.nav li.active:nth-child(8n+2) {
-  border-bottom: #F7FDCA 3px solid;
-}
-
-.nav li:hover:nth-child(8n+3),
-.nav li.active:nth-child(8n+3) {
-  border-bottom: #FECF71 3px solid;
-}
-
-.nav li:hover:nth-child(8n+4),
-.nav li.active:nth-child(8n+4) {
-  border-bottom: #F0776C 3px solid;
-}
-
-.nav li:hover:nth-child(8n+5),
-.nav li.active:nth-child(8n+5) {
-  border-bottom: #DB9DBE 3px solid;
-}
-
-.nav li:hover:nth-child(8n+6),
-.nav li.active:nth-child(8n+6) {
-  border-bottom: #C49CDE 3px solid;
-}
-
-.nav li:hover:nth-child(8n+7),
-.nav li.active:nth-child(8n+7) {
-  border-bottom: #669AE1 3px solid;
-}
-
-.nav li:hover:nth-child(8n+8),
-.nav li.active:nth-child(8n+8) {
-  border-bottom: #62C2E4 3px solid;
-}
-
-.navbar-toggle .icon-bar {
-  color: #fff;
-  background: #fff;
+header {
+  background-color: #C8BCA7 !important;
+  max-height: 74px;
+  .nav > .logo {
+    margin-right: 40px;
+  }
+  .nav > li a {
+    color: black;
+    font-weight: 300;
+    line-height: 45px;
+    font-size: 18px;
+  }
+  .nav > li > a:hover {
+    color: white;
+    background-color: transparent;
+  }
+  .navbar-form {
+    margin-top: 20px;
+    button {
+      margin-top: -12px;
+    }
+  }
 }
 
 
@@ -951,11 +995,7 @@ input {
 
 body {
   font-weight: 400;
-  font-family: 'Open Sans', sans-serif;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  background-image: url('bg.png');
-  background-color: $bgDefault;
+  font-family: 'Glegoo', sans-serif;
 }
 
 
@@ -963,6 +1003,7 @@ body {
 
 footer {
   margin-top: 45px;
+  margin-bottom: 10px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
   color: #777;

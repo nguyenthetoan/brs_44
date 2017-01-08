@@ -1,32 +1,18 @@
-<% unless book.nil? %>
-  <div class="bk-book beloved bk-bookdefault">
-    <div class="bk-front">
-      <div class="bk-cover">
+<% unless @beloved.nil? %>
+  <% @beloved.each do |book| %>
+    <div class="fav-item">
+      <div class="item-image">
         <%= link_to book_path(book) do %>
-          <%= image_tag "default-cover.gif", class: "book-cover", size: 200 %>
+          <%= image_tag "default-cover.jpg", size: "204x260" %>
         <% end %>
       </div>
+      <div class="item-info">
+        <h3><%= book.title %></h3>
+        <%= link_to book.category.name, books_path(cate: book.category.id) %>
+        <h3 class="favs">
+          <%= book.favorited_by.size %> <i class="fa fa-heart"></i>
+         </h3>
+      </div>
     </div>
-  </div>
-  <div class="bk-info">
-    <a class="avg-rating" data-toggle="tooltip"
-      title="<%= pluralize(book.reviews.size, "review") %>" >
-      <span class="rate-count">
-        <% book.avg_rating.times do %>
-          <i class="fa fa-star" aria-hidden="true"></i>
-        <% end %>
-      </span>
-    </a>
-    <h4>
-      <i class="fa fa-heart" aria-hidden="true"></i>
-      <span class="favorited-count"><%= book.favorited_by.size %></span>
-    </h4>
-    <h3>
-      <span><%= book.author %></span>
-      <span><%= book.title %></span>
-      </h3>
-    <p>
-      <%= book.description %>
-    </p>
-  </div>
+  <% end %>
 <% end %>

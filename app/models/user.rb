@@ -3,8 +3,7 @@ class User < ApplicationRecord
   friendly_id :name, use: :slugged
 
   devise :database_authenticatable, :registerable, :omniauthable,
-    :trackable, :validatable, :confirmable
-
+  :trackable, :validatable, :confirmable, omniauth_providers: [:facebook]
   scope :confirmed, -> {where("confirmed_at IS NOT NULL")}
   scope :unconfirmed, -> {where("confirmed_at IS NULL")}
   scope :all_admin, -> {where("role = 0")}
@@ -94,7 +93,7 @@ class User < ApplicationRecord
   def self.from_omniauth auth
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
-      user.id = auth.uid
+      user.name = auth.info.name
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
     end

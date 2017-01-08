@@ -29,9 +29,8 @@ module ApplicationHelper
   end
 
   def beloved_book
-    @books = Book.all
-    @beloved = @books.sort_by {|b| b.favorited_by.length}
-    @beloved.reverse![0..4].sample
+    books = Book.select("id, title, category_id, slug")
+    @beloved = books.sort_by {|b| b.favorited_by.size}.flatten.reverse!.first(Settings.fav_items)
   end
 
   def _resource_name
