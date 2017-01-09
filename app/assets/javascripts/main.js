@@ -4,6 +4,22 @@ $(document).on('turbolinks:load', function() {
     $('#flash').fadeOut(2000);
   }, 8000);
 
+  $('.owl-header').owlCarousel({
+    loop: true,
+    center: true,
+    nav: true,
+    autoplay: true,
+    items: 1,
+    smartSpeed: 1000
+  });
+
+  $('.owl-beloved').owlCarousel({
+    loop: true,
+    autoplay: true,
+    items: 5,
+    smartSpeed: 1500
+  })
+
   $('body').on('click', '.show-search', function(e) {
     e.preventDefault();
     $('.search').fadeIn(1000)
@@ -166,15 +182,15 @@ $(document).on('turbolinks:load', function() {
     $tr_id = '#request_' + $req_id
     $url = $(this).attr('href')
     swal({
-      title: I18n.t('ask_sure'),
-      text: I18n.t('warning_delete'),
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#DD6B55',
-      confirmButtonText: I18n.t('confirm_button'),
-      cancelButtonText: I18n.t('cancel_button'),
-      closeOnConfirm: false,
-      closeOnCancel: false
+        title: I18n.t('ask_sure'),
+        text: I18n.t('warning_delete'),
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: I18n.t('confirm_button'),
+        cancelButtonText: I18n.t('cancel_button'),
+        closeOnConfirm: false,
+        closeOnCancel: false
       },
       function(isConfirm) {
         if (isConfirm) {

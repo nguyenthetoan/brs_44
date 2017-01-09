@@ -16,11 +16,14 @@
 
       <%= f.label :password_confirmation, t(".confirm_pw") %>
       <%= f.password_field :password_confirmation, class: "form-control" %>
-
-      <%= f.submit t("signup"), class: "btn btn-primary" %>
+      <div class="text-center">
+        <p><%= f.submit t("signup"), class: "btn btn-primary" %></p>
+        <p> <%= t("or") %> </p>
+        <p>
+          <%= link_to t("facebook_login"), user_facebook_omniauth_authorize_path, class: "btn btn-primary" %>
+        </p>
+      </div>
 
     <% end %>
-    <%= render "devise/shared/links" %>
-    <%= link_to t("facebook_login"), user_facebook_omniauth_authorize_path %>
   </div>
 </div>

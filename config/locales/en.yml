@@ -146,7 +146,8 @@ en:
   services_head: "what do we have"
   categories: "Categories"
   user_helped: "requests"
-  most_beloved_book: "most beloved book"
+  most_beloved_book: "Most Beloved Book"
+  beloved_desc: "Top favorited books"
   upload: "Upload"
   authors: "Authors"
   author_list: "Author List"
@@ -159,6 +160,13 @@ en:
   start_chatting: "Name your conversation!"
   publishers: "Publishers"
   you: "you"
+  or: "- or -"
+  facebook_login: "login with facebook"
+  ceo: "CEO Framgia"
+  caption: "The world is quiet here"
+  free_reading: "Free Reading"
+  read_free: "free reading wherever you are!"
+  explore_books: "Explore Now"
   users:
     new:
       confirm_pw: "Confrim Your Password"
@@ -172,3 +180,7 @@ en:
   layouts:
     header:
       login: "Login"
+  devise:
+    registrations:
+      new:
+        confirm_pw: "Password Confirmation"

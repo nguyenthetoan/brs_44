@@ -1,76 +1,55 @@
-<% provide :title, t("home") %>
+<%= provide :title, t("home") %>
 <div class="row">
   <div class="col-md-12">
-    <div class="jumbotron">
-      <div class="welcome">
-        <div>
-          <% if signed_in? %>
-            <div id="notifications">
-            </div>
-            <div class="row">
-              <h2 class="welcome-msg"><%= t "app_desc" %></h2>
-              <br>
-              <br>
-              <br>
-              <div class="col-md-6">
-                <%= image_tag "side-1.jpg", size: 500, class: "story-img" %>
-              </div>
-              <div class="col-md-6">
-                <div class="story">
-                  <h4 class="story-head"><%= t "our_story" %></h4>
-                  <p class="story-para">
-                    <%= t "paragraph_story" %>
-                  </p>
-                </div>
-              </div>
-            </div>
-          <% else %>
-            <%= link_to t("app_desc"), root_path, class: "app-desc" %>
-            <br/>
-            <%= link_to t("signup"), signup_path,
-              class: "semi-transparent-button signup" %>
-          <% end %>
+  <h1 class="caption">
+     "<%= t("caption") %>"
+    <span>- <%= t("ceo") %> </span>
+  </h1>
+    <div class="owl-carousel owl-theme owl-loaded">
+      <div class="owl-stage-outer">
+        <div class="owl-stage owl-header">
+          <div>
+            <%= image_tag("big_header.jpg") %>
+          </div>
+          <div>
+            <%= image_tag("bookshelf.jpg") %>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<hr>
 <div class="row">
-  <div class="services">
-    <h1><%= t "services_head" %></h1>
-    <div class="col-md-4">
-      <p class="circle">
-        <span class="count"><%= Book.count %></span> <br>
-        <span><%= t "books" %></span>
-      </p>
-      <br>
-      <p><%= t "ipsum" %></p>
-    </div>
-    <div class="col-md-4">
-      <p class="circle">
-        <span class="count"><%= Category.count %></span> <br>
-        <span><%= t "categories" %></span>
-      </p>
-      <br>
-      <p><%= t "ipsum" %></p>
-    </div>
-    <div class="col-md-4">
-      <p class="circle">
-        <span class="count"><%= Request.sent.count %></span> <br>
-        <span><%= t "user_helped" %></span>
-      </p>
-      <br>
-      <p><%= t "ipsum" %></p>
+  <div class="col-md-12">
+    <h2 class="section-fav">
+      <%= t("most_beloved_book") %>
+      <small><%= t("beloved_desc") %></small>
+    </h2>
+  </div>
+  <div class="col-md-12">
+    <div class="owl-carousel owl-theme owl-loaded">
+      <div class="owl-stage-outer">
+        <div class="owl-stage owl-beloved">
+          <%= render "books/beloved", book: beloved_book %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-<hr>
 <div class="row">
-  <div class="show-book">
-    <div class="col-md-12">
-      <h1><%= t "most_beloved_book" %></h1>
-      <%= render "books/beloved", book: beloved_book %>
+  <div class="col-md-12">
+    <div class="hackbox">
+      <div class="mainbox">
+        <div class="realbox">
+          <div class="box-content">
+            <strong><%= t("free_reading") %></strong>
+            <span><%= t("read_free") %></span>
+          </div>
+          <div class="box-button">
+            <%= link_to t("explore_books"), books_path, class: "explore-btn" %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

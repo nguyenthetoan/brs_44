@@ -30,6 +30,7 @@ gem "whenever"
 gem "friendly_id"
 gem "social-share-button"
 gem "omniauth-facebook"
+gem "faker"
 group :development, :test do
   gem "byebug", platform: :mri
 end
