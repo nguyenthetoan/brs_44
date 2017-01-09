@@ -1,48 +1,63 @@
 <% provide :title, t("books") %>
-<h1 class="filter-name"><%= t "books" %></h1>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <% if params[:search] %>
-        <h4><%= t "result" %>: <%= params[:search] %></h4>
-      <% end %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <span><%= t "books_by_cate" %></span>
-      <%= form_tag books_path, method: :get do %>
-        <%= select_tag :cate,
-          options_for_select(@categories.map{|c| [c.name, c.id]},
-          selected: params[:cate]), class: "form-control",
-          include_blank: true %>
-        <%= submit_tag t("choose"), class: "btn btn-default" %>
-      <% end %>
-    </div>
-    <div class="col-md-6">
-      <div>
-        <span><%= t "sort_by" %></span>
-        <br>
-        <%= form_tag books_path, method: :get do %>
-          <%= select_tag :filter,
-            options_for_select(Settings.filters.map{|key, val| [val, key]},
-            selected: params[:filter]), class: "form-control filter-sel",
-            include_blank: true %>
-          <%= submit_tag t("filter"), class: "btn btn-default" %>
+<section class="books">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h1><%= t("books") %></h1>
+        <p>
+          <%= t("currently_show") %>
+          <%= @books.current_page %> <%= t("of_total") %>
+          <%= @books.total_pages %> <%= t("pages") %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <div class="filter">
+          <h1><%= t("sort_by") %></h1>
+          <%= form_tag books_path, method: :get, class: "navbar-form" do %>
+            <div class="form-group">
+              <%= select_tag :filter,
+                options_for_select(Settings.filters.map{|key, val| [val, key]},
+                selected: params[:filter]), class: "form-control filter-sel",
+                include_blank: true %>
+              <%= submit_tag t("filter"), class: "btn btn-filter" %>
+            </div>
         <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="sidebar">
+        <div class="col-md-3">
+          <div class="sidebar-entry book-cates">
+            <h3 class="entry-title"><%= t("book_genres") %></h3>
+            <ul class="product-categories">
+              <%= render partial: "category", locals:{categories: @categories} %>
+            </ul>
+          </div>
+          <div class="sidebar-entry">
+            <h3 class="entry-title"><%= t("search_lib") %></h3>
+            <div class="sidebar-search">
+              <%= form_tag(books_path, method: "get") do%>
+              <div class="form-group">
+                <%= search_field_tag "search", nil, class: "form-control",
+                placeholder: t("search_by") %>
+              </div>
+              <%= submit_tag t("search"), class: "explore-btn", name: nil %>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 books-container">
+        <div class="row">
+          <div class="books">
+            <%= will_paginate %>
+            <div class="book-list">
+              <%= render @books %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <hr>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="center-block">
-        <%= will_paginate %>
-        <ul class="book-list">
-          <%= render @books %>
-        </ul>
-        <%= will_paginate %>
-      </div>
-    </div>
-  </div>
-</div>
+</section>

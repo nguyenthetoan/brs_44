@@ -2,10 +2,12 @@
   <div>
     <% if current_user.favorited? book %>
       <%= link_to "", {controller: "favorites", action: "destroy", id: book.id},
-        method: :delete, class: "heart btn-unfav" %>
+        method: :delete, class: "heart btn-unfav",data: {toggle: "tooltip"},
+        title: t("remove_fav_book") %>
     <% else %>
       <%= link_to "", {controller: "favorites", action: "create", id: book.id},
-        method: :post, class: "heart btn-fav" %>
+        method: :post, class: "heart btn-fav", data: {toggle: "tooltip"},
+        title: t("add_fav_book") %>
     <% end %>
   </div>
 <% end %>

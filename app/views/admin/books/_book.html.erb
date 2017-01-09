@@ -5,11 +5,11 @@
   <td><%= Publisher.find_by(id: book.publisher_id).name %></td>
   <td><%= book.category.name %></td>
   <td>
-    <%= link_to admin_book_path(book), class: "btn-edit-book" do %>
+    <%= link_to admin_book_path(book.id), class: "btn-edit-book" do %>
       <i class="fa fa-pencil-square-o"></i>
     <% end %>
     |
-    <%= link_to admin_book_path(book), class: "btn-delete" do %>
+    <%= link_to admin_book_path(book.id), class: "btn-delete" do %>
       <i class="fa fa-times"></i>
     <% end %>
   </td>

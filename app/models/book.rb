@@ -36,7 +36,7 @@ class Book < ApplicationRecord
   end
 
   def available_borrow?
-    self.borrows.collect(&:borrowing?).empty?
+    !self.borrows.collect(&:borrowing?).any?
   end
 
   private

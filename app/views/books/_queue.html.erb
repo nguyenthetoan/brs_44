@@ -3,6 +3,6 @@
     <%= queue.user.name %> <%= t "wanna_borrow_from" %>
     <strong><%= queue.start_date.strftime(Settings.option_time.vn) %></strong>
     <%= t "to" %>
-    <strong><%= queue.start_date.strftime(Settings.option_time.vn) %></strong>
+    <strong><%= queue.due_date.strftime(Settings.option_time.vn) %></strong>
   </p>
 </li>
