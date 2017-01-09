@@ -11,6 +11,18 @@ class NotifyMailer < ApplicationMailer
     end
   end
 
+  def send_expiring_borrow
+    expireds = Borrow.expired
+    expireds.each do |borrow|
+      if (borrow.due_date - Time.zone.now).to_i / 1.day <= 2
+        @borrow = borrow
+        @user = borrow.user
+        mail to: @user.email,
+          subject: I18n.t("notify_expiring_borrow", book: borrow.book.title)
+      end
+    end
+  end
+
   def send_expired_borrow borrow
     @borrow = borrow
     @user = borrow.user

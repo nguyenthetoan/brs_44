@@ -1,0 +1,6 @@
+<h1><%= t "hi" %>, <%= @user.name %></h1>
+<p>
+  <%= t("confirmation_of_expired_borrow", book: @borrow.book.title) %>
+  <%= t "is_expired" %>:
+  <strong><%= @borrow.due_date.strftime(Settings.option_time.vn) %></strong>
+</p>

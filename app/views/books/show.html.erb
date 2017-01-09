@@ -1,19 +1,51 @@
 <%= provide :title, @book.title %>
 <div class="container">
   <div class="row">
-    <h1><%= @book.title %></h1>
-    <p>
-      <%= t "by" %>: <span class="pub-date"><%= @book.author.name %></span>
-    </p>
-  </div>
-  <div class="row">
     <div class="col-md-4">
-      <%= image_tag "default-cover.gif", class: "book-cover" %>
+      <%= image_tag "book.jpg", size: "409x523" %>
     </div>
     <div class="col-md-8">
+      <h1><%= @book.title %></h1>
+      <p>
+        <%= t "by" %>: <span class="pub-date"><%= @book.author.name %></span>
+      </p>
+      <p>
+        <a class="avg-rating" data-toggle="tooltip"
+          title="<%= pluralize(@book.reviews.size, "review") %>" >
+          <span class="rate-count">
+            <span class="label label-default no-rating">
+              <%= t("no_rating") if @book.avg_rating == 0 %>
+            </span>
+            <% @book.avg_rating.times do %>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            <% end %>
+          </span>
+        </a>
+      </p>
       <p>
         <%= @book.description.blank? ? t("no_description") : @book.description %>
       </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="spec-contents">
+        <div class="entry-content">
+          <table class="book-attributes">
+            <caption><%= t("book_details") %></caption>
+            <tbody>
+              <% @book.specifications.each do |spec| %>
+                <tr>
+                  <th><%= spec.specification_name %></th>
+                  <td>
+                    <p><%= spec.specification_value %></p>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
   <hr>
@@ -32,7 +64,6 @@
             </p>
             <%= render "bookmarks/edit", user_bookmark: @user_bookmark %>
           <% else %>
-            <span><%= t "mark_as" %></span>
             <%= render "bookmarks/bookmark_form", book: @book %>
           <% end %>
         <% end %>
@@ -41,19 +72,21 @@
     <div class="col-md-6">
       <div id="borrow">
         <% unless current_user.nil? %>
-          <% unless @borrowed.nil? %>
+          <% unless @supports.borrowed.nil? %>
             <h4>
-              <%= t("current_borrowed", borrower: @borrowed.user.name) %>
-              <%= t "till" %>: <%= @borrowed.due_date.strftime(Settings.option_time.vn) %>
+              <%= t("current_borrowed", borrower: @supports.borrowed.user.name) %>
+              <%= t "till" %>:
+              <%= @supports.borrowed.due_date.strftime(Settings.option_time.vn) %>
             </h4>
           <% end %>
           <p>
-            <%= link_to t("schedule_borrow"), new_borrow_path, id: "btn-new-borrow" %>
+            <%= link_to t("schedule_borrow"), new_borrow_path,
+              id: "btn-new-borrow", class: "explore-btn" %>
           </p>
           <p><%= t "borrow_queue" %></p>
-          <ul>
-            <%= render partial: "queue", collection: @queues %>
-          </ul>
+          <ol>
+            <%= render partial: "queue", collection: @supports.queues %>
+          </ol>
         <% end %>
       </div>
     </div>

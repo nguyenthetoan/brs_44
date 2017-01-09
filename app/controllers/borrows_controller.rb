@@ -10,9 +10,9 @@ class BorrowsController < ApplicationController
   end
 
   def create
-    book = Book.find_by id: params[:id]
-    @borrow = Borrow.new
-    @borrow.manual_save book
+    book = Book.friendly.find params[:id]
+    @borrow = current_user.borrows.build
+    @borrow.manual_save book, borrow_params
     if @borrow.save
       flash[:notice] = t "done_borrowing"
       redirect_back fallback_location: :back
@@ -26,5 +26,4 @@ class BorrowsController < ApplicationController
   def borrow_params
     params.require(:borrow).permit :start_date, :due_date
   end
-
 end

@@ -3,5 +3,7 @@ set :environment, "development"
 set :output, {error: "log/whenever.log"}
 every 15.minutes do
   rake "job:borrow_process"
-  runner NotifyMailer.send_available_borrow.deliver_now
+end
+every :day, at: "8:00am" do
+  runner "NotifyMailer.send_expiring_borrow.deliver_now"
 end

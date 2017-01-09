@@ -71,6 +71,7 @@ $(document).on('turbolinks:load', function() {
       method: 'post',
       success: function() {
         $btn.removeClass('btn-fav').addClass('btn-unfav')
+        $btn.attr('data-tooltip', I18n.t('remove_fav_book'))
         $btn.css('background-position', '-2800px 0')
         $btn.attr('href', $del_url)
         $('.favorited-count').html($fav_count + 1)
@@ -92,6 +93,7 @@ $(document).on('turbolinks:load', function() {
       method: 'delete',
       success: function() {
         $btn.removeClass('btn-unfav').addClass('btn-fav')
+        $btn.attr('data-tooltip', I18n.t('add_fav_book'))
         $btn.css('background-position', '0, 0');
         $btn.attr('href', $add_url)
         $('.favorited-count').html($fav_count - 1)

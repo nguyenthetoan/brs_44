@@ -1,12 +1,20 @@
-<li class="book-item" id="<%= book.id %>">
-  <%= link_to book_path(book) do %>
-    <%= image_tag "default-cover.gif", class: "book-cover" %>
-  <% end %>
-  <hr>
-  <div class="book-title">
-    <p class="book-name"><%= link_to book.title, book_path(book) %></p>
-    <% if signed_in? %>
-      <%= render "favorite_actions", book: book %>
-    <% end %>
+<div class="item-column col-md-4">
+  <div class="book-item">
+    <div class="item-image">
+      <%= link_to book_path(book) do %>
+        <%= image_tag "default-cover.jpg", size: "262x334" %>
+      <% end %>
+    </div>
+    <div class="book-info">
+      <h3><%= link_to book.title, book_path(book) %></h3>
+      <span class="book-cate">
+        <%= link_to book.category.name, books_path(cate: book.category.id) %>
+      </span>
+      <div class="add-fav">
+        <% if user_signed_in? %>
+          <%= render "favorite_actions", book: book %>
+        <% end %>
+      </div>
+    </div>
   </div>
-</li>
+</div>

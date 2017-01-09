@@ -1,8 +1,10 @@
 <%= form_for @bookmark, url: bookmarks_path do |f| %>
+  <%= f.submit t("save"), class: "explore-btn" %>
+  <br>
+  <span><%= t "mark_as" %></span>
   <%= f.hidden_field :book_id, value: @book.id %>
   <% Bookmark.reads.keys.each do |read_type| %>
     <%= f.radio_button :read, read_type %>
     <%= f.label read_type.to_sym %>
   <% end %>
-  <%= f.submit t("save"), class: "btn btn-primary" %>
 <% end %>
