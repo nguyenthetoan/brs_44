@@ -1,5 +1,5 @@
 class LikesController<ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy, :show]
+  before_action :authenticate_user!, only: [:create, :destroy, :show]
 
   def create
     @like = current_user.likes.build like_params
