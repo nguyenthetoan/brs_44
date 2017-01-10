@@ -44,10 +44,6 @@ class User < ApplicationRecord
     uniqueness: {case_sensitive: false}
   validates :password, length: {minimum: 6}, allow_nil: true
 
-  def is_user? current_user
-    self == current_user
-  end
-
   def add_favorite book
     favorites.create book_id: book.id
   end
@@ -80,14 +76,6 @@ class User < ApplicationRecord
 
   def bookmarkeds
     bookmarks = Bookmark.where user_id: self.id
-  end
-
-  def reviewed? book
-    book.reviewed_by.reload.include? self
-  end
-
-  def had_conversation? other_user
-    self.active_conversations.collect(&:guest).flatten.uniq.include? other_user
   end
 
   def self.from_omniauth auth

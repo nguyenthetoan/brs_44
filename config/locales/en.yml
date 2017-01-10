@@ -169,9 +169,11 @@ en:
   explore_books: "Explore Now"
   search_lib: "Search Library"
   done_borrowing: "Your borrow request is successful sent!"
+  failed_borrowing: "Failed! Your borrow is failed to create."
   schedule_borrow: "Schedue a borrow!"
   wanna_borrow_from: "wants to borrow from "
   to: "to"
+  till: "till"
   borrow_queue: "Borrow Queue"
   mark_as: "Mark this book as: "
   no_rating: "0 rate"
@@ -186,6 +188,13 @@ en:
   currently_show: "currently showing"
   of_total: "of total"
   pages: "pages"
+  notify_expired_borrow: "Your borrowed book (%{book}) is now expired!"
+  confirmation_of_expired_borrow: |
+    This email is to notify that the borrowed book %{book} is expired now.
+  now_borrowing: "Gratz, you are now borrowing %{book} !"
+  created_conversation: "You created conversations :"
+  added_conversation: "You are added to those conversations: "
+  following_list: "Users who you are following: "
   users:
     new:
       confirm_pw: "Confrim Your Password"

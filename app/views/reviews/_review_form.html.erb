@@ -1,4 +1,4 @@
-<% if current_user.reviewed? @book %>
+<% if @book.reviewed_by.include? current_user %>
   <h3><%= t "unique_reviewer" %>
   <span class="rate-count">
     <% current_user.reviews.find_by(book_id: @book.id).rate.times do %>
