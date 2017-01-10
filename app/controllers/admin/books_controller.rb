@@ -11,9 +11,9 @@ class Admin::BooksController < ApplicationController
 
   def index
     if params[:filter]
-      @books = filter_by(params[:filter]).latest
+      @books = filter_by(params[:filter]).latest.paginate page: params[:page], per_page: Settings.item_per_page
     else params[:search]
-      @books = search_by(params[:search]).latest
+      @books = search_by(params[:search]).latest.paginate page: params[:page], per_page: Settings.item_per_page
     end
   end
 

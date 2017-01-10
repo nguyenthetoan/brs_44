@@ -87,6 +87,7 @@ $(document).on('turbolinks:load', function() {
             $parent_tr.after($new_row)
           }
           $new_row.hide().fadeIn(3000)
+          $form[0].reset()
         },
         error: function(jqXHR, exception) {
           sweetAlert(I18n.t('ops'),
@@ -126,6 +127,7 @@ $(document).on('turbolinks:load', function() {
   delete_item('.btn-delete-publisher', 'publisher')
   get_edit_data('.btn-edit-publisher', 'publisher')
   edit_item('.edit_publisher', 'create_publisher_error')
+  get_edit_data('.btn-edit-author', 'author')
 
  $count = 0;
 

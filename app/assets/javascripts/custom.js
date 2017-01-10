@@ -63,7 +63,7 @@ function new_item(button, container, error_message) {
               I18n.t('data_existed'), 'error');
           }
           swal(I18n.t('good_job'), I18n.t('done_create'), "success")
-          $(container + ' tr:last').after($new_row)
+          $(container + ' tr:first').after($new_row)
           $new_row.hide().fadeIn(3000)
           $form[0].reset()
         },

@@ -1,9 +1,9 @@
 <tr id="<%= dom_id(author) %>">
-  <td><%= author.name %></td>
+  <td><%= link_to author.name, admin_author_path(author) %></td>
   <td><%= author.bio %></td>
   <td><%= author.books.size %></td>
   <td>
-    <%= link_to admin_author_path(author), class: "btn-edit-author" do %>
+    <%= link_to edit_admin_author_path(author), class: "btn-edit-author" do %>
       <i class="fa fa-pencil-square-o"></i>
     <% end %>
     |

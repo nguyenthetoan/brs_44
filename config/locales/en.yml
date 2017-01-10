@@ -195,6 +195,13 @@ en:
   created_conversation: "You created conversations :"
   added_conversation: "You are added to those conversations: "
   following_list: "Users who you are following: "
+  user_list: "User List"
+  users_manager: "Users management"
+  no_publisher: "No Publisher"
+  our_community: "Our Community"
+  find_member: "Find a member..."
+  showing_results_for: "Showing result for: "
+  done_create: "You have successfully created new data."
   users:
     new:
       confirm_pw: "Confrim Your Password"

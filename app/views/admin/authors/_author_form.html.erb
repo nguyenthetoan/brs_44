@@ -5,5 +5,10 @@
   <%= f.label :bio %>
   <%= f.text_field :bio, class: "form-control" %>
 
+  <%= f.select :publisher_id,
+    Publisher.select("id, name").collect {|c| [c.name, c.id]},
+    {include_blank: t("no_publisher")},
+    {autofocus: true, class: "form-control"} %>
+
   <%= f.submit t("create"), class: "btn btn-primary" %>
 <% end %>

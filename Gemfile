@@ -31,6 +31,7 @@ gem "friendly_id"
 gem "social-share-button"
 gem "omniauth-facebook"
 gem "faker"
+gem "redis"
 group :development, :test do
   gem "byebug", platform: :mri
 end

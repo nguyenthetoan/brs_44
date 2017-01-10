@@ -1,0 +1,66 @@
+<% provide :title, @author.name %>
+<div class="container">
+  <div class="hidden-xs col-md-3">
+    <div class="fading-side-menu" data-spy="affix" data-offset-top="350">
+      <h5><%= t "contents" %></h5>
+      <hr class="no-margin">
+      <ul class="list-unstyled">
+        <li>
+          <a href="#intro">
+            <span class="fa fa-angle-double-right text-primary"></span><%= t "intro" %>
+          </a>
+        </li>
+        <li>
+          <a href="#authors">
+            <span class="fa fa-angle-double-right text-primary"></span>
+            <%= t "authors" %>
+          </a>
+        </li>
+        <li>
+          <a href="#books">
+            <span class="fa fa-angle-double-right text-primary"></span>
+            <%= t "books" %>
+          </a>
+        </li>
+        <li>
+          <a href="#categories">
+            <span class="fa fa-angle-double-right text-primary"></span>
+            <%= t "categories" %>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <h3 id="intro"><%= @author.name %></h3>
+    <p><%= @author.bio %></p>
+    <hr>
+    <h3 id="authors"><%= t "publishers" %></h3>
+    <div>
+      <p><%= @author.publisher.nil? ? "no publisher" : @author.publisher.name %></p>
+    </div>
+    <hr>
+    <h3 id="books"><%= t "books" %></h3>
+    <div>
+      <table id="authors" class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th><%= t "title" %></th>
+            <th><%= t "author" %></th>
+            <th><%= t "category" %></th>
+          </tr>
+        </thead>
+        <tbody id="book-list">
+          <%= render partial: "admin/publishers/book", collection: @author_books %>
+        </tbody>
+      </table>
+    </div>
+    <hr>
+    <h3 id="categories"><%= t "categories" %></h3>
+    <div>
+      <ol>
+        <%= render partial: "admin/publishers/category", collection: @author_categories %>
+      </ol>
+     </div>
+  </div>
+</div>

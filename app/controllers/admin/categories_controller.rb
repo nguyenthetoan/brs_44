@@ -1,9 +1,9 @@
 class Admin::CategoriesController<ApplicationController
-
+  before_action :authenticate_user!, :admin_user
   load_and_authorize_resource except: [:create]
 
   layout "admin"
-  before_action :authenticate_user!
+
   def index
     @category = Category.new
     @categories = Category.order("lft")

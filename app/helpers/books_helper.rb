@@ -1,7 +1,7 @@
 module BooksHelper
 
   def load_books
-    @books = Book.select("id, title")
+    @books = Book.select("id, title, slug, category_id")
   end
 
   def filter_by val

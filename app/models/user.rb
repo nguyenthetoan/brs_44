@@ -9,6 +9,8 @@ class User < ApplicationRecord
   scope :all_admin, -> {where("role = 0")}
   scope :all_user, -> {where("role = 1")}
 
+  scope :search, -> (condition) {where("name LIKE :search", search: "%#{condition}%")}
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   enum role: [:admin, :user]
@@ -96,6 +98,7 @@ class User < ApplicationRecord
       user.name = auth.info.name
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
+      user.confirmed_at = Time.zone.now
     end
   end
 

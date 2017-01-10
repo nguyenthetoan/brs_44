@@ -2,7 +2,9 @@ class Admin::AuthorsController < ApplicationController
   load_and_authorize_resource
   layout "admin"
   before_action :authenticate_user!
+
   def index
+    @authors = Author.select("id, name, bio").paginate page: params[:page], per_page: Settings.item_per_page
     @author = Author.new
     respond_to do |format|
       format.html
@@ -21,6 +23,12 @@ class Admin::AuthorsController < ApplicationController
   end
 
   def show
+    @author_books = @author.books
+    cates = @author.books.select("category_id")
+    @author_categories = Category.where id: cates
+  end
+
+  def edit
     respond_to do |format|
       format.html {render partial: "edit", locals: {author: @author}}
     end
@@ -50,7 +58,7 @@ class Admin::AuthorsController < ApplicationController
   private
 
   def author_params
-    params.require(:author).permit :name, :bio
+    params.require(:author).permit :name, :bio, :publisher_id
   end
 
 end

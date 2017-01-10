@@ -1,0 +1,71 @@
+<% provide :title, t("our_community") %>
+<div class="container">
+  <div class="page-header">
+    <h1><%= t "our_community" %></h1>
+    <% if params[:search] %>
+      <%= t("showing_results_for") %>
+      <strong><%= params[:search] %></strong>
+    <% end %>
+  </div>
+  <p>
+    <%= t "total_user" %>: <span class="badge"><%= @users.size %></span>
+  </p>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_tag(users_path, method: "get") do%>
+      <div class="form-group">
+        <%= search_field_tag "search", nil, class: "form-control",
+        placeholder: t("find_member") %>
+      </div>
+      <br>
+      <%= button_tag(type: "submit", class: "btn btn-default") do %>
+        <i class="fa fa-search" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="well">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th><%= t "name" %></th>
+              <th><%= t "email" %></th>
+              <th><%= t("member_since") %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= render @users %>
+          </tbody>
+        </table>
+        <%= will_paginate %>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="modal-new" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2><%= t "create_new_user" %></h2>
+    </div>
+    <div class="modal-body">
+
+    </div>
+  </div>
+</div>
+<div id="modal-edit" class="modal modal-edit">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2><%= t "edit_user" %></h2>
+    </div>
+    <div class="edit-modal-body">
+
+    </div>
+  </div>
+</div>

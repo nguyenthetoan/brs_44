@@ -36,8 +36,8 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
-  # config.action_cable.url = "wss://example.com/cable"
-  # config.action_cable.allowed_request_origins = [ "http://example.com", /http:\/\/example.*/ ]
+  config.action_cable.url = "wss://radiant-refuge-11114.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = [ "https://radiant-refuge-11114.herokuapp.com/" ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -56,22 +56,20 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "brs_44_#{Rails.env}"
   config.action_mailer.perform_caching = false
-  onfig.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_deliveries = true
 
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = {host: Settings.mailing.host}
+  config.action_mailer.default_url_options = {host: "radiant-refuge-11114.herokuapp.com"}
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address              => Settings.mailing.mail_host,
-    :port                 => Settings.mailing.mail_port,
-    :domain               => Settings.mailing.domain,
-    :user_name            => Settings.mailing.from,
-    :password             => ENV["MAIL_PASSWORD"],
-    :authentication       => :plain,
-    :ssl                  => true,
-    :tls                  => true,
-    :enable_starttls_auto => true
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "radiant-refuge-11114.herokuapp.com",
+    user_name: ENV["MAIL_USERNAME"],
+    password: ENV["MAIL_PASSWORD"],
+    authentication: :plain,
+    enable_starttls_auto: true
   }
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

@@ -1,0 +1,8 @@
+<tr id="<%= dom_id(user) %>">
+  <td>
+    <%= index_for user_counter, @users.current_page, Settings.item_per_page %>
+  </td>
+  <td><%= link_to user.name, user_path(user) %></td>
+  <td><%= user.email %></td>
+  <td><%= user.confirmed? ? time_ago_in_words(user.confirmed_at) : t("unconfirmed") %></td>
+</tr>
