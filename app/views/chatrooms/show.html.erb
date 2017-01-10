@@ -3,18 +3,21 @@
 <div id="messages" data-chatroom-id="<%= @chatroom.id %>">
   <div class="row">
     <div class="col-md-12">
-      <div id="chat-box" class="chat-box">
+      <ul id="chat-box" class="messages">
         <%= render @chatroom.messages %>
-      </div>
+      </ul>
     </div>
   </div>
-</div>
-<%= form_for @message, url: "#" do |f| %>
-  <div class="form-group">
-    <%= f.label :message %>
-    <%= f.text_field :body, class: "form-control" %>
-    <small class="text-muted"><%= t "min_2_characters" %></small>
+  <div class="send_box">
+    <%= form_for @message, url: "#", class: "inline-form" do |f| %>
+      <div class="form-group">
+        <%= f.label :message %>
+        <%= f.text_field :body, class: "form-control" %>
+        <small class="text-muted"><%= t "min_2_characters" %></small>
+      </div>
+      <div class="send_message">
+        <%= f.submit t("send"), class: "btn btn-success" %>
+      </div>
+    <% end %>
   </div>
-
-  <%= f.submit t("send"), class: "btn btn-primary btn-lg" %>
-<% end %>
+</div>

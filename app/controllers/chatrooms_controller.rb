@@ -3,8 +3,6 @@ class ChatroomsController < ApplicationController
   before_action :in_conversation_only, only: :show
 
   def index
-    @followings = current_user.following
-    @availables = current_user.passive_conversations
   end
 
   def new

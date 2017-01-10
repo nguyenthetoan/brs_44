@@ -1,1 +1,27 @@
-<%= raw generate_conversation message %>
+<% if message.user == message.chatroom.host %>
+  <li class="message right">
+    <div class="avatar">
+      <%= link_to message.user do %>
+        <%= image_tag "default-avatar.png", size: 45 %>
+      <% end %>
+    </div>
+    <div class="text_wrapper">
+      <div class="text">
+        <p><%= message.body %></p>
+      </div>
+    </div>
+  </li>
+<% else %>
+  <li class="message left">
+    <div class="avatar">
+      <%= link_to message.user do %>
+        <%= image_tag "default-avatar.png", size: 45 %>
+      <% end %>
+    </div>
+    <div class="text_wrapper">
+      <div class="text">
+        <p><%= message.body %></p>
+      </div>
+    </div>
+  </li>
+<% end %>

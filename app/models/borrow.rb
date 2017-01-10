@@ -1,6 +1,6 @@
 class Borrow < ApplicationRecord
-  scope :expired, -> {where "due_date < ?", Time.zone.now}
-  scope :user_borrowing, -> {where "start_date < ?", Time.zone.now}
+  scope :expired, -> {where "due_date <= ?", Time.zone.now}
+  scope :user_borrowing, -> {where "start_date <= ?", Time.zone.now}
 
   before_save :default_status
   after_create_commit {BorrowStatusJob.perform_later(self)}
@@ -8,7 +8,7 @@ class Borrow < ApplicationRecord
   belongs_to :user
   belongs_to :book
 
-  enum status: [:awaiting, :borrowing, :ended, :rejected]
+  enum status: [:awaiting, :borrowing, :ended, :rejected, :sent_expiration]
 
   validates :start_date, presence: true
   validates :due_date, presence: true
@@ -26,6 +26,7 @@ class Borrow < ApplicationRecord
     errors.add(:start_date, I18n.t("cant_be_in_past")) if start_date <= Time.zone.now
     errors.add(:due_date, I18n.t("cant_be_in_past")) if due_date <= Time.zone.now
     errors.add(:due_date, I18n.t("cant_be_lower")) if due_date < start_date
+    errors.add(:due_date, I18n.t("cant_be_greater_30")) if due_date >= Time.zone.now + 30.days
   end
 
   def default_status
