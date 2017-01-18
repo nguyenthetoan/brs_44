@@ -1,7 +1,7 @@
 <% friends.each do |user| %>
   <li id="<%= dom_id(user) %>">
-    <% if current_user.had_conversation? user %>
-      <% existed_room = Chatroom.created_room(current_user, user).first %>
+    <% existed_room = Chatroom.created_room(current_user, user).first %>
+    <% if existed_room.exists? %>
       <span><%= t("continue_chat", guest: user.name) %></span>
       <%= link_to existed_room.title, chatroom_path(existed_room) %>
       <% else %>
