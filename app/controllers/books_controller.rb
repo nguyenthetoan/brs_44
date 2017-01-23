@@ -17,10 +17,6 @@ class BooksController<ApplicationController
 
   def show
     @supports = Supports::Book.new @book
-    if signed_in?
-      @review = Review.new
-      @bookmark = Bookmark.new
-    end
   end
 
 end

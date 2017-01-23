@@ -1,4 +1,4 @@
-<%= form_for @bookmark, url: bookmarks_path do |f| %>
+<%= form_for current_user.bookmarks.build, url: bookmarks_path do |f| %>
   <%= f.submit t("save"), class: "explore-btn" %>
   <br>
   <span><%= t "mark_as" %></span>
